@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.spring</groupId>
-	<artifactId>example-project</artifactId>
+	<artifactId>anime-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Example Project</name>
-	<description>Example Project</description>
+	<name>Anime Service</name>
+	<description>Anime Service</description>
 	<url/>
 	<licenses>
 		<license/>
