@@ -1,7 +1,10 @@
 package com.spring.mapper;
 
 import com.spring.dto.request.AnimePostRequest;
+import com.spring.dto.request.AnimePutRequest;
+import com.spring.dto.response.AnimeGetResponse;
 import com.spring.dto.response.AnimePostResponse;
+import com.spring.dto.response.AnimePutResponse;
 import com.spring.model.Anime;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -12,10 +15,13 @@ public interface AnimeMapper {
 
     AnimeMapper INSTANCE = Mappers.getMapper(AnimeMapper.class);
 
-    @Mapping(target = "releaseDate", expression = "java(java.time.LocalDate.now())")
+    @Mapping(target = "releaseDate", expression = "java(java.time.LocalDateTime.now())")
     @Mapping(target = "id", expression = "java(java.util.concurrent.ThreadLocalRandom.current().nextInt(100_000))")
     Anime toAnime(AnimePostRequest postRequest);
 
-    AnimePostResponse toAnimePostResponse(Anime anime);
+    Anime toAnime(AnimePutRequest putRequest);
 
+    AnimePutResponse toAnimePutResponse(Anime anime);
+
+    AnimeGetResponse toAnimeGetResponse(Anime anime);
 }

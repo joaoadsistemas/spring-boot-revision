@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Getter
 @Setter
-public class AnimePostResponse {
+public class AnimeGetResponse {
 
     private int id;
     private String title;
