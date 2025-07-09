@@ -1,4 +1,4 @@
-package com.spring.dto.response;
+package com.spring.dto.request;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Getter
 @Setter
-public class AnimePostResponse {
+public class AnimePutRequest {
 
     private int id;
     private String title;

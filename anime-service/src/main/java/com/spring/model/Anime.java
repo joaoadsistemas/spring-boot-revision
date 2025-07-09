@@ -1,22 +1,19 @@
 package com.spring.model;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
+@Builder
+@AllArgsConstructor
 @NoArgsConstructor
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Anime {
 
+    @EqualsAndHashCode.Include
     private int id;
     private String title;
-    private LocalDate releaseDate;
-
-    private List<Anime> animes = new ArrayList<>();
-
+    private LocalDateTime releaseDate;
 }
