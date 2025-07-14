@@ -1,5 +1,6 @@
 package com.spring.service;
 
+import com.spring.commons.AnimeUtils;
 import com.spring.model.Anime;
 import com.spring.repository.AnimeRepository;
 import org.assertj.core.api.Assertions;
@@ -25,6 +26,9 @@ class AnimeServiceTest {
     @InjectMocks
     private AnimeService animeService;
 
+    @InjectMocks
+    private AnimeUtils animeUtils;
+
     @Mock
     private AnimeRepository animeRepository;
 
@@ -33,11 +37,7 @@ class AnimeServiceTest {
 
     @BeforeEach
     void setUp() {
-        var anime1 = Anime.builder().id(1).title("Jujutsu Kaisen").releaseDate(LocalDateTime.now()).build();
-        var anime2 = Anime.builder().id(2).title("Dororo").releaseDate(LocalDateTime.now()).build();
-        var anime3 = Anime.builder().id(3).title("Atack on Titan").releaseDate(LocalDateTime.now()).build();
-        var anime4 = Anime.builder().id(4).title("Fullmetal").releaseDate(LocalDateTime.now()).build();
-        animeList.addAll(List.of(anime1, anime2, anime3, anime4));
+        animeList = animeUtils.newAnimeList();
     }
 
     @Test

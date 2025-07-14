@@ -1,5 +1,6 @@
 package com.spring.repository;
 
+import com.spring.commons.AnimeUtils;
 import com.spring.data.AnimeData;
 import com.spring.model.Anime;
 import org.assertj.core.api.Assertions;
@@ -12,7 +13,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -23,6 +23,9 @@ class AnimeRepositoryTest {
     @InjectMocks
     private AnimeRepository animeRepository;
 
+    @InjectMocks
+    private AnimeUtils animeUtils;
+
     @Mock
     private AnimeData animeData;
 
@@ -31,11 +34,7 @@ class AnimeRepositoryTest {
 
     @BeforeEach
     void setUp() {
-        var anime1 = Anime.builder().id(1).title("Jujutsu Kaisen").releaseDate(LocalDateTime.now()).build();
-        var anime2 = Anime.builder().id(2).title("Dororo").releaseDate(LocalDateTime.now()).build();
-        var anime3 = Anime.builder().id(3).title("Atack on Titan").releaseDate(LocalDateTime.now()).build();
-        var anime4 = Anime.builder().id(4).title("Fullmetal").releaseDate(LocalDateTime.now()).build();
-        animeList.addAll(List.of(anime1, anime2, anime3, anime4));
+        animeList = animeUtils.newAnimeList();
     }
 
     @Test
