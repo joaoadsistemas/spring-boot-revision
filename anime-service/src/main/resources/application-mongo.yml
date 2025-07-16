@@ -1,0 +1,4 @@
+database:
+  username: rootuser
+  url: hostlocal
+  port: 8888

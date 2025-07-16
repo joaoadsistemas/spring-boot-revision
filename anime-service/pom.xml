@@ -76,6 +76,16 @@
 
 	<build>
 		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>${maven-surefire-plugin.version}</version>
+				<configuration>
+					<argLine>-Dspring.profiles.active=test</argLine>
+				</configuration>
+			</plugin>
+
+
 			<!-- SINGLE maven-compiler-plugin with ALL annotation processors -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
