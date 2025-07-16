@@ -1,4 +1,4 @@
-package com.spring.user_service;
+package com.spring.user_service.repository;
 
 import com.spring.user_service.data.UserData;
 import com.spring.user_service.model.User;
