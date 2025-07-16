@@ -39,8 +39,6 @@ class ConfigControllerTest {
     @Test
     @DisplayName("GET v1/config should return the ClassConfig with the activeProfile test")
     void get_ShouldReturn_TheClassConfig_WithTestProfile() throws Exception {
-
         mockMvc.perform(MockMvcRequestBuilders.get(BASE_URL)).andDo(MockMvcResultHandlers.print());
-
     }
 }
