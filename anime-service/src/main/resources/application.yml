@@ -1,3 +1,8 @@
 spring:
   application:
     name: anime-service
+
+database:
+  username: ${USER:userroot}
+  url: ${URL:localhost}
+  port: ${PORT:8080}
