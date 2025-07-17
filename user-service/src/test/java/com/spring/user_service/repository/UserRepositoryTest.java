@@ -10,13 +10,13 @@ import org.mockito.BDDMockito;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatNoException;
+import static org.assertj.core.api.Assertions.*;
 
 
 @ExtendWith(MockitoExtension.class)
@@ -55,43 +55,48 @@ class UserRepositoryTest {
     @DisplayName("findById should return user when successfully")
     void findById_shouldReturnUser_whenSuccessfully() {
         BDDMockito.when(userData.getUsers()).thenReturn(userList);
-        var expectedResult = userList.stream().filter(u -> u.getId().equals(1L)).findFirst();
-        var result = userRepository.findById(1L);
+        var expectedResult = userList.stream().filter(u -> u.getId().equals(1L)).findFirst().get();
+        var result = userRepository.findById(expectedResult.getId());
         assertThat(result).isNotNull().isEqualTo(expectedResult);
     }
 
     @Test
-    @DisplayName("findById should return an optional empty when id does not exists")
-    void findById_shouldReturnEmptyOptional_whenIdDoesNotExist() {
+    @DisplayName("findById should throw an exception when id does not exists")
+    void findById_shouldThrowException_whenIdDoesNotExists() {
         BDDMockito.when(userData.getUsers()).thenReturn(userList);
         var id = 99L;
-        var result = userRepository.findById(id);
-        assertThat(result).isNotNull().isEmpty();
+        assertThatThrownBy(() -> userRepository.findById(id)).isInstanceOf(ResponseStatusException.class);
     }
 
     @Test
-    @DisplayName("findByEmail should return an optional empty when email does not exists")
-    void findByEmail_shouldReturnEmptyOptional_whenEmailDoesNotExist() {
+    @DisplayName("findByEmail should return user when successfully")
+    void findByEmail_shouldReturnUser_whenSuccessfully() {
+        BDDMockito.when(userData.getUsers()).thenReturn(userList);
+        var expectedResult = userList.stream().filter(u -> u.getId().equals(1L)).findFirst().get();
+        var result = userRepository.findByEmail(expectedResult.getEmail());
+        assertThat(result).isNotNull().isEqualTo(expectedResult);
+    }
+
+    @Test
+    @DisplayName("findByEmail should throw an exception when email does not exists")
+    void findByEmail_shouldThrowException_whenEmailDoesNotExists() {
         BDDMockito.when(userData.getUsers()).thenReturn(userList);
         var email = "xaxa@gmail.com";
-        var result = userRepository.findByEmail(email);
-        assertThat(result).isNotNull().isEmpty();
+        assertThatThrownBy(() -> userRepository.findByEmail(email)).isInstanceOf(ResponseStatusException.class);
     }
 
     @Test
     @DisplayName("save should save a user when successfully")
     void save_shouldSaveUser_whenSuccessfully() {
-        var expectedResult = User.builder().id(6L).firstName("Joao").lastName("Silva").email("joao.silva@example.com").build();
-        userList.add(expectedResult);
         BDDMockito.when(userData.getUsers()).thenReturn(userList);
+        var expectedResult = User.builder().id(6L).firstName("Joao").lastName("Silva").email("joao.silva@example.com").build();
         assertThatNoException().isThrownBy(() -> userRepository.save(expectedResult));
-        assertThat(userRepository.findById(6L)).contains(expectedResult);
+        assertThat(userRepository.findById(6L)).isEqualTo(expectedResult);
     }
 
     @Test
-    @DisplayName("save should do nothing when the email already exists")
-    void save_shouldDoNothing_whenEmailAlreadyExists() {
-        var initialCount = userList.size();
+    @DisplayName("save should throw an exception when the email already exists")
+    void save_shouldThrowAnException_whenEmailAlreadyExists() {
         BDDMockito.when(userData.getUsers()).thenReturn(userList);
 
         var user = userList.stream().findFirst().get();
@@ -99,15 +104,12 @@ class UserRepositoryTest {
         user.setFirstName("Nicolas");
         user.setLastName("Machado");
 
-        assertThatNoException().isThrownBy(() -> userRepository.save(user));
-        var finalCount = userList.size();
-        assertThat(initialCount).isEqualTo(finalCount);
+        assertThatThrownBy(() -> userRepository.save(user)).isInstanceOf(ResponseStatusException.class);
     }
 
     @Test
-    @DisplayName("save should do nothing when the id already exists")
-    void save_shouldDoNothing_whenIdAlreadyExists() {
-        var initialCount = userList.size();
+    @DisplayName("save should throw an exception when the email already exists")
+    void save_shouldThrowException_whenEmailAlreadyExists() {
         BDDMockito.when(userData.getUsers()).thenReturn(userList);
 
         var user = userList.stream().findFirst().get();
@@ -115,32 +117,26 @@ class UserRepositoryTest {
         user.setFirstName("Nicolas");
         user.setLastName("Machado");
 
-        assertThatNoException().isThrownBy(() -> userRepository.save(user));
-        var finalCount = userList.size();
-        assertThat(initialCount).isEqualTo(finalCount);
+        assertThatThrownBy(() -> userRepository.save(user)).isInstanceOf(ResponseStatusException.class);
     }
 
     @Test
     @DisplayName("delete should delete user when successfully")
     void delete_shouldDeleteUser_whenSuccessfully() {
+        BDDMockito.when(userData.getUsers()).thenReturn(userList);
 
         var removedUser = userList.stream().findFirst().get();
-        userList.remove(removedUser);
-        BDDMockito.when(userData.getUsers()).thenReturn(userList);
 
         assertThatNoException().isThrownBy(() -> userRepository.delete(removedUser.getId()));
         assertThat(userList).doesNotContain(removedUser);
     }
 
     @Test
-    @DisplayName("delete should do nothing when id does not exists")
-    void delete_shouldDoNothing_whenIdDoesNotExists() {
-        var initialCount = userList.size();
+    @DisplayName("delete should throw an exception when id does not exists")
+    void delete_shouldThrowAnException_whenIdDoesNotExists() {
         BDDMockito.when(userData.getUsers()).thenReturn(userList);
         var id = 99L;
-        assertThatNoException().isThrownBy(() -> userRepository.delete(id));
-        var finalCount = userList.size();
-        assertThat(initialCount).isEqualTo(finalCount);
+        assertThatThrownBy(() -> userRepository.delete(id)).isInstanceOf(ResponseStatusException.class);
     }
 
     @Test
@@ -151,7 +147,7 @@ class UserRepositoryTest {
 
         BDDMockito.when(userData.getUsers()).thenReturn(userList);
 
-        var userResultBeforeModification = userRepository.findById(userBeforeModification.getId()).get();
+        var userResultBeforeModification = userRepository.findById(userBeforeModification.getId());
         assertThat(userResultBeforeModification).isNotNull().isEqualTo(userBeforeModification);
 
         var userAfterModification = userBeforeModification;
@@ -166,17 +162,17 @@ class UserRepositoryTest {
 
         var userResultAfterModification = userRepository.update(userAfterModification);
 
-        assertThat(userResultAfterModification).isNotNull().isNotEmpty().isEqualTo(userAfterModification);
+        assertThat(userResultAfterModification).isNotNull().isEqualTo(userAfterModification);
         assertThat(userAfterModification.getId()).isEqualTo(userBeforeModification.getId());
     }
 
     @Test
-    @DisplayName("put should do nothing when id does not exists")
-    void put_shouldDoNothing_whenIdDoesNotExists() {
+    @DisplayName("put should throw an exception when id does not exists")
+    void put_shouldThrowAnException_whenIdDoesNotExists() {
 
         var user = User.builder().id(99L).email("xaxa").firstName("xaxa").lastName("xaxa").build();
         BDDMockito.when(userData.getUsers()).thenReturn(userList);
 
-        assertThatNoException().isThrownBy(() -> userRepository.update(user));
+        assertThatThrownBy(() -> userRepository.update(user)).isInstanceOf(ResponseStatusException.class);
     }
 }
