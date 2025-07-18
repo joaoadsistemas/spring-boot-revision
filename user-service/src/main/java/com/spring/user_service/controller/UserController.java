@@ -1,8 +1,11 @@
 package com.spring.user_service.controller;
 
-import com.spring.user_service.dto.*;
-import com.spring.user_service.mapper.UserMapper;
+import com.spring.user_service.dto.request.UserPostRequestDTO;
+import com.spring.user_service.dto.request.UserPutRequestDTO;
+import com.spring.user_service.dto.response.UserGetResponseDTO;
+import com.spring.user_service.dto.response.UserPutResponseDTO;
 import com.spring.user_service.service.UserService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -32,7 +35,7 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<Void> save(@RequestBody UserPostRequestDTO userPostRequestDTO) {
+    public ResponseEntity<Void> save(@RequestBody @Valid UserPostRequestDTO userPostRequestDTO) {
         userService.save(userPostRequestDTO);
         return ResponseEntity.noContent().build();
     }
@@ -44,7 +47,7 @@ public class UserController {
     }
 
     @PutMapping
-    public ResponseEntity<UserPutResponseDTO> update(@RequestBody UserPutRequestDTO userPutRequestDTO) {
+    public ResponseEntity<UserPutResponseDTO> update(@RequestBody @Valid UserPutRequestDTO userPutRequestDTO) {
         return ResponseEntity.ok(userService.update(userPutRequestDTO));
     }
 
