@@ -3,7 +3,6 @@ package com.spring.controller;
 import com.spring.dto.request.AnimePostRequest;
 import com.spring.dto.request.AnimePutRequest;
 import com.spring.dto.response.AnimeGetResponse;
-import com.spring.dto.response.AnimePostResponse;
 import com.spring.dto.response.AnimePutResponse;
 import com.spring.mapper.AnimeMapper;
 import com.spring.service.AnimeService;

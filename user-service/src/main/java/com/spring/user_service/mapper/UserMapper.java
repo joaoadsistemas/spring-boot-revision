@@ -1,6 +1,10 @@
 package com.spring.user_service.mapper;
 
-import com.spring.user_service.dto.*;
+import com.spring.user_service.dto.request.UserPostRequestDTO;
+import com.spring.user_service.dto.request.UserPutRequestDTO;
+import com.spring.user_service.dto.response.UserGetResponseDTO;
+import com.spring.user_service.dto.response.UserPostResponseDTO;
+import com.spring.user_service.dto.response.UserPutResponseDTO;
 import com.spring.user_service.model.User;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

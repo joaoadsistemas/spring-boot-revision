@@ -1,37 +1,28 @@
 package com.spring.user_service.controller;
 
 import com.spring.user_service.data.UserData;
-import com.spring.user_service.dto.UserPostRequestDTO;
-import com.spring.user_service.dto.UserPostResponseDTO;
-import com.spring.user_service.mapper.UserMapper;
 import com.spring.user_service.mapper.UserMapperImpl;
 import com.spring.user_service.model.User;
 import com.spring.user_service.repository.UserRepository;
 import com.spring.user_service.service.UserService;
 import com.spring.user_service.utils.FileUtils;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.mapstruct.Mapper;
-import org.mockito.ArgumentMatchers;
 import org.mockito.BDDMockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.boot.test.mock.mockito.SpyBean;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
-import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
 
 @WebMvcTest(UserController.class)
 @Import({UserService.class, UserRepository.class, UserMapperImpl.class, UserData.class, FileUtils.class})
@@ -62,7 +53,7 @@ class UserControllerTest {
     }
 
     @Test
-    @DisplayName("findAll should return all elements when successfully")
+    @DisplayName("GET v1/users should return all elements when successfully")
     void findAll_shouldReturnAllElements_whenSuccessfully() throws Exception {
 
         BDDMockito.when(userData.getUsers()).thenReturn(userSet);
@@ -76,7 +67,7 @@ class UserControllerTest {
     }
 
     @Test
-    @DisplayName("findById should return user when successfully")
+    @DisplayName("GET v1/users/{id} should return user when successfully")
     void findById_shouldReturnUser_whenSuccessfully() throws Exception {
 
         BDDMockito.when(userData.getUsers()).thenReturn(userSet);
@@ -91,7 +82,7 @@ class UserControllerTest {
     }
 
     @Test
-    @DisplayName("findById should throw an exception when id does not exists")
+    @DisplayName("GET v1/users/{id} should throw an exception when id does not exists")
     void findById_shouldThrowException_whenIdDoesNotExists() throws Exception {
         BDDMockito.when(userData.getUsers()).thenReturn(userSet);
         var id = 99L;
@@ -102,7 +93,7 @@ class UserControllerTest {
     }
 
     @Test
-    @DisplayName("findByEmail should return user when successfully")
+    @DisplayName("GET v1/users/email?email={} should return user when successfully")
     void findByEmail_shouldReturnUser_whenSuccessfully() throws Exception {
         BDDMockito.when(userData.getUsers()).thenReturn(userSet);
 
@@ -116,7 +107,7 @@ class UserControllerTest {
     }
 
     @Test
-    @DisplayName("findByEmail should throw an exception when email does not exists")
+    @DisplayName("GET v1/users/email?email={} should throw an exception when email does not exists")
     void findByEmail_shouldThrowException_whenEmailDoesNotExists() throws Exception {
         BDDMockito.when(userData.getUsers()).thenReturn(userSet);
         var email = "xaxa@gmail.com";
@@ -127,7 +118,7 @@ class UserControllerTest {
     }
 
     @Test
-    @DisplayName("save should save a user when successfully")
+    @DisplayName("POST v1/users should save a user when successfully")
     void save_shouldSaveUser_whenSuccessfully() throws Exception {
         BDDMockito.when(userData.getUsers()).thenReturn(userSet);
         var request = fileUtils.readResourceFile("user/post-200.json");
@@ -139,7 +130,7 @@ class UserControllerTest {
     }
 
     @Test
-    @DisplayName("save should throw an exception when the email already exists")
+    @DisplayName("POST v1/users should throw an exception when the email already exists")
     void save_shouldThrowAnException_whenEmailAlreadyExists() throws Exception {
         BDDMockito.when(userData.getUsers()).thenReturn(userSet);
         var request = fileUtils.readResourceFile("user/post-exists-email-400.json");
@@ -151,7 +142,7 @@ class UserControllerTest {
     }
 
     @Test
-    @DisplayName("save should throw an exception when the id already exists")
+    @DisplayName("POST v1/users should throw an exception when the id already exists")
     void save_shouldThrowException_whenIdAlreadyExists() throws Exception {
         BDDMockito.when(userData.getUsers()).thenReturn(userSet);
         var request = fileUtils.readResourceFile("user/post-exists-id-400.json");
@@ -164,7 +155,7 @@ class UserControllerTest {
     }
 
     @Test
-    @DisplayName("delete should delete user when successfully")
+    @DisplayName("DELETE v1/users should delete user when successfully")
     void delete_shouldDeleteUser_whenSuccessfully() throws Exception {
         BDDMockito.when(userData.getUsers()).thenReturn(userSet);
         var id = 1L;
@@ -175,7 +166,7 @@ class UserControllerTest {
     }
 
     @Test
-    @DisplayName("delete should throw an exception when id does not exists")
+    @DisplayName("DELETE v1/users should throw an exception when id does not exists")
     void delete_shouldThrowAnException_whenIdDoesNotExists() throws Exception {
         BDDMockito.when(userData.getUsers()).thenReturn(userSet);
         var id = 99L;
@@ -185,7 +176,7 @@ class UserControllerTest {
     }
 
     @Test
-    @DisplayName("put should return the object when succesffully")
+    @DisplayName("PUT v1/users/{id} should return the object when succesffully")
     void put_shouldReturnObject_whenSuccessfully() throws Exception {
         BDDMockito.when(userData.getUsers()).thenReturn(userSet);
 
@@ -200,12 +191,12 @@ class UserControllerTest {
     }
 
     @Test
-    @DisplayName("put should throw an exception when id does not exists")
+    @DisplayName("PUT v1/users/{id} should throw an exception when id does not exists")
     void put_shouldThrowAnException_whenIdDoesNotExists() throws Exception {
 
         BDDMockito.when(userData.getUsers()).thenReturn(userSet);
 
-        var request = fileUtils.readResourceFile("user/put-request-400.json");
+        var request = fileUtils.readResourceFile("user/put-exists-id-request-400.json");
 
         mockMvc.perform(MockMvcRequestBuilders.put(URL)
                         .contentType("application/json")
@@ -213,6 +204,52 @@ class UserControllerTest {
                 .andDo(MockMvcResultHandlers.print())
                 .andExpect(MockMvcResultMatchers.status().isBadRequest());
 
+    }
+
+    @Test
+    @DisplayName("POST v1/users should throw an exception when fields is not valid")
+    void save_shouldThrowException_whenFieldsIsNotValid() throws Exception {
+        var request = fileUtils.readResourceFile("user/post-empty-fields-400.json");
+
+        var idMessage = "id is required";
+        var firstNameMessage = "firstName is required";
+        var lastNameMessage = "lastName is required";
+        var emailMessage = "email is required";
+
+        var mock = mockMvc.perform(MockMvcRequestBuilders.post(URL)
+                        .contentType("application/json")
+                        .content(request))
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(MockMvcResultMatchers.status().isBadRequest())
+                .andReturn();
+
+        var resolvedException = mock.getResolvedException();
+
+        Assertions.assertThat(resolvedException.getMessage())
+                .contains(idMessage, firstNameMessage, lastNameMessage, emailMessage);
+    }
+
+    @Test
+    @DisplayName("PUT v1/users should throw an exception when fields is not valid")
+    void put_shouldThrowException_whenFieldsIsNotValid() throws Exception {
+        var request = fileUtils.readResourceFile("user/put-empty-fields-400.json");
+
+        var idMessage = "id is required";
+        var firstNameMessage = "firstName is required";
+        var lastNameMessage = "lastName is required";
+        var emailMessage = "email is required";
+
+        var mock = mockMvc.perform(MockMvcRequestBuilders.put(URL)
+                        .contentType("application/json")
+                        .content(request))
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(MockMvcResultMatchers.status().isBadRequest())
+                .andReturn();
+
+        var resolvedException = mock.getResolvedException();
+
+        Assertions.assertThat(resolvedException.getMessage())
+                .contains(idMessage, firstNameMessage, lastNameMessage, emailMessage);
     }
 
 }

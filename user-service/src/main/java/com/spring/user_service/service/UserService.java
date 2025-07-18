@@ -1,9 +1,9 @@
 package com.spring.user_service.service;
 
-import com.spring.user_service.dto.UserGetResponseDTO;
-import com.spring.user_service.dto.UserPostRequestDTO;
-import com.spring.user_service.dto.UserPutRequestDTO;
-import com.spring.user_service.dto.UserPutResponseDTO;
+import com.spring.user_service.dto.response.UserGetResponseDTO;
+import com.spring.user_service.dto.request.UserPostRequestDTO;
+import com.spring.user_service.dto.request.UserPutRequestDTO;
+import com.spring.user_service.dto.response.UserPutResponseDTO;
 import com.spring.user_service.mapper.UserMapper;
 import com.spring.user_service.model.User;
 import com.spring.user_service.repository.UserRepository;
@@ -11,7 +11,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
-import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Collectors;
 
 @Service
