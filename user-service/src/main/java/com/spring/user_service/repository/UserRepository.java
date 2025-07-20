@@ -1,8 +1,8 @@
 package com.spring.user_service.repository;
 
+import com.spring.exception.BadRequestException;
+import com.spring.exception.NotFoundException;
 import com.spring.user_service.data.UserData;
-import com.spring.user_service.exception.BadRequestException;
-import com.spring.user_service.exception.NotFoundException;
 import com.spring.user_service.model.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;

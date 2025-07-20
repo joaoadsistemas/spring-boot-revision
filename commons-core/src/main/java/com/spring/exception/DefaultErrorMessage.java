@@ -1,4 +1,4 @@
-package com.spring.user_service.exception;
+package com.spring.exception;
 
 public record DefaultErrorMessage(int code, String message) {
 }

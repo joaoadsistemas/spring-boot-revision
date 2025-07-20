@@ -1,4 +1,4 @@
-package com.spring.user_service.exception;
+package com.spring.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

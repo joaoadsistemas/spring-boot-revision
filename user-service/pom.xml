@@ -32,9 +32,16 @@
         <maven-compiler-plugin.version>3.11.0</maven-compiler-plugin.version>
         <maven-surefire-plugin.version>3.1.2</maven-surefire-plugin.version>
         <lombok.version>1.18.30</lombok.version>
+        <commons-core.version>0.0.1-SNAPSHOT</commons-core.version>
     </properties>
     <dependencies>
 
+        <!-- add my dependency for exceptions -->
+        <dependency>
+            <groupId>com.spring</groupId>
+            <artifactId>commons-core</artifactId>
+            <version>${commons-core.version}</version>
+        </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>

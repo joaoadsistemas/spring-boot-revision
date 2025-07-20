@@ -5,21 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3bd4ca96-6461-4b57-9228-26374c6dc493" name="Changes" comment="feat: BeanValidation in request and also made tests for it">
-      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/exception/BadRequestException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/exception/DefaultErrorMessage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/exception/GlobalErrorHandlerAdvice.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/exception/NotFoundException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/src/test/resources/user/post-blank-fields-400.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/src/test/resources/user/post-invalid-email-400.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/src/test/resources/user/put-blank-fields-400.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/src/test/resources/user/put-invalid-email-400.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/commons-core/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/dto/request/UserPostRequestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/dto/request/UserPostRequestDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/dto/request/UserPutRequestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/dto/request/UserPutRequestDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/exceptions/CustomException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/repository/UserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/test/java/com/spring/user_service/controller/UserControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/test/java/com/spring/user_service/controller/UserControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/exception/BadRequestException.java" beforeDir="false" afterPath="$PROJECT_DIR$/commons-core/src/main/java/com/spring/exception/BadRequestException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/exception/DefaultErrorMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/commons-core/src/main/java/com/spring/exception/DefaultErrorMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/exception/GlobalErrorHandlerAdvice.java" beforeDir="false" afterPath="$PROJECT_DIR$/commons-core/src/main/java/com/spring/exception/GlobalErrorHandlerAdvice.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/exception/NotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/commons-core/src/main/java/com/spring/exception/NotFoundException.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,6 +61,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "JUnit.All in user-service.executor": "Run",
     "JUnit.AnimeControllerTest.create.executor": "Run",
     "JUnit.AnimeControllerTest.delete.executor": "Run",
     "JUnit.AnimeControllerTest.delete_ShouldDelete_WhenSuccessful.executor": "Run",
@@ -143,9 +139,9 @@
     "Spring Boot.UserServiceApplication.executor": "Run",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "git-widget-placeholder": "revision18",
+    "git-widget-placeholder": "revision19",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/joaoadsistemas/Documents/GitHub/JoaoRepo/spring-boot-revision/user-service/src/test/resources/user",
+    "last_opened_file_path": "/Users/joaoadsistemas/Documents/GitHub/JoaoRepo/spring-boot-revision/commons-core/src/main/java/com/spring/exception",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -157,11 +153,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/commons-core/src/main/java/com/spring/exception" />
       <recent name="$PROJECT_DIR$/user-service/src/test/resources/user" />
       <recent name="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/dto" />
       <recent name="$PROJECT_DIR$/anime-service/src/test/resources" />
       <recent name="$PROJECT_DIR$/anime-service/src/main/resources" />
-      <recent name="$PROJECT_DIR$/anime-service/src/test/resources/anime" />
     </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
@@ -189,7 +185,15 @@
       <recent name="com.spring.dto.request" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.UserControllerTest">
+  <component name="RunManager" selected="JUnit.All in user-service">
+    <configuration name="All in user-service" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="user-service" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="UserControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="user-service" />
       <extension name="coverage">
@@ -216,22 +220,6 @@
       <option name="PACKAGE_NAME" value="com.spring.user_service.controller" />
       <option name="MAIN_CLASS_NAME" value="com.spring.user_service.controller.UserControllerTest" />
       <option name="METHOD_NAME" value="put_shouldThrowException_whenFieldsIsEmpty(java.lang.String,java.util.List)" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="UserControllerTest.put_shouldThrowException_whenFieldsIsEmpty" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="user-service" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.spring.user_service.controller.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.spring.user_service.controller" />
-      <option name="MAIN_CLASS_NAME" value="com.spring.user_service.controller.UserControllerTest" />
-      <option name="METHOD_NAME" value="put_shouldThrowException_whenFieldsIsEmpty(java.lang.String)" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -281,9 +269,9 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="JUnit.All in user-service" />
       <item itemvalue="JUnit.user_service in user-service" />
       <item itemvalue="JUnit.UserControllerTest" />
-      <item itemvalue="JUnit.UserControllerTest.put_shouldThrowException_whenFieldsIsEmpty" />
       <item itemvalue="JUnit.UserControllerTest.put_shouldThrowException_whenFieldsIsEmpty (1)" />
       <item itemvalue="JUnit.UserControllerTest.save_shouldThrowException_whenFieldsIsEmpty (1)" />
       <item itemvalue="Spring Boot.UserServiceApplication" />
@@ -291,11 +279,11 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.All in user-service" />
         <item itemvalue="JUnit.UserControllerTest" />
         <item itemvalue="JUnit.user_service in user-service" />
         <item itemvalue="JUnit.UserControllerTest.put_shouldThrowException_whenFieldsIsEmpty (1)" />
         <item itemvalue="JUnit.UserControllerTest.save_shouldThrowException_whenFieldsIsEmpty (1)" />
-        <item itemvalue="JUnit.UserControllerTest.put_shouldThrowException_whenFieldsIsEmpty" />
       </list>
     </recent_temporary>
   </component>
@@ -506,7 +494,7 @@
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/repository/UserRepository.java</url>
           <line>50</line>
-          <properties class="com.spring.user_service.repository.UserRepository" method="delete">
+          <properties class="com.spring.user_service.repository.UserRepository">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
           </properties>
