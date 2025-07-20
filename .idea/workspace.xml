@@ -4,23 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3bd4ca96-6461-4b57-9228-26374c6dc493" name="Changes" comment="feat: UserController and UserControllerTest">
-      <change afterPath="$PROJECT_DIR$/user-service/src/test/resources/user/post-empty-fields-400.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/src/test/resources/user/put-empty-fields-400.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+    <list default="true" id="3bd4ca96-6461-4b57-9228-26374c6dc493" name="Changes" comment="feat: BeanValidation in request and also made tests for it">
+      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/exception/BadRequestException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/exception/DefaultErrorMessage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/exception/GlobalErrorHandlerAdvice.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/exception/NotFoundException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user-service/src/test/resources/user/post-blank-fields-400.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user-service/src/test/resources/user/post-invalid-email-400.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user-service/src/test/resources/user/put-blank-fields-400.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user-service/src/test/resources/user/put-invalid-email-400.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/anime-service/src/main/java/com/spring/controller/AnimeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/anime-service/src/main/java/com/spring/controller/AnimeController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/dto/UserGetResponseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/dto/response/UserGetResponseDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/dto/UserPostRequestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/dto/request/UserPostRequestDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/dto/UserPostResponseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/dto/response/UserPostResponseDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/dto/UserPutRequestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/dto/request/UserPutRequestDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/dto/UserPutResponseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/dto/response/UserPutResponseDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/mapper/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/mapper/UserMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/dto/request/UserPostRequestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/dto/request/UserPostRequestDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/dto/request/UserPutRequestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/dto/request/UserPutRequestDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/exceptions/CustomException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/repository/UserRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user-service/src/test/java/com/spring/user_service/controller/UserControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/test/java/com/spring/user_service/controller/UserControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/test/resources/user/put-request-400.json" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/test/resources/user/put-exists-id-request-400.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,9 +29,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Record" />
         <option value="Interface" />
         <option value="JUnit5 Test Class" />
+        <option value="Record" />
         <option value="Class" />
       </list>
     </option>
@@ -40,7 +39,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="revision16" />
+        <entry key="$PROJECT_DIR$" value="revision17" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -103,9 +102,13 @@
     "JUnit.UserControllerTest.findById_shouldThrowException_whenIdDoesNotExists.executor": "Run",
     "JUnit.UserControllerTest.put_shouldReturnObject_whenSuccessfully.executor": "Run",
     "JUnit.UserControllerTest.put_shouldThrowAnException_whenIdDoesNotExists.executor": "Run",
+    "JUnit.UserControllerTest.put_shouldThrowException_whenFieldsIsEmpty (1).executor": "Run",
+    "JUnit.UserControllerTest.put_shouldThrowException_whenFieldsIsEmpty.executor": "Run",
     "JUnit.UserControllerTest.put_shouldThrowException_whenFieldsIsNotValid.executor": "Run",
     "JUnit.UserControllerTest.save_shouldSaveUser_whenSuccessfully.executor": "Run",
     "JUnit.UserControllerTest.save_shouldThrowAnException_whenEmailAlreadyExists.executor": "Debug",
+    "JUnit.UserControllerTest.save_shouldThrowException_whenFieldsIsEmpty (1).executor": "Run",
+    "JUnit.UserControllerTest.save_shouldThrowException_whenFieldsIsEmpty.executor": "Run",
     "JUnit.UserControllerTest.save_shouldThrowException_whenFieldsIsNotValid.executor": "Run",
     "JUnit.UserControllerTest.save_shouldThrowException_whenIdAlreadyExists.executor": "Debug",
     "JUnit.UserRepositoryTest.delete_shouldDeleteUser_whenSuccessfully.executor": "Run",
@@ -126,7 +129,7 @@
     "JUnit.UserServiceTest.put_shouldReturnObject_whenSuccessfully.executor": "Run",
     "JUnit.java in anime-service.executor": "Run",
     "JUnit.spring in anime-service.executor": "Run",
-    "JUnit.user_service in user-service.executor": "Coverage",
+    "JUnit.user_service in user-service.executor": "Run",
     "Maven.spring-boot-revision [clean].executor": "Run",
     "Maven.spring-boot-revision [compile].executor": "Run",
     "RequestMappingsPanelOrder0": "0",
@@ -140,7 +143,7 @@
     "Spring Boot.UserServiceApplication.executor": "Run",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "git-widget-placeholder": "revision17",
+    "git-widget-placeholder": "revision18",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "/Users/joaoadsistemas/Documents/GitHub/JoaoRepo/spring-boot-revision/user-service/src/test/resources/user",
     "node.js.detected.package.eslint": "true",
@@ -179,6 +182,7 @@
       <recent name="com.spring.controller" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.spring.user_service.exceptions" />
       <recent name="com.spring.user_service.dto" />
       <recent name="com.spring.controller" />
       <recent name="com.spring.dto.response" />
@@ -201,7 +205,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="UserControllerTest.put_shouldThrowAnException_whenIdDoesNotExists" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="UserControllerTest.put_shouldThrowException_whenFieldsIsEmpty (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="user-service" />
       <extension name="coverage">
         <pattern>
@@ -211,13 +215,13 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.spring.user_service.controller" />
       <option name="MAIN_CLASS_NAME" value="com.spring.user_service.controller.UserControllerTest" />
-      <option name="METHOD_NAME" value="put_shouldThrowAnException_whenIdDoesNotExists" />
+      <option name="METHOD_NAME" value="put_shouldThrowException_whenFieldsIsEmpty(java.lang.String,java.util.List)" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="UserControllerTest.put_shouldThrowException_whenFieldsIsNotValid" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="UserControllerTest.put_shouldThrowException_whenFieldsIsEmpty" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="user-service" />
       <extension name="coverage">
         <pattern>
@@ -227,13 +231,13 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.spring.user_service.controller" />
       <option name="MAIN_CLASS_NAME" value="com.spring.user_service.controller.UserControllerTest" />
-      <option name="METHOD_NAME" value="put_shouldThrowException_whenFieldsIsNotValid" />
+      <option name="METHOD_NAME" value="put_shouldThrowException_whenFieldsIsEmpty(java.lang.String)" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="UserControllerTest.save_shouldThrowException_whenFieldsIsNotValid" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="UserControllerTest.save_shouldThrowException_whenFieldsIsEmpty (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="user-service" />
       <extension name="coverage">
         <pattern>
@@ -243,7 +247,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.spring.user_service.controller" />
       <option name="MAIN_CLASS_NAME" value="com.spring.user_service.controller.UserControllerTest" />
-      <option name="METHOD_NAME" value="save_shouldThrowException_whenFieldsIsNotValid" />
+      <option name="METHOD_NAME" value="save_shouldThrowException_whenFieldsIsEmpty(java.lang.String,java.util.List)" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -277,21 +281,21 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="JUnit.UserControllerTest" />
-      <item itemvalue="JUnit.UserControllerTest.put_shouldThrowAnException_whenIdDoesNotExists" />
-      <item itemvalue="JUnit.UserControllerTest.put_shouldThrowException_whenFieldsIsNotValid" />
-      <item itemvalue="JUnit.UserControllerTest.save_shouldThrowException_whenFieldsIsNotValid" />
       <item itemvalue="JUnit.user_service in user-service" />
+      <item itemvalue="JUnit.UserControllerTest" />
+      <item itemvalue="JUnit.UserControllerTest.put_shouldThrowException_whenFieldsIsEmpty" />
+      <item itemvalue="JUnit.UserControllerTest.put_shouldThrowException_whenFieldsIsEmpty (1)" />
+      <item itemvalue="JUnit.UserControllerTest.save_shouldThrowException_whenFieldsIsEmpty (1)" />
       <item itemvalue="Spring Boot.UserServiceApplication" />
       <item itemvalue="Spring Boot.ExampleProjectApplication" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.UserControllerTest" />
-        <item itemvalue="JUnit.UserControllerTest.put_shouldThrowException_whenFieldsIsNotValid" />
-        <item itemvalue="JUnit.UserControllerTest.save_shouldThrowException_whenFieldsIsNotValid" />
         <item itemvalue="JUnit.user_service in user-service" />
-        <item itemvalue="JUnit.UserControllerTest.put_shouldThrowAnException_whenIdDoesNotExists" />
+        <item itemvalue="JUnit.UserControllerTest.put_shouldThrowException_whenFieldsIsEmpty (1)" />
+        <item itemvalue="JUnit.UserControllerTest.save_shouldThrowException_whenFieldsIsEmpty (1)" />
+        <item itemvalue="JUnit.UserControllerTest.put_shouldThrowException_whenFieldsIsEmpty" />
       </list>
     </recent_temporary>
   </component>
@@ -313,7 +317,8 @@
       <updated>1749003520467</updated>
       <workItem from="1749003521516" duration="9398000" />
       <workItem from="1749145082006" duration="52729000" />
-      <workItem from="1752021244174" duration="65405000" />
+      <workItem from="1752021244174" duration="68217000" />
+      <workItem from="1752867132123" duration="4152000" />
     </task>
     <task id="LOCAL-00001" summary="feat: added external pom.xml and rename the first project">
       <option name="closed" value="true" />
@@ -451,7 +456,15 @@
       <option name="project" value="LOCAL" />
       <updated>1752792365745</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="feat: BeanValidation in request and also made tests for it">
+      <option name="closed" value="true" />
+      <created>1752850786033</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1752850786033</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -474,7 +487,8 @@
     <MESSAGE value="feat: refactor UserRepository and UserRepositoryTest" />
     <MESSAGE value="feat: rename data of UserRepositoryTest.java and finished UserService and UserServiceTest" />
     <MESSAGE value="feat: UserController and UserControllerTest" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: UserController and UserControllerTest" />
+    <MESSAGE value="feat: BeanValidation in request and also made tests for it" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: BeanValidation in request and also made tests for it" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -491,7 +505,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/repository/UserRepository.java</url>
-          <line>49</line>
+          <line>50</line>
           <properties class="com.spring.user_service.repository.UserRepository" method="delete">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />

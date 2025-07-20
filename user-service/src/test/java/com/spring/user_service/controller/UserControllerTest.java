@@ -10,6 +10,9 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.mockito.BDDMockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -23,6 +26,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Stream;
 
 @WebMvcTest(UserController.class)
 @Import({UserService.class, UserRepository.class, UserMapperImpl.class, UserData.class, FileUtils.class})
@@ -89,7 +93,7 @@ class UserControllerTest {
 
         mockMvc.perform(MockMvcRequestBuilders.get(URL + "/{id}", id))
                 .andDo(MockMvcResultHandlers.print())
-                .andExpect(MockMvcResultMatchers.status().isBadRequest());
+                .andExpect(MockMvcResultMatchers.status().isNotFound());
     }
 
     @Test
@@ -114,7 +118,7 @@ class UserControllerTest {
 
         mockMvc.perform(MockMvcRequestBuilders.get(URL + "/email").param("email", email))
                 .andDo(MockMvcResultHandlers.print())
-                .andExpect(MockMvcResultMatchers.status().isBadRequest());
+                .andExpect(MockMvcResultMatchers.status().isNotFound());
     }
 
     @Test
@@ -172,7 +176,7 @@ class UserControllerTest {
         var id = 99L;
         mockMvc.perform(MockMvcRequestBuilders.delete(URL + "/{id}", id))
                 .andDo(MockMvcResultHandlers.print())
-                .andExpect(MockMvcResultMatchers.status().isBadRequest());
+                .andExpect(MockMvcResultMatchers.status().isNotFound());
     }
 
     @Test
@@ -202,19 +206,15 @@ class UserControllerTest {
                         .contentType("application/json")
                         .content(request))
                 .andDo(MockMvcResultHandlers.print())
-                .andExpect(MockMvcResultMatchers.status().isBadRequest());
+                .andExpect(MockMvcResultMatchers.status().isNotFound());
 
     }
 
-    @Test
-    @DisplayName("POST v1/users should throw an exception when fields is not valid")
-    void save_shouldThrowException_whenFieldsIsNotValid() throws Exception {
-        var request = fileUtils.readResourceFile("user/post-empty-fields-400.json");
-
-        var idMessage = "id is required";
-        var firstNameMessage = "firstName is required";
-        var lastNameMessage = "lastName is required";
-        var emailMessage = "email is required";
+    @ParameterizedTest
+    @MethodSource("postUserBadRequestSource")
+    @DisplayName("POST v1/users should throw an exception when fields is empty")
+    void save_shouldThrowException_whenFieldsIsEmpty(String fileName, List<String> errors) throws Exception {
+        var request = fileUtils.readResourceFile(fileName);
 
         var mock = mockMvc.perform(MockMvcRequestBuilders.post(URL)
                         .contentType("application/json")
@@ -226,18 +226,14 @@ class UserControllerTest {
         var resolvedException = mock.getResolvedException();
 
         Assertions.assertThat(resolvedException.getMessage())
-                .contains(idMessage, firstNameMessage, lastNameMessage, emailMessage);
+                .contains(errors);
     }
 
-    @Test
-    @DisplayName("PUT v1/users should throw an exception when fields is not valid")
-    void put_shouldThrowException_whenFieldsIsNotValid() throws Exception {
-        var request = fileUtils.readResourceFile("user/put-empty-fields-400.json");
-
-        var idMessage = "id is required";
-        var firstNameMessage = "firstName is required";
-        var lastNameMessage = "lastName is required";
-        var emailMessage = "email is required";
+    @ParameterizedTest
+    @MethodSource("putUserBadRequestSource")
+    @DisplayName("PUT v1/users should throw an exception when fields is empty")
+    void put_shouldThrowException_whenFieldsIsEmpty(String fileName, List<String> errors) throws Exception {
+        var request = fileUtils.readResourceFile(fileName);
 
         var mock = mockMvc.perform(MockMvcRequestBuilders.put(URL)
                         .contentType("application/json")
@@ -249,7 +245,34 @@ class UserControllerTest {
         var resolvedException = mock.getResolvedException();
 
         Assertions.assertThat(resolvedException.getMessage())
-                .contains(idMessage, firstNameMessage, lastNameMessage, emailMessage);
+                .contains(errors);
+    }
+
+    private static Stream<Arguments> postUserBadRequestSource() {
+        return Stream.of(
+                Arguments.of("user/post-empty-fields-400.json", allRequiredMessages()),
+                Arguments.of("user/post-blank-fields-400.json", allRequiredMessages()),
+                Arguments.of("user/post-invalid-email-400.json", allInvalidMessages())
+        );
+    }
+
+    private static Stream<Arguments> putUserBadRequestSource() {
+        return Stream.of(
+                Arguments.of("user/put-empty-fields-400.json", allRequiredMessages()),
+                Arguments.of("user/put-blank-fields-400.json", allRequiredMessages()),
+                Arguments.of("user/put-invalid-email-400.json", allInvalidMessages())
+        );
+    }
+
+    private static List<String> allRequiredMessages() {
+        return List.of("id is required",
+                "firstName is required",
+                "lastName is required",
+                "email is required");
+    }
+
+    private static List<String> allInvalidMessages() {
+        return List.of("email is not valid");
     }
 
 }
