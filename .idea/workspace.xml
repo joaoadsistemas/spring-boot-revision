@@ -4,17 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3bd4ca96-6461-4b57-9228-26374c6dc493" name="Changes" comment="feat: BeanValidation in request and also made tests for it">
-      <change afterPath="$PROJECT_DIR$/commons-core/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+    <list default="true" id="3bd4ca96-6461-4b57-9228-26374c6dc493" name="Changes" comment="feat: docker compose with mysql">
+      <change afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.envTemplate" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/exception/BadRequestException.java" beforeDir="false" afterPath="$PROJECT_DIR$/commons-core/src/main/java/com/spring/exception/BadRequestException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/exception/DefaultErrorMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/commons-core/src/main/java/com/spring/exception/DefaultErrorMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/exception/GlobalErrorHandlerAdvice.java" beforeDir="false" afterPath="$PROJECT_DIR$/commons-core/src/main/java/com/spring/exception/GlobalErrorHandlerAdvice.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/exception/NotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/commons-core/src/main/java/com/spring/exception/NotFoundException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/compose.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,7 +29,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="revision17" />
+        <entry key="$PROJECT_DIR$" value="revision20" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -49,6 +44,16 @@
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/joaoadsistemas/spring-boot-revision.git&quot;,
     &quot;accountId&quot;: &quot;b70bf9a1-8fea-4dbd-9b91-edf3a8610041&quot;
+  },
+  &quot;recentNewPullRequestHead&quot;: {
+    &quot;server&quot;: {
+      &quot;useHttp&quot;: false,
+      &quot;host&quot;: &quot;github.com&quot;,
+      &quot;port&quot;: null,
+      &quot;suffix&quot;: null
+    },
+    &quot;owner&quot;: &quot;joaoadsistemas&quot;,
+    &quot;repository&quot;: &quot;spring-boot-revision&quot;
   }
 }</component>
   <component name="ProjectColorInfo">{
@@ -59,105 +64,110 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "JUnit.All in user-service.executor": "Run",
-    "JUnit.AnimeControllerTest.create.executor": "Run",
-    "JUnit.AnimeControllerTest.delete.executor": "Run",
-    "JUnit.AnimeControllerTest.delete_ShouldDelete_WhenSuccessful.executor": "Run",
-    "JUnit.AnimeControllerTest.delete_ShouldThrowException_WhenIdIsInvalid.executor": "Run",
-    "JUnit.AnimeControllerTest.executor": "Run",
-    "JUnit.AnimeControllerTest.findById.executor": "Run",
-    "JUnit.AnimeControllerTest.findByIdShouldThrowAnErrorWhenIdDoesNotExists.executor": "Debug",
-    "JUnit.AnimeControllerTest.findByTitle.executor": "Run",
-    "JUnit.AnimeControllerTest.findByTitleShouldReturnAnEmptyObject.executor": "Run",
-    "JUnit.AnimeControllerTest.getAll.executor": "Run",
-    "JUnit.AnimeControllerTest.post_ShouldSave_WhenSuccessful.executor": "Run",
-    "JUnit.AnimeControllerTest.update.executor": "Run",
-    "JUnit.AnimeRepositoryTest.delete.executor": "Run",
-    "JUnit.AnimeRepositoryTest.executor": "Run",
-    "JUnit.AnimeRepositoryTest.findAll.executor": "Debug",
-    "JUnit.AnimeRepositoryTest.findByTitle.executor": "Run",
-    "JUnit.AnimeRepositoryTest.update.executor": "Run",
-    "JUnit.AnimeServiceTest.executor": "Run",
-    "JUnit.AnimeServiceTest.findAll.executor": "Run",
-    "JUnit.AnimeServiceTest.findByTitle_ReturnsEmptyList_WhenNameIsNull.executor": "Run",
-    "JUnit.AnimeServiceTest.save_CreatesAnime_WhenSuccessful.executor": "Run",
-    "JUnit.AnimeServiceTest.update.executor": "Run",
-    "JUnit.AnimeServiceTest.update_ThrowsResponseStatusException_WhenProducerIsNotFound.executor": "Run",
-    "JUnit.AnimeServiceTest.update_UpdatesAnime_WhenSuccessful.executor": "Run",
-    "JUnit.ConfigControllerTest.executor": "Run",
-    "JUnit.ConfigControllerTest.get_ShouldReturn_TheClassConfig_WithTestProfile.executor": "Run",
-    "JUnit.UserControllerTest.delete_shouldDeleteUser_whenSuccessfully.executor": "Run",
-    "JUnit.UserControllerTest.delete_shouldThrowAnException_whenIdDoesNotExists.executor": "Run",
-    "JUnit.UserControllerTest.executor": "Run",
-    "JUnit.UserControllerTest.findAll.executor": "Run",
-    "JUnit.UserControllerTest.findByEmail_shouldReturnUser_whenSuccessfully.executor": "Run",
-    "JUnit.UserControllerTest.findByEmail_shouldThrowException_whenEmailDoesNotExists.executor": "Run",
-    "JUnit.UserControllerTest.findById_shouldReturnUser_whenSuccessfully.executor": "Run",
-    "JUnit.UserControllerTest.findById_shouldThrowException_whenIdDoesNotExists.executor": "Run",
-    "JUnit.UserControllerTest.put_shouldReturnObject_whenSuccessfully.executor": "Run",
-    "JUnit.UserControllerTest.put_shouldThrowAnException_whenIdDoesNotExists.executor": "Run",
-    "JUnit.UserControllerTest.put_shouldThrowException_whenFieldsIsEmpty (1).executor": "Run",
-    "JUnit.UserControllerTest.put_shouldThrowException_whenFieldsIsEmpty.executor": "Run",
-    "JUnit.UserControllerTest.put_shouldThrowException_whenFieldsIsNotValid.executor": "Run",
-    "JUnit.UserControllerTest.save_shouldSaveUser_whenSuccessfully.executor": "Run",
-    "JUnit.UserControllerTest.save_shouldThrowAnException_whenEmailAlreadyExists.executor": "Debug",
-    "JUnit.UserControllerTest.save_shouldThrowException_whenFieldsIsEmpty (1).executor": "Run",
-    "JUnit.UserControllerTest.save_shouldThrowException_whenFieldsIsEmpty.executor": "Run",
-    "JUnit.UserControllerTest.save_shouldThrowException_whenFieldsIsNotValid.executor": "Run",
-    "JUnit.UserControllerTest.save_shouldThrowException_whenIdAlreadyExists.executor": "Debug",
-    "JUnit.UserRepositoryTest.delete_shouldDeleteUser_whenSuccessfully.executor": "Run",
-    "JUnit.UserRepositoryTest.executor": "Run",
-    "JUnit.UserRepositoryTest.findAll.executor": "Run",
-    "JUnit.UserRepositoryTest.findByEmail.executor": "Run",
-    "JUnit.UserRepositoryTest.findById.executor": "Run",
-    "JUnit.UserRepositoryTest.findById_shouldReturnEmptyOptional_whenIdDoesNotExist.executor": "Run",
-    "JUnit.UserRepositoryTest.findById_shouldReturnUser_whenSuccessfully.executor": "Run",
-    "JUnit.UserRepositoryTest.put_shouldDoNothing_whenIdDoesNotExists.executor": "Run",
-    "JUnit.UserRepositoryTest.put_shouldReturnObject_whenSuccessfully.executor": "Run",
-    "JUnit.UserRepositoryTest.save.executor": "Run",
-    "JUnit.UserRepositoryTest.save_shouldDoNothing_whenEmailAlreadyExists.executor": "Run",
-    "JUnit.UserRepositoryTest.save_shouldDoNothing_whenIdAlreadyExists.executor": "Debug",
-    "JUnit.UserRepositoryTest.save_shouldSaveUser_whenSuccessfully.executor": "Run",
-    "JUnit.UserServiceTest.delete_shouldDeleteUser_whenSuccessfully.executor": "Debug",
-    "JUnit.UserServiceTest.executor": "Run",
-    "JUnit.UserServiceTest.put_shouldReturnObject_whenSuccessfully.executor": "Run",
-    "JUnit.java in anime-service.executor": "Run",
-    "JUnit.spring in anime-service.executor": "Run",
-    "JUnit.user_service in user-service.executor": "Run",
-    "Maven.spring-boot-revision [clean].executor": "Run",
-    "Maven.spring-boot-revision [compile].executor": "Run",
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "SONARLINT_PRECOMMIT_ANALYSIS": "true",
-    "Spring Boot.ExampleProjectApplication.executor": "Run",
-    "Spring Boot.UserServiceApplication.executor": "Run",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "git-widget-placeholder": "revision19",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/joaoadsistemas/Documents/GitHub/JoaoRepo/spring-boot-revision/commons-core/src/main/java/com/spring/exception",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "editor.preferences.import",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;JUnit.All in user-service.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.AnimeControllerTest.create.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.AnimeControllerTest.delete.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.AnimeControllerTest.delete_ShouldDelete_WhenSuccessful.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.AnimeControllerTest.delete_ShouldThrowException_WhenIdIsInvalid.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.AnimeControllerTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.AnimeControllerTest.findById.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.AnimeControllerTest.findByIdShouldThrowAnErrorWhenIdDoesNotExists.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.AnimeControllerTest.findByTitle.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.AnimeControllerTest.findByTitleShouldReturnAnEmptyObject.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.AnimeControllerTest.getAll.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.AnimeControllerTest.post_ShouldSave_WhenSuccessful.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.AnimeControllerTest.update.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.AnimeRepositoryTest.delete.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.AnimeRepositoryTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.AnimeRepositoryTest.findAll.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.AnimeRepositoryTest.findByTitle.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.AnimeRepositoryTest.update.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.AnimeServiceTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.AnimeServiceTest.findAll.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.AnimeServiceTest.findByTitle_ReturnsEmptyList_WhenNameIsNull.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.AnimeServiceTest.save_CreatesAnime_WhenSuccessful.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.AnimeServiceTest.update.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.AnimeServiceTest.update_ThrowsResponseStatusException_WhenProducerIsNotFound.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.AnimeServiceTest.update_UpdatesAnime_WhenSuccessful.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ConfigControllerTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ConfigControllerTest.get_ShouldReturn_TheClassConfig_WithTestProfile.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserControllerTest.delete_shouldDeleteUser_whenSuccessfully.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserControllerTest.delete_shouldThrowAnException_whenIdDoesNotExists.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserControllerTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserControllerTest.findAll.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserControllerTest.findByEmail_shouldReturnUser_whenSuccessfully.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserControllerTest.findByEmail_shouldThrowException_whenEmailDoesNotExists.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserControllerTest.findById_shouldReturnUser_whenSuccessfully.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserControllerTest.findById_shouldThrowException_whenIdDoesNotExists.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserControllerTest.put_shouldReturnObject_whenSuccessfully.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserControllerTest.put_shouldThrowAnException_whenIdDoesNotExists.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserControllerTest.put_shouldThrowException_whenFieldsIsEmpty (1).executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserControllerTest.put_shouldThrowException_whenFieldsIsEmpty.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserControllerTest.put_shouldThrowException_whenFieldsIsNotValid.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserControllerTest.save_shouldSaveUser_whenSuccessfully.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserControllerTest.save_shouldThrowAnException_whenEmailAlreadyExists.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.UserControllerTest.save_shouldThrowException_whenFieldsIsEmpty (1).executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserControllerTest.save_shouldThrowException_whenFieldsIsEmpty.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserControllerTest.save_shouldThrowException_whenFieldsIsNotValid.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserControllerTest.save_shouldThrowException_whenIdAlreadyExists.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.UserRepositoryTest.delete_shouldDeleteUser_whenSuccessfully.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserRepositoryTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserRepositoryTest.findAll.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserRepositoryTest.findByEmail.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserRepositoryTest.findById.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserRepositoryTest.findById_shouldReturnEmptyOptional_whenIdDoesNotExist.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserRepositoryTest.findById_shouldReturnUser_whenSuccessfully.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserRepositoryTest.put_shouldDoNothing_whenIdDoesNotExists.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserRepositoryTest.put_shouldReturnObject_whenSuccessfully.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserRepositoryTest.save.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserRepositoryTest.save_shouldDoNothing_whenEmailAlreadyExists.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserRepositoryTest.save_shouldDoNothing_whenIdAlreadyExists.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.UserRepositoryTest.save_shouldSaveUser_whenSuccessfully.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserServiceTest.delete_shouldDeleteUser_whenSuccessfully.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.UserServiceTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserServiceTest.put_shouldReturnObject_whenSuccessfully.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.java in anime-service.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.spring in anime-service.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.user_service in user-service.executor&quot;: &quot;Run&quot;,
+    &quot;Maven.spring-boot-revision [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.spring-boot-revision [compile].executor&quot;: &quot;Run&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SONARLINT_PRECOMMIT_ANALYSIS&quot;: &quot;true&quot;,
+    &quot;Spring Boot.ExampleProjectApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.UserServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;revision21&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/joaoadsistemas/Documents/GitHub/JoaoRepo/spring-boot-revision&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
+    ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/commons-core/src/main/java/com/spring/exception" />
       <recent name="$PROJECT_DIR$/user-service/src/test/resources/user" />
       <recent name="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/dto" />
       <recent name="$PROJECT_DIR$/anime-service/src/test/resources" />
-      <recent name="$PROJECT_DIR$/anime-service/src/main/resources" />
     </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
@@ -280,10 +290,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.All in user-service" />
-        <item itemvalue="JUnit.UserControllerTest" />
         <item itemvalue="JUnit.user_service in user-service" />
-        <item itemvalue="JUnit.UserControllerTest.put_shouldThrowException_whenFieldsIsEmpty (1)" />
         <item itemvalue="JUnit.UserControllerTest.save_shouldThrowException_whenFieldsIsEmpty (1)" />
+        <item itemvalue="JUnit.UserControllerTest.put_shouldThrowException_whenFieldsIsEmpty (1)" />
+        <item itemvalue="JUnit.UserControllerTest" />
       </list>
     </recent_temporary>
   </component>
@@ -452,7 +462,23 @@
       <option name="project" value="LOCAL" />
       <updated>1752850786033</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="feat: Commons core">
+      <option name="closed" value="true" />
+      <created>1753054999793</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1753054999793</updated>
+    </task>
+    <task id="LOCAL-00020" summary="feat: docker compose with mysql">
+      <option name="closed" value="true" />
+      <created>1753057530470</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1753057530470</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -476,7 +502,9 @@
     <MESSAGE value="feat: rename data of UserRepositoryTest.java and finished UserService and UserServiceTest" />
     <MESSAGE value="feat: UserController and UserControllerTest" />
     <MESSAGE value="feat: BeanValidation in request and also made tests for it" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: BeanValidation in request and also made tests for it" />
+    <MESSAGE value="feat: Commons core" />
+    <MESSAGE value="feat: docker compose with mysql" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: docker compose with mysql" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -494,7 +522,7 @@
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/repository/UserRepository.java</url>
           <line>50</line>
-          <properties class="com.spring.user_service.repository.UserRepository">
+          <properties class="com.spring.user_service.repository.UserRepository" method="delete">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
           </properties>
