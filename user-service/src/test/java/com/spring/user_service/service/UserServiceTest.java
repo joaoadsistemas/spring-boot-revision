@@ -2,6 +2,7 @@ package com.spring.user_service.service;
 
 import com.spring.user_service.model.User;
 import com.spring.user_service.repository.UserHardCodeRepository;
+import com.spring.user_service.repository.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -25,6 +26,9 @@ class UserServiceTest {
     @Mock
     private UserHardCodeRepository userHardCodeRepository;
 
+    @Mock
+    private UserRepository userRepository;
+
     private Set<User> userSet = new HashSet<>();
 
     @BeforeEach
@@ -41,7 +45,7 @@ class UserServiceTest {
     @Test
     @DisplayName("findAll should return all elements when successfully")
     void findAll_shouldReturnAllElements_whenSuccessfully() {
-        BDDMockito.when(userHardCodeRepository.findAll()).thenReturn(userSet);
+        BDDMockito.when(userRepository.findAll()).thenReturn(userSet.stream().toList());
 
         var result = userService.findAll();
         assertThat(result).containsAll(userSet);

@@ -9,4 +9,6 @@ spring:
     password: ${ENV_ROOT_PASSWORD:example}
   jpa:
     show-sql: true
+    hibernate:
+      ddl-auto: update
 
