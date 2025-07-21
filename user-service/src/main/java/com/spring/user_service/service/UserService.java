@@ -34,11 +34,7 @@ public class UserService {
     }
 
     public void save(User user) {
-        try {
-            userRepository.save(user);
-        } catch (Exception e) {
-            throw new BadRequestException("Email already exists");
-        }
+        userRepository.save(user);
     }
 
     public void delete(Long id) {
