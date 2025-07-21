@@ -15,7 +15,6 @@ public interface UserMapper {
 
     UserMapper INSTANCE = Mappers.getMapper(UserMapper.class);
 
-    @Mapping(target = "id", source = "id")
     User toUser(UserPostRequestDTO userPostRequestDTO);
 
     @Mapping(target = "id", source = "id")
