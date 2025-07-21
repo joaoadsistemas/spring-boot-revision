@@ -4,16 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3bd4ca96-6461-4b57-9228-26374c6dc493" name="Changes" comment="feat: connection in mysql and also h2 connected to tests">
-      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/repository/UserHardCodeRepository.java" afterDir="false" />
+    <list default="true" id="3bd4ca96-6461-4b57-9228-26374c6dc493" name="Changes" comment="feat: fixed UserServiceTest.java and put the mapper logic in controller">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/controller/UserController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/model/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/repository/UserRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/service/UserService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user-service/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/resources/application.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user-service/src/test/java/com/spring/user_service/controller/UserControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/test/java/com/spring/user_service/controller/UserControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/test/java/com/spring/user_service/repository/UserRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/test/java/com/spring/user_service/repository/UserHardCodeRepositoryTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user-service/src/test/java/com/spring/user_service/service/UserServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/test/java/com/spring/user_service/service/UserServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -203,11 +200,18 @@
       <recent name="com.spring.dto.request" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.UserServiceTest">
-    <configuration name="All in user-service" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.java in user-service">
+    <configuration name="UserControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="user-service" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="TEST_OBJECT" value="package" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.spring.user_service.controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.spring.user_service.controller" />
+      <option name="MAIN_CLASS_NAME" value="com.spring.user_service.controller.UserControllerTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -287,21 +291,21 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="JUnit.UserControllerTest" />
       <item itemvalue="JUnit.UserServiceTest" />
       <item itemvalue="JUnit.UserServiceTest.findAll_shouldReturnAllElements_whenSuccessfully" />
       <item itemvalue="JUnit.UserServiceApplicationTests" />
       <item itemvalue="JUnit.java in user-service" />
-      <item itemvalue="JUnit.All in user-service" />
       <item itemvalue="Spring Boot.UserServiceApplication" />
       <item itemvalue="Spring Boot.ExampleProjectApplication" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.UserServiceTest" />
-        <item itemvalue="JUnit.UserServiceTest.findAll_shouldReturnAllElements_whenSuccessfully" />
         <item itemvalue="JUnit.java in user-service" />
+        <item itemvalue="JUnit.UserControllerTest" />
+        <item itemvalue="JUnit.UserServiceTest.findAll_shouldReturnAllElements_whenSuccessfully" />
+        <item itemvalue="JUnit.UserServiceTest" />
         <item itemvalue="JUnit.UserServiceApplicationTests" />
-        <item itemvalue="JUnit.All in user-service" />
       </list>
     </recent_temporary>
   </component>
@@ -325,7 +329,7 @@
       <workItem from="1749145082006" duration="52729000" />
       <workItem from="1752021244174" duration="68217000" />
       <workItem from="1752867132123" duration="4152000" />
-      <workItem from="1753058271132" duration="4925000" />
+      <workItem from="1753058271132" duration="5227000" />
     </task>
     <task id="LOCAL-00001" summary="feat: added external pom.xml and rename the first project">
       <option name="closed" value="true" />
@@ -503,7 +507,15 @@
       <option name="project" value="LOCAL" />
       <updated>1753059723247</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="feat: fixed UserServiceTest.java and put the mapper logic in controller">
+      <option name="closed" value="true" />
+      <created>1753108629391</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1753108629391</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -531,7 +543,8 @@
     <MESSAGE value="feat: docker compose with mysql" />
     <MESSAGE value="feat: .env for environments in docker" />
     <MESSAGE value="feat: connection in mysql and also h2 connected to tests" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: connection in mysql and also h2 connected to tests" />
+    <MESSAGE value="feat: fixed UserServiceTest.java and put the mapper logic in controller" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: fixed UserServiceTest.java and put the mapper logic in controller" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

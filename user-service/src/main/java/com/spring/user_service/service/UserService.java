@@ -19,7 +19,8 @@ public class UserService {
     private static final UserMapper MAPPER = UserMapper.INSTANCE;
 
     public Set<User> findAll() {
-        return new HashSet<>(userHardCodeRepository.findAll());
+        //return new HashSet<>(userHardCodeRepository.findAll());
+        return new HashSet<>(userRepository.findAll());
     }
 
     public User findById(Long id) {

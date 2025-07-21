@@ -4,6 +4,7 @@ import com.spring.user_service.data.UserData;
 import com.spring.user_service.mapper.UserMapperImpl;
 import com.spring.user_service.model.User;
 import com.spring.user_service.repository.UserHardCodeRepository;
+import com.spring.user_service.repository.UserRepository;
 import com.spring.user_service.service.UserService;
 import com.spring.user_service.utils.FileUtils;
 import org.assertj.core.api.Assertions;
@@ -41,6 +42,9 @@ class UserControllerTest {
     @MockBean
     private UserData userData;
 
+    @MockBean
+    private UserRepository userRepository;
+
     private static final String URL = "/v1/users";
 
     private Set<User> userSet = new HashSet<>();
@@ -60,7 +64,7 @@ class UserControllerTest {
     @DisplayName("GET v1/users should return all elements when successfully")
     void findAll_shouldReturnAllElements_whenSuccessfully() throws Exception {
 
-        BDDMockito.when(userData.getUsers()).thenReturn(userSet);
+        BDDMockito.when(userRepository.findAll()).thenReturn(userSet.stream().toList());
 
         var result = fileUtils.readResourceFile("user/find-all-200.json");
 
