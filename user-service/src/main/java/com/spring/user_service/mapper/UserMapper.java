@@ -17,7 +17,6 @@ public interface UserMapper {
 
     User toUser(UserPostRequestDTO userPostRequestDTO);
 
-    @Mapping(target = "id", source = "id")
     User toUser(UserPutRequestDTO userPutRequestDTO);
 
     UserGetResponseDTO toUserGetResponse(User user);
