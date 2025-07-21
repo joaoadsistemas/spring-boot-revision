@@ -1,0 +1,14 @@
+services:
+  mysql:
+    image: mysql:9.0.1
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+      MYSQL_USER: example
+      MYSQL_PASSWORD: example
+    ports:
+      - "3306:3306"
+    volumes:
+      - joao-db:/var/lib/mysql
+
+volumes:
+  joao-db:
