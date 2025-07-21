@@ -20,10 +20,10 @@ import static org.assertj.core.api.Assertions.*;
 
 
 @ExtendWith(MockitoExtension.class)
-class UserRepositoryTest {
+class UserHardCodeRepositoryTest {
 
     @InjectMocks
-    private UserRepository userRepository;
+    private UserHardCodeRepository userHardCodeRepository;
 
     @Mock
     private UserData userData;
@@ -47,7 +47,7 @@ class UserRepositoryTest {
     void findAll_shouldReturnAllElements_whenSuccessfully() {
         BDDMockito.when(userData.getUsers()).thenReturn(userSet);
 
-        var result = userRepository.findAll();
+        var result = userHardCodeRepository.findAll();
         assertThat(result).containsAll(userSet);
     }
 
@@ -56,7 +56,7 @@ class UserRepositoryTest {
     void findById_shouldReturnUser_whenSuccessfully() {
         BDDMockito.when(userData.getUsers()).thenReturn(userSet);
         var expectedResult = userSet.stream().filter(u -> u.getId().equals(1L)).findFirst().get();
-        var result = userRepository.findById(expectedResult.getId());
+        var result = userHardCodeRepository.findById(expectedResult.getId());
         assertThat(result).isNotNull().isEqualTo(expectedResult);
     }
 
@@ -65,7 +65,7 @@ class UserRepositoryTest {
     void findById_shouldThrowException_whenIdDoesNotExists() {
         BDDMockito.when(userData.getUsers()).thenReturn(userSet);
         var id = 99L;
-        assertThatThrownBy(() -> userRepository.findById(id)).isInstanceOf(ResponseStatusException.class);
+        assertThatThrownBy(() -> userHardCodeRepository.findById(id)).isInstanceOf(ResponseStatusException.class);
     }
 
     @Test
@@ -73,7 +73,7 @@ class UserRepositoryTest {
     void findByEmail_shouldReturnUser_whenSuccessfully() {
         BDDMockito.when(userData.getUsers()).thenReturn(userSet);
         var expectedResult = userSet.stream().filter(u -> u.getId().equals(1L)).findFirst().get();
-        var result = userRepository.findByEmail(expectedResult.getEmail());
+        var result = userHardCodeRepository.findByEmail(expectedResult.getEmail());
         assertThat(result).isNotNull().isEqualTo(expectedResult);
     }
 
@@ -82,7 +82,7 @@ class UserRepositoryTest {
     void findByEmail_shouldThrowException_whenEmailDoesNotExists() {
         BDDMockito.when(userData.getUsers()).thenReturn(userSet);
         var email = "xaxa@gmail.com";
-        assertThatThrownBy(() -> userRepository.findByEmail(email)).isInstanceOf(ResponseStatusException.class);
+        assertThatThrownBy(() -> userHardCodeRepository.findByEmail(email)).isInstanceOf(ResponseStatusException.class);
     }
 
     @Test
@@ -90,8 +90,8 @@ class UserRepositoryTest {
     void save_shouldSaveUser_whenSuccessfully() {
         BDDMockito.when(userData.getUsers()).thenReturn(userSet);
         var expectedResult = User.builder().id(6L).firstName("Joao").lastName("Silva").email("joao.silva@example.com").build();
-        assertThatNoException().isThrownBy(() -> userRepository.save(expectedResult));
-        assertThat(userRepository.findById(6L)).isEqualTo(expectedResult);
+        assertThatNoException().isThrownBy(() -> userHardCodeRepository.save(expectedResult));
+        assertThat(userHardCodeRepository.findById(6L)).isEqualTo(expectedResult);
     }
 
     @Test
@@ -104,7 +104,7 @@ class UserRepositoryTest {
         user.setFirstName("Nicolas");
         user.setLastName("Machado");
 
-        assertThatThrownBy(() -> userRepository.save(user)).isInstanceOf(ResponseStatusException.class);
+        assertThatThrownBy(() -> userHardCodeRepository.save(user)).isInstanceOf(ResponseStatusException.class);
     }
 
     @Test
@@ -117,7 +117,7 @@ class UserRepositoryTest {
         user.setFirstName("Nicolas");
         user.setLastName("Machado");
 
-        assertThatThrownBy(() -> userRepository.save(user)).isInstanceOf(ResponseStatusException.class);
+        assertThatThrownBy(() -> userHardCodeRepository.save(user)).isInstanceOf(ResponseStatusException.class);
     }
 
     @Test
@@ -127,7 +127,7 @@ class UserRepositoryTest {
 
         var removedUser = userSet.stream().findFirst().get();
 
-        assertThatNoException().isThrownBy(() -> userRepository.delete(removedUser.getId()));
+        assertThatNoException().isThrownBy(() -> userHardCodeRepository.delete(removedUser.getId()));
         assertThat(userSet).doesNotContain(removedUser);
     }
 
@@ -136,7 +136,7 @@ class UserRepositoryTest {
     void delete_shouldThrowAnException_whenIdDoesNotExists() {
         BDDMockito.when(userData.getUsers()).thenReturn(userSet);
         var id = 99L;
-        assertThatThrownBy(() -> userRepository.delete(id)).isInstanceOf(ResponseStatusException.class);
+        assertThatThrownBy(() -> userHardCodeRepository.delete(id)).isInstanceOf(ResponseStatusException.class);
     }
 
     @Test
@@ -147,7 +147,7 @@ class UserRepositoryTest {
 
         BDDMockito.when(userData.getUsers()).thenReturn(userSet);
 
-        var userResultBeforeModification = userRepository.findById(userBeforeModification.getId());
+        var userResultBeforeModification = userHardCodeRepository.findById(userBeforeModification.getId());
         assertThat(userResultBeforeModification).isNotNull().isEqualTo(userBeforeModification);
 
         var userAfterModification = userBeforeModification;
@@ -160,7 +160,7 @@ class UserRepositoryTest {
 
         BDDMockito.when(userData.getUsers()).thenReturn(userSet);
 
-        var userResultAfterModification = userRepository.update(userAfterModification);
+        var userResultAfterModification = userHardCodeRepository.update(userAfterModification);
 
         assertThat(userResultAfterModification).isNotNull().isEqualTo(userAfterModification);
         assertThat(userAfterModification.getId()).isEqualTo(userBeforeModification.getId());
@@ -173,6 +173,6 @@ class UserRepositoryTest {
         var user = User.builder().id(99L).email("xaxa").firstName("xaxa").lastName("xaxa").build();
         BDDMockito.when(userData.getUsers()).thenReturn(userSet);
 
-        assertThatThrownBy(() -> userRepository.update(user)).isInstanceOf(ResponseStatusException.class);
+        assertThatThrownBy(() -> userHardCodeRepository.update(user)).isInstanceOf(ResponseStatusException.class);
     }
 }

@@ -3,7 +3,7 @@ package com.spring.user_service.controller;
 import com.spring.user_service.data.UserData;
 import com.spring.user_service.mapper.UserMapperImpl;
 import com.spring.user_service.model.User;
-import com.spring.user_service.repository.UserRepository;
+import com.spring.user_service.repository.UserHardCodeRepository;
 import com.spring.user_service.service.UserService;
 import com.spring.user_service.utils.FileUtils;
 import org.assertj.core.api.Assertions;
@@ -29,7 +29,7 @@ import java.util.Set;
 import java.util.stream.Stream;
 
 @WebMvcTest(UserController.class)
-@Import({UserService.class, UserRepository.class, UserMapperImpl.class, UserData.class, FileUtils.class})
+@Import({UserService.class, UserHardCodeRepository.class, UserMapperImpl.class, UserData.class, FileUtils.class})
 class UserControllerTest {
 
     @Autowired
