@@ -1,8 +1,9 @@
 package com.spring.user_service.service;
 
+import com.spring.exception.BadRequestException;
+import com.spring.exception.NotFoundException;
 import com.spring.user_service.mapper.UserMapper;
 import com.spring.user_service.model.User;
-import com.spring.user_service.repository.UserHardCodeRepository;
 import com.spring.user_service.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,7 +15,6 @@ import java.util.Set;
 @RequiredArgsConstructor
 public class UserService {
 
-    private final UserHardCodeRepository userHardCodeRepository;
     private final UserRepository userRepository;
     private static final UserMapper MAPPER = UserMapper.INSTANCE;
 
@@ -24,23 +24,31 @@ public class UserService {
     }
 
     public User findById(Long id) {
-        return userHardCodeRepository.findById(id);
+        return userRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException("There is no user with id: " + id));
     }
 
     public User findByEmail(String email) {
-        return userHardCodeRepository.findByEmail(email);
+        return userRepository.findByEmail(email)
+                .orElseThrow(() -> new NotFoundException("There is no user with email: " + email));
     }
 
     public void save(User user) {
-        userHardCodeRepository.save(user);
+        try {
+            userRepository.save(user);
+        } catch (Exception e) {
+            throw new BadRequestException("Email already exists");
+        }
     }
 
     public void delete(Long id) {
-        userHardCodeRepository.delete(id);
+        User user = this.findById(id);
+        userRepository.delete(user);
     }
 
     public User update(User user) {
-        return userHardCodeRepository.update(user);
+        this.findById(user.getId());
+        return userRepository.save(user);
     }
 
 }

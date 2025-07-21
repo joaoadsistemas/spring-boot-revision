@@ -4,14 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3bd4ca96-6461-4b57-9228-26374c6dc493" name="Changes" comment="feat: fixed UserServiceTest.java and put the mapper logic in controller">
+    <list default="true" id="3bd4ca96-6461-4b57-9228-26374c6dc493" name="Changes" comment="feat: implement the JPA repository and update the tests for findAll that uses JPA repository">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/data/UserData.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/dto/request/UserPostRequestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/dto/request/UserPostRequestDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/mapper/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/mapper/UserMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/repository/UserHardCodeRepository.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/repository/UserRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/resources/application.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user-service/src/test/java/com/spring/user_service/controller/UserControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/test/java/com/spring/user_service/controller/UserControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/test/java/com/spring/user_service/repository/UserHardCodeRepositoryTest.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/user-service/src/test/java/com/spring/user_service/service/UserServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/test/java/com/spring/user_service/service/UserServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/test/resources/user/post-200.json" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/test/resources/user/post-200.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/test/resources/user/put-request-200.json" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/test/resources/user/put-request-200.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,7 +36,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="revision22" />
+        <entry key="$PROJECT_DIR$" value="revision24" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -108,8 +113,8 @@
     "JUnit.UserControllerTest.put_shouldThrowException_whenFieldsIsEmpty (1).executor": "Run",
     "JUnit.UserControllerTest.put_shouldThrowException_whenFieldsIsEmpty.executor": "Run",
     "JUnit.UserControllerTest.put_shouldThrowException_whenFieldsIsNotValid.executor": "Run",
-    "JUnit.UserControllerTest.save_shouldSaveUser_whenSuccessfully.executor": "Run",
-    "JUnit.UserControllerTest.save_shouldThrowAnException_whenEmailAlreadyExists.executor": "Debug",
+    "JUnit.UserControllerTest.save_shouldSaveUser_whenSuccessfully.executor": "Debug",
+    "JUnit.UserControllerTest.save_shouldThrowAnException_whenEmailAlreadyExists.executor": "Run",
     "JUnit.UserControllerTest.save_shouldThrowException_whenFieldsIsEmpty (1).executor": "Run",
     "JUnit.UserControllerTest.save_shouldThrowException_whenFieldsIsEmpty.executor": "Run",
     "JUnit.UserControllerTest.save_shouldThrowException_whenFieldsIsNotValid.executor": "Run",
@@ -128,10 +133,13 @@
     "JUnit.UserRepositoryTest.save_shouldDoNothing_whenIdAlreadyExists.executor": "Debug",
     "JUnit.UserRepositoryTest.save_shouldSaveUser_whenSuccessfully.executor": "Run",
     "JUnit.UserServiceApplicationTests.executor": "Run",
-    "JUnit.UserServiceTest.delete_shouldDeleteUser_whenSuccessfully.executor": "Debug",
+    "JUnit.UserServiceTest.delete_shouldDeleteUser_whenSuccessfully.executor": "Run",
+    "JUnit.UserServiceTest.delete_shouldThrowAnException_whenIdDoesNotExists.executor": "Run",
     "JUnit.UserServiceTest.executor": "Run",
     "JUnit.UserServiceTest.findAll_shouldReturnAllElements_whenSuccessfully.executor": "Run",
     "JUnit.UserServiceTest.put_shouldReturnObject_whenSuccessfully.executor": "Run",
+    "JUnit.UserServiceTest.put_shouldThrowAnException_whenIdDoesNotExists.executor": "Run",
+    "JUnit.UserServiceTest.save_shouldSaveUser_whenSuccessfully.executor": "Run",
     "JUnit.java in anime-service.executor": "Run",
     "JUnit.java in user-service.executor": "Run",
     "JUnit.spring in anime-service.executor": "Run",
@@ -149,7 +157,7 @@
     "Spring Boot.UserServiceApplication.executor": "Run",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "git-widget-placeholder": "revision23",
+    "git-widget-placeholder": "revision25",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "/Users/joaoadsistemas/Documents/GitHub/JoaoRepo/spring-boot-revision/user-service/src/test/resources",
     "node.js.detected.package.eslint": "true",
@@ -200,7 +208,7 @@
       <recent name="com.spring.dto.request" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.java in user-service">
+  <component name="RunManager" selected="JUnit.user_service in user-service">
     <configuration name="UserControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="user-service" />
       <extension name="coverage">
@@ -216,57 +224,58 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="UserServiceApplicationTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="UserControllerTest.delete_shouldDeleteUser_whenSuccessfully" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="user-service" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.spring.user_service.*" />
+          <option name="PATTERN" value="com.spring.user_service.controller.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.spring.user_service" />
-      <option name="MAIN_CLASS_NAME" value="com.spring.user_service.UserServiceApplicationTests" />
-      <option name="TEST_OBJECT" value="class" />
-      <dir value="$PROJECT_DIR$/user-service/src/test/java" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="UserServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="user-service" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.spring.user_service.service.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.spring.user_service.service" />
-      <option name="MAIN_CLASS_NAME" value="com.spring.user_service.service.UserServiceTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="UserServiceTest.findAll_shouldReturnAllElements_whenSuccessfully" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="user-service" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.spring.user_service.service.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.spring.user_service.service" />
-      <option name="MAIN_CLASS_NAME" value="com.spring.user_service.service.UserServiceTest" />
-      <option name="METHOD_NAME" value="findAll_shouldReturnAllElements_whenSuccessfully" />
+      <option name="PACKAGE_NAME" value="com.spring.user_service.controller" />
+      <option name="MAIN_CLASS_NAME" value="com.spring.user_service.controller.UserControllerTest" />
+      <option name="METHOD_NAME" value="delete_shouldDeleteUser_whenSuccessfully" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="java in user-service" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="UserControllerTest.findById_shouldThrowException_whenIdDoesNotExists" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="user-service" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.spring.user_service.controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.spring.user_service.controller" />
+      <option name="MAIN_CLASS_NAME" value="com.spring.user_service.controller.UserControllerTest" />
+      <option name="METHOD_NAME" value="findById_shouldThrowException_whenIdDoesNotExists" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserControllerTest.save_shouldSaveUser_whenSuccessfully" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="user-service" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.spring.user_service.controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.spring.user_service.controller" />
+      <option name="MAIN_CLASS_NAME" value="com.spring.user_service.controller.UserControllerTest" />
+      <option name="METHOD_NAME" value="save_shouldSaveUser_whenSuccessfully" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="user_service in user-service" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="user-service" />
       <option name="TEST_OBJECT" value="directory" />
-      <dir value="$PROJECT_DIR$/user-service/src/test/java" />
+      <dir value="$PROJECT_DIR$/user-service/src/test/java/com/spring/user_service" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -292,20 +301,20 @@
     </configuration>
     <list>
       <item itemvalue="JUnit.UserControllerTest" />
-      <item itemvalue="JUnit.UserServiceTest" />
-      <item itemvalue="JUnit.UserServiceTest.findAll_shouldReturnAllElements_whenSuccessfully" />
-      <item itemvalue="JUnit.UserServiceApplicationTests" />
-      <item itemvalue="JUnit.java in user-service" />
+      <item itemvalue="JUnit.UserControllerTest.delete_shouldDeleteUser_whenSuccessfully" />
+      <item itemvalue="JUnit.UserControllerTest.findById_shouldThrowException_whenIdDoesNotExists" />
+      <item itemvalue="JUnit.UserControllerTest.save_shouldSaveUser_whenSuccessfully" />
+      <item itemvalue="JUnit.user_service in user-service" />
       <item itemvalue="Spring Boot.UserServiceApplication" />
       <item itemvalue="Spring Boot.ExampleProjectApplication" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.java in user-service" />
+        <item itemvalue="JUnit.user_service in user-service" />
         <item itemvalue="JUnit.UserControllerTest" />
-        <item itemvalue="JUnit.UserServiceTest.findAll_shouldReturnAllElements_whenSuccessfully" />
-        <item itemvalue="JUnit.UserServiceTest" />
-        <item itemvalue="JUnit.UserServiceApplicationTests" />
+        <item itemvalue="JUnit.UserControllerTest.save_shouldSaveUser_whenSuccessfully" />
+        <item itemvalue="JUnit.UserControllerTest.findById_shouldThrowException_whenIdDoesNotExists" />
+        <item itemvalue="JUnit.UserControllerTest.delete_shouldDeleteUser_whenSuccessfully" />
       </list>
     </recent_temporary>
   </component>
@@ -329,7 +338,7 @@
       <workItem from="1749145082006" duration="52729000" />
       <workItem from="1752021244174" duration="68217000" />
       <workItem from="1752867132123" duration="4152000" />
-      <workItem from="1753058271132" duration="5227000" />
+      <workItem from="1753058271132" duration="11422000" />
     </task>
     <task id="LOCAL-00001" summary="feat: added external pom.xml and rename the first project">
       <option name="closed" value="true" />
@@ -515,7 +524,15 @@
       <option name="project" value="LOCAL" />
       <updated>1753108629391</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="feat: implement the JPA repository and update the tests for findAll that uses JPA repository">
+      <option name="closed" value="true" />
+      <created>1753109053267</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1753109053267</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -544,7 +561,8 @@
     <MESSAGE value="feat: .env for environments in docker" />
     <MESSAGE value="feat: connection in mysql and also h2 connected to tests" />
     <MESSAGE value="feat: fixed UserServiceTest.java and put the mapper logic in controller" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: fixed UserServiceTest.java and put the mapper logic in controller" />
+    <MESSAGE value="feat: implement the JPA repository and update the tests for findAll that uses JPA repository" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: implement the JPA repository and update the tests for findAll that uses JPA repository" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -553,6 +571,16 @@
           <url>file://$PROJECT_DIR$/anime-service/src/main/java/com/spring/service/AnimeService.java</url>
           <line>30</line>
           <option name="timeStamp" value="15" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/service/UserService.java</url>
+          <line>51</line>
+          <option name="timeStamp" value="34" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/service/UserService.java</url>
+          <line>39</line>
+          <option name="timeStamp" value="37" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/repository/UserHardCodeRepository.java</url>
@@ -571,6 +599,15 @@
             <option name="WATCH_EXIT" value="false" />
           </properties>
           <option name="timeStamp" value="29" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/controller/UserController.java</url>
+          <line>53</line>
+          <properties class="com.spring.user_service.controller.UserController" method="update">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="33" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
