@@ -1,0 +1,12 @@
+spring:
+  config:
+    import: optional:classpath:.env[.properties]
+  application:
+    name: user-service
+  datasource:
+    url: jdbc:mysql://localhost:3306/user_service?useTimezone=true&serverTimezone=UTC&createDatabaseIfNotExist=true
+    username: ${ENV_ROOT_USER:root}
+    password: ${ENV_ROOT_PASSWORD:example}
+  jpa:
+    show-sql: true
+

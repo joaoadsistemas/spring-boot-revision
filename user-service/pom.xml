@@ -33,6 +33,7 @@
         <maven-surefire-plugin.version>3.1.2</maven-surefire-plugin.version>
         <lombok.version>1.18.30</lombok.version>
         <commons-core.version>0.0.1-SNAPSHOT</commons-core.version>
+        <mysql-connector-j.version>9.0.0</mysql-connector-j.version>
     </properties>
     <dependencies>
 
@@ -41,6 +42,24 @@
             <groupId>com.spring</groupId>
             <artifactId>commons-core</artifactId>
             <version>${commons-core.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
+            <version>${mysql-connector-j.version}</version>
+            <scope>runtime</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <scope>test</scope>
         </dependency>
 
         <dependency>
@@ -120,8 +139,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>${maven-compiler-plugin.version}</version>
                 <configuration>
-                    <source>21</source>
-                    <target>21</target>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
                     <annotationProcessorPaths>
                         <path>
                             <groupId>org.projectlombok</groupId>
