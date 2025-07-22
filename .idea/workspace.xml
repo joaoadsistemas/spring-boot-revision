@@ -4,9 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3bd4ca96-6461-4b57-9228-26374c6dc493" name="Changes" comment="feat: handling SQLIntegrityConstraintViolationException and DataIntegrityViolationException, also add ComponentScam to scam the Commons-Core">
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/repository/UserRepository.java" afterDir="false" />
+    <list default="true" id="3bd4ca96-6461-4b57-9228-26374c6dc493" name="Changes" comment="feat: validation email in update and save">
+      <change afterPath="$PROJECT_DIR$/commons-core/src/main/java/com/spring/exception/EmailAlreadyExistException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/commons-core/src/main/java/com/spring/exception/GlobalErrorHandlerAdvice.java" beforeDir="false" afterPath="$PROJECT_DIR$/commons-core/src/main/java/com/spring/exception/GlobalErrorHandlerAdvice.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/test/java/com/spring/user_service/service/UserServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/test/java/com/spring/user_service/service/UserServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,7 +29,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="revision26" />
+        <entry key="$PROJECT_DIR$" value="revision27" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -128,8 +131,10 @@
     "JUnit.UserServiceTest.executor": "Run",
     "JUnit.UserServiceTest.findAll_shouldReturnAllElements_whenSuccessfully.executor": "Run",
     "JUnit.UserServiceTest.put_shouldReturnObject_whenSuccessfully.executor": "Run",
+    "JUnit.UserServiceTest.put_shouldThrowAnException_whenEmailAlreadyExists.executor": "Run",
     "JUnit.UserServiceTest.put_shouldThrowAnException_whenIdDoesNotExists.executor": "Run",
     "JUnit.UserServiceTest.save_shouldSaveUser_whenSuccessfully.executor": "Run",
+    "JUnit.UserServiceTest.save_shouldThrowAnException_whenEmailAlreadyExists.executor": "Run",
     "JUnit.java in anime-service.executor": "Run",
     "JUnit.java in user-service.executor": "Run",
     "JUnit.spring in anime-service.executor": "Run",
@@ -149,7 +154,7 @@
     "Spring Boot.UserServiceApplication.executor": "Run",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "git-widget-placeholder": "revision27",
+    "git-widget-placeholder": "revision28",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "/Users/joaoadsistemas/Documents/GitHub/JoaoRepo/spring-boot-revision/user-service/src/test/resources",
     "node.js.detected.package.eslint": "true",
@@ -193,73 +198,89 @@
       <recent name="com.spring.controller" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.spring.exception" />
       <recent name="com.spring.user_service.exceptions" />
       <recent name="com.spring.user_service.dto" />
       <recent name="com.spring.controller" />
       <recent name="com.spring.dto.response" />
-      <recent name="com.spring.dto.request" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.UserServiceApplication">
-    <configuration name="UserControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.UserServiceTest.put_shouldReturnObject_whenSuccessfully">
+    <configuration name="UserServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="user-service" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.spring.user_service.controller.*" />
+          <option name="PATTERN" value="com.spring.user_service.service.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.spring.user_service.controller" />
-      <option name="MAIN_CLASS_NAME" value="com.spring.user_service.controller.UserControllerTest" />
+      <option name="PACKAGE_NAME" value="com.spring.user_service.service" />
+      <option name="MAIN_CLASS_NAME" value="com.spring.user_service.service.UserServiceTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="UserControllerTest.save_shouldSaveUser_whenSuccessfully" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="UserServiceTest.put_shouldReturnObject_whenSuccessfully" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="user-service" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.spring.user_service.controller.*" />
+          <option name="PATTERN" value="com.spring.user_service.service.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.spring.user_service.controller" />
-      <option name="MAIN_CLASS_NAME" value="com.spring.user_service.controller.UserControllerTest" />
+      <option name="PACKAGE_NAME" value="com.spring.user_service.service" />
+      <option name="MAIN_CLASS_NAME" value="com.spring.user_service.service.UserServiceTest" />
+      <option name="METHOD_NAME" value="put_shouldReturnObject_whenSuccessfully" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserServiceTest.put_shouldThrowAnException_whenEmailAlreadyExists" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="user-service" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.spring.user_service.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.spring.user_service.service" />
+      <option name="MAIN_CLASS_NAME" value="com.spring.user_service.service.UserServiceTest" />
+      <option name="METHOD_NAME" value="put_shouldThrowAnException_whenEmailAlreadyExists" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserServiceTest.put_shouldThrowAnException_whenIdDoesNotExists" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="user-service" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.spring.user_service.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.spring.user_service.service" />
+      <option name="MAIN_CLASS_NAME" value="com.spring.user_service.service.UserServiceTest" />
+      <option name="METHOD_NAME" value="put_shouldThrowAnException_whenIdDoesNotExists" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserServiceTest.save_shouldSaveUser_whenSuccessfully" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="user-service" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.spring.user_service.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.spring.user_service.service" />
+      <option name="MAIN_CLASS_NAME" value="com.spring.user_service.service.UserServiceTest" />
       <option name="METHOD_NAME" value="save_shouldSaveUser_whenSuccessfully" />
       <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="UserControllerTest.save_shouldThrowAnException_whenEmailAlreadyExists" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="user-service" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.spring.user_service.controller.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.spring.user_service.controller" />
-      <option name="MAIN_CLASS_NAME" value="com.spring.user_service.controller.UserControllerTest" />
-      <option name="METHOD_NAME" value="save_shouldThrowAnException_whenEmailAlreadyExists" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="java in user-service" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="user-service" />
-      <option name="TEST_OBJECT" value="directory" />
-      <dir value="$PROJECT_DIR$/user-service/src/test/java" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="user_service in user-service" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="user-service" />
-      <option name="TEST_OBJECT" value="directory" />
-      <dir value="$PROJECT_DIR$/user-service/src/test/java/com/spring/user_service" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -284,21 +305,21 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="JUnit.UserControllerTest" />
-      <item itemvalue="JUnit.UserControllerTest.save_shouldSaveUser_whenSuccessfully" />
-      <item itemvalue="JUnit.UserControllerTest.save_shouldThrowAnException_whenEmailAlreadyExists" />
-      <item itemvalue="JUnit.java in user-service" />
-      <item itemvalue="JUnit.user_service in user-service" />
+      <item itemvalue="JUnit.UserServiceTest" />
+      <item itemvalue="JUnit.UserServiceTest.put_shouldReturnObject_whenSuccessfully" />
+      <item itemvalue="JUnit.UserServiceTest.put_shouldThrowAnException_whenEmailAlreadyExists" />
+      <item itemvalue="JUnit.UserServiceTest.put_shouldThrowAnException_whenIdDoesNotExists" />
+      <item itemvalue="JUnit.UserServiceTest.save_shouldSaveUser_whenSuccessfully" />
       <item itemvalue="Spring Boot.UserServiceApplication" />
       <item itemvalue="Spring Boot.ExampleProjectApplication" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.user_service in user-service" />
-        <item itemvalue="JUnit.UserControllerTest.save_shouldThrowAnException_whenEmailAlreadyExists" />
-        <item itemvalue="JUnit.java in user-service" />
-        <item itemvalue="JUnit.UserControllerTest" />
-        <item itemvalue="JUnit.UserControllerTest.save_shouldSaveUser_whenSuccessfully" />
+        <item itemvalue="JUnit.UserServiceTest.put_shouldReturnObject_whenSuccessfully" />
+        <item itemvalue="JUnit.UserServiceTest.save_shouldSaveUser_whenSuccessfully" />
+        <item itemvalue="JUnit.UserServiceTest" />
+        <item itemvalue="JUnit.UserServiceTest.put_shouldThrowAnException_whenEmailAlreadyExists" />
+        <item itemvalue="JUnit.UserServiceTest.put_shouldThrowAnException_whenIdDoesNotExists" />
       </list>
     </recent_temporary>
   </component>
@@ -323,7 +344,7 @@
       <workItem from="1752021244174" duration="68217000" />
       <workItem from="1752867132123" duration="4152000" />
       <workItem from="1753058271132" duration="13711000" />
-      <workItem from="1753123708991" duration="5142000" />
+      <workItem from="1753123708991" duration="9911000" />
     </task>
     <task id="LOCAL-00001" summary="feat: added external pom.xml and rename the first project">
       <option name="closed" value="true" />
@@ -533,14 +554,21 @@
       <option name="project" value="LOCAL" />
       <updated>1753130310530</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="feat: validation email in update and save">
+      <option name="closed" value="true" />
+      <created>1753191886199</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1753191886199</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="feat: added external pom.xml and rename the first project" />
     <MESSAGE value="feat: modify application.properties to yml" />
     <MESSAGE value="feat: change the server of tomcat from jetty, and also rename the principal pom artifact" />
     <MESSAGE value="feat: mapstruct (auto-mapper)" />
@@ -565,7 +593,8 @@
     <MESSAGE value="feat: implement the JPA repository and update the tests for findAll that uses JPA repository" />
     <MESSAGE value="feat: refactor all tests to use the JPA repository" />
     <MESSAGE value="feat: handling SQLIntegrityConstraintViolationException and DataIntegrityViolationException, also add ComponentScam to scam the Commons-Core" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: handling SQLIntegrityConstraintViolationException and DataIntegrityViolationException, also add ComponentScam to scam the Commons-Core" />
+    <MESSAGE value="feat: validation email in update and save" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: validation email in update and save" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

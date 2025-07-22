@@ -1,5 +1,8 @@
 package com.spring.user_service.service;
 
+import com.spring.exception.BadRequestException;
+import com.spring.exception.EmailAlreadyExistException;
+import com.spring.exception.NotFoundException;
 import com.spring.user_service.model.User;
 import com.spring.user_service.repository.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -88,7 +91,8 @@ class UserServiceTest {
     @Test
     @DisplayName("save should save a user when successfully")
     void save_shouldSaveUser_whenSuccessfully() {
-        var expectedResult = User.builder().id(6L).firstName("Joao").lastName("Silva").email("joao.silva@example.com").build();
+        var expectedResult = User.builder().firstName("Joao").lastName("Silva").email("joao.silva@example.com").build();
+        BDDMockito.when(userRepository.findByEmail(expectedResult.getEmail())).thenReturn(Optional.empty());
         BDDMockito.when(userRepository.save(ArgumentMatchers.any(User.class))).thenReturn(expectedResult);
         assertThatNoException().isThrownBy(() -> userService.save(expectedResult));
     }
@@ -96,26 +100,13 @@ class UserServiceTest {
     @Test
     @DisplayName("save should throw an exception when the email already exists")
     void save_shouldThrowAnException_whenEmailAlreadyExists() {
-        BDDMockito.doThrow(ResponseStatusException.class).when(userRepository).save(ArgumentMatchers.any(User.class));
         var user = userSet.stream().findFirst().get();
-        user.setId(99L);
         user.setFirstName("Nicolas");
         user.setLastName("Machado");
 
-        assertThatThrownBy(() -> userService.save(user)).isInstanceOf(ResponseStatusException.class);
-    }
+        BDDMockito.when(userRepository.findByEmail(user.getEmail())).thenReturn(Optional.of(user));
 
-    @Test
-    @DisplayName("save should throw an exception when the id already exists")
-    void save_shouldThrowException_whenIdAlreadyExists() {
-        BDDMockito.doThrow(ResponseStatusException.class).when(userRepository).save(ArgumentMatchers.any(User.class));
-
-        var user = userSet.stream().findFirst().get();
-        user.setEmail("nicolasmachado@gmail.com");
-        user.setFirstName("Nicolas");
-        user.setLastName("Machado");
-
-        assertThatThrownBy(() -> userService.save(user)).isInstanceOf(ResponseStatusException.class);
+        assertThatThrownBy(() -> userService.save(user)).isInstanceOf(EmailAlreadyExistException.class);
     }
 
     @Test
@@ -141,27 +132,19 @@ class UserServiceTest {
     @DisplayName("put should return the object when succesffully")
     void put_shouldReturnObject_whenSuccessfully() {
 
-        var userBeforeModification = userSet.stream().findFirst().get();
+        var user = userSet.stream().findFirst().get();
 
-        BDDMockito.when(userRepository.findById(userBeforeModification.getId())).thenReturn(Optional.of(userBeforeModification));
+        user.setFirstName("Kaio");
+        user.setLastName("Ribeiro");
+        user.setEmail("kaioribeiro@gmail.com");
 
-        var userResultBeforeModification = userService.findById(userBeforeModification.getId());
-        assertThat(userResultBeforeModification).isNotNull().isEqualTo(userBeforeModification);
+        BDDMockito.when(userRepository.findById(ArgumentMatchers.anyLong())).thenReturn(Optional.of(user));
+        BDDMockito.when(userRepository.findByEmailAndIdNot(user.getEmail(), user.getId())).thenReturn(Optional.empty());
+        BDDMockito.when(userRepository.save(ArgumentMatchers.any(User.class))).thenReturn(user);
 
-        var userAfterModification = userBeforeModification;
+        var userResultAfterModification = userService.update(user);
 
-        userAfterModification.setFirstName("Kaio");
-        userAfterModification.setLastName("Ribeiro");
-        userAfterModification.setEmail("kaioribeiro@gmail.com");
-
-        userSet.add(userAfterModification);
-
-        BDDMockito.when(userRepository.save(ArgumentMatchers.any(User.class))).thenReturn(userAfterModification);
-
-        var userResultAfterModification = userService.update(userAfterModification);
-
-        assertThat(userResultAfterModification).isNotNull().isEqualTo(userAfterModification);
-        assertThat(userAfterModification.getId()).isEqualTo(userBeforeModification.getId());
+        assertThat(userResultAfterModification).isNotNull().isEqualTo(user);
     }
 
     @Test
@@ -169,6 +152,17 @@ class UserServiceTest {
     void put_shouldThrowAnException_whenIdDoesNotExists() {
         var user = User.builder().id(99L).email("xaxa").firstName("xaxa").lastName("xaxa").build();
         BDDMockito.when(userRepository.findById(ArgumentMatchers.anyLong())).thenReturn(Optional.empty());
-        assertThatThrownBy(() -> userService.update(user)).isInstanceOf(ResponseStatusException.class);
+        assertThatThrownBy(() -> userService.update(user)).isInstanceOf(NotFoundException.class);
+    }
+
+    @Test
+    @DisplayName("put should throw an exception when email belongs to another person")
+    void put_shouldThrowAnException_whenEmailBelongsToAnotherPerson() {
+        var userFirst = userSet.stream().findFirst().get();
+        var user = User.builder().id(2L).email(userFirst.getEmail()).firstName("xaxa").lastName("xaxa").build();
+        BDDMockito.when(userRepository.findById(ArgumentMatchers.anyLong())).thenReturn(Optional.ofNullable(user));
+        BDDMockito.when(userRepository.findByEmailAndIdNot(user.getEmail(), user.getId())).thenReturn(Optional.of(userFirst));
+
+        assertThatThrownBy(() -> userService.update(user)).isInstanceOf(EmailAlreadyExistException.class);
     }
 }

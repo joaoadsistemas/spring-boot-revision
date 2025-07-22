@@ -1,6 +1,7 @@
 package com.spring.user_service.service;
 
 import com.spring.exception.BadRequestException;
+import com.spring.exception.EmailAlreadyExistException;
 import com.spring.exception.NotFoundException;
 import com.spring.user_service.mapper.UserMapper;
 import com.spring.user_service.model.User;
@@ -65,7 +66,7 @@ public class UserService {
     }
 
     private static void throwEmailExistException() {
-        throw new BadRequestException("Email already exists");
+        throw new EmailAlreadyExistException("Email already exists");
     }
 
 
