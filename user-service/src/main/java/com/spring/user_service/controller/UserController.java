@@ -9,6 +9,8 @@ import com.spring.user_service.model.User;
 import com.spring.user_service.service.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,6 +28,11 @@ public class UserController {
     @GetMapping
     public ResponseEntity<Set<UserGetResponseDTO>> findAll() {
         return ResponseEntity.ok(userService.findAll().stream().map(MAPPER::toUserGetResponse).collect(Collectors.toSet()));
+    }
+
+    @GetMapping("/paginated")
+    public ResponseEntity<Page<UserGetResponseDTO>> findAllPaginated(Pageable pageable) {
+        return ResponseEntity.ok(userService.findAllPaginated(pageable).map(MAPPER::toUserGetResponse));
     }
 
     @GetMapping("/{id}")
