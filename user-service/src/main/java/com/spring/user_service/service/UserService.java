@@ -34,6 +34,7 @@ public class UserService {
     }
 
     public void save(User user) {
+        assertEmailDoesNotExist(user.getEmail());
         userRepository.save(user);
     }
 
@@ -43,8 +44,29 @@ public class UserService {
     }
 
     public User update(User user) {
-        this.findById(user.getId());
+        findById(user.getId());
+        assertEmailDoesNotExist(user.getEmail(), user.getId());
         return userRepository.save(user);
     }
+
+    public void assertEmailDoesNotExist(String email) {
+         userRepository
+            .findByEmail(email)
+            .ifPresent(e -> {
+                throwEmailExistException();
+            } );
+    }
+
+    public void assertEmailDoesNotExist(String email, Long id) {
+        userRepository.findByEmailAndIdNot(email, id)
+                .ifPresent(e -> {
+                    throwEmailExistException();
+                } );
+    }
+
+    private static void throwEmailExistException() {
+        throw new BadRequestException("Email already exists");
+    }
+
 
 }
