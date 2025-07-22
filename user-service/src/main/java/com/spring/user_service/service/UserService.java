@@ -7,6 +7,8 @@ import com.spring.user_service.mapper.UserMapper;
 import com.spring.user_service.model.User;
 import com.spring.user_service.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
@@ -22,6 +24,11 @@ public class UserService {
     public Set<User> findAll() {
         //return new HashSet<>(userHardCodeRepository.findAll());
         return new HashSet<>(userRepository.findAll());
+    }
+
+    public Page<User> findAllPaginated(Pageable pageable) {
+        //return new HashSet<>(userHardCodeRepository.findAll());
+        return userRepository.findAll(pageable);
     }
 
     public User findById(Long id) {

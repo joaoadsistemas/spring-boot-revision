@@ -19,15 +19,15 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Import;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Stream;
 
 @WebMvcTest(UserController.class)
@@ -67,6 +67,21 @@ class UserControllerTest {
         var result = fileUtils.readResourceFile("user/find-all-200.json");
 
         mockMvc.perform(MockMvcRequestBuilders.get(URL))
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.content().json(result));
+    }
+
+    @Test
+    @DisplayName("GET v1/users/paginated should return all elements paginated")
+    void findAllPaginated_shouldReturnAllElements_Paginated() throws Exception {
+        var result = fileUtils.readResourceFile("user/find-all-paginated-200.json");
+        PageRequest pageRequest = PageRequest.of(0, userSet.size());
+        PageImpl<User> pageUser = new PageImpl<>(new ArrayList<>(userSet), pageRequest, 1);
+
+        BDDMockito.when(userRepository.findAll(ArgumentMatchers.any(Pageable.class))).thenReturn(pageUser);
+
+        mockMvc.perform(MockMvcRequestBuilders.get(URL + "/paginated"))
                 .andDo(MockMvcResultHandlers.print())
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.content().json(result));

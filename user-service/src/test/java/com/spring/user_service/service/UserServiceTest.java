@@ -14,12 +14,12 @@ import org.mockito.BDDMockito;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -52,6 +52,19 @@ class UserServiceTest {
 
         var result = userService.findAll();
         assertThat(result).containsAll(userSet);
+    }
+
+    @Test
+    @DisplayName("findAllPaginated should return all paginated elements when successfully")
+    void findAllPaginated_shouldReturnAllPaginatedElements_whenSuccessfully() {
+
+        PageRequest pageRequest = PageRequest.of(0, userSet.size());
+        PageImpl<User> pageUser = new PageImpl<>(new ArrayList<>(userSet), pageRequest, 1);
+
+        BDDMockito.when(userRepository.findAll(ArgumentMatchers.any(Pageable.class))).thenReturn(pageUser);
+
+        var result = userService.findAllPaginated(pageRequest);
+        assertThat(result).isNotNull().containsAll(userSet);
     }
 
     @Test
