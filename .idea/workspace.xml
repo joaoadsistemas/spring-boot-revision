@@ -4,13 +4,34 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3bd4ca96-6461-4b57-9228-26374c6dc493" name="Changes" comment="feat: new exception in commons-core and new tests">
-      <change afterPath="$PROJECT_DIR$/user-service/src/test/resources/user/find-all-paginated-200.json" afterDir="false" />
+    <list default="true" id="3bd4ca96-6461-4b57-9228-26374c6dc493" name="Changes" comment="feat: Pagination with Pageable and tests">
+      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/controller/ProfileController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/dto/profile/request/ProfilePostRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/dto/profile/response/ProfileGetResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/mapper/ProfileMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/model/Profile.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/repository/ProfileRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/service/ProfileService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user-service/src/test/java/com/spring/user_service/controller/ProfileControllerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user-service/src/test/java/com/spring/user_service/service/ProfileServiceTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user-service/src/test/resources/profile/find-all-pageable-200.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user-service/src/test/resources/profile/find-all-profiles-200.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user-service/src/test/resources/profile/find-by-id-200.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user-service/src/test/resources/profile/find-by-id-404.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user-service/src/test/resources/profile/find-by-name-200.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user-service/src/test/resources/profile/find-by-name-404.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user-service/src/test/resources/profile/save-profile-blank-400.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user-service/src/test/resources/profile/save-profile-null-400.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user-service/src/test/resources/profile/save-profile-request-200.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/dto/request/UserPostRequestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/dto/user/request/UserPostRequestDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/dto/request/UserPutRequestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/dto/user/request/UserPutRequestDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/dto/response/UserGetResponseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/dto/user/response/UserGetResponseDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/dto/response/UserPostResponseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/dto/user/response/UserPostResponseDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/dto/response/UserPutResponseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/dto/user/response/UserPutResponseDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/mapper/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/mapper/UserMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user-service/src/test/java/com/spring/user_service/controller/UserControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/test/java/com/spring/user_service/controller/UserControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/test/java/com/spring/user_service/service/UserServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/test/java/com/spring/user_service/service/UserServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,17 +41,17 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="JUnit5 Test Class" />
+        <option value="Interface" />
         <option value="Record" />
         <option value="Class" />
-        <option value="Interface" />
+        <option value="JUnit5 Test Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="revision28" />
+        <entry key="$PROJECT_DIR$" value="revision29" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -94,6 +115,22 @@
     "JUnit.AnimeServiceTest.update_UpdatesAnime_WhenSuccessful.executor": "Run",
     "JUnit.ConfigControllerTest.executor": "Run",
     "JUnit.ConfigControllerTest.get_ShouldReturn_TheClassConfig_WithTestProfile.executor": "Run",
+    "JUnit.ProfileControllerTest.executor": "Run",
+    "JUnit.ProfileControllerTest.findAll.executor": "Run",
+    "JUnit.ProfileControllerTest.findAllPageable_shouldReturnPageWithProfiles_whenSuccessful.executor": "Run",
+    "JUnit.ProfileControllerTest.findAll_shouldReturnTheProfile_whenSuccessful.executor": "Run",
+    "JUnit.ProfileControllerTest.findAll_shouldThrowNotFound_whenIdIsNotFound.executor": "Run",
+    "JUnit.ProfileControllerTest.findByName_shouldReturnTheProfile_whenSuccessful.executor": "Run",
+    "JUnit.ProfileControllerTest.findByName_shouldThrowNotFound_whenNameIsNotFound.executor": "Run",
+    "JUnit.ProfileControllerTest.save_shouldSave_whenSuccessful (1).executor": "Run",
+    "JUnit.ProfileControllerTest.save_shouldSave_whenSuccessful.executor": "Run",
+    "JUnit.ProfileServiceTest.executor": "Run",
+    "JUnit.ProfileServiceTest.findAllPageable_ShouldReturnPageableOfProfiles_WhenSuccessful.executor": "Run",
+    "JUnit.ProfileServiceTest.findAll_ShouldReturnAllProfiles_WhenSuccessful.executor": "Run",
+    "JUnit.ProfileServiceTest.findById_ShouldReturnProfile_WhenIdExists.executor": "Run",
+    "JUnit.ProfileServiceTest.findById_ShouldThrowNotFoundException_WhenIdDoesNotExists.executor": "Run",
+    "JUnit.ProfileServiceTest.save_ShouldPersistProfile_WhenSuccessful.executor": "Run",
+    "JUnit.ProfileServiceTest.save_ShouldThrowAnException_WhenNameAlreadyExists.executor": "Run",
     "JUnit.UserControllerTest.delete_shouldDeleteUser_whenSuccessfully.executor": "Run",
     "JUnit.UserControllerTest.delete_shouldThrowAnException_whenIdDoesNotExists.executor": "Run",
     "JUnit.UserControllerTest.executor": "Run",
@@ -157,9 +194,9 @@
     "Spring Boot.UserServiceApplication.executor": "Run",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "git-widget-placeholder": "revision29",
+    "git-widget-placeholder": "revision30",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/joaoadsistemas/Documents/GitHub/JoaoRepo/spring-boot-revision/user-service/src/test/resources/user",
+    "last_opened_file_path": "/Users/joaoadsistemas/Documents/GitHub/JoaoRepo/spring-boot-revision/user-service/src/test/resources/profile",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -176,11 +213,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/user-service/src/test/resources/profile" />
       <recent name="$PROJECT_DIR$/user-service/src/test/resources/user" />
       <recent name="$PROJECT_DIR$/user-service/src/test/resources" />
       <recent name="$PROJECT_DIR$/user-service/src/main/resources" />
       <recent name="$PROJECT_DIR$" />
-      <recent name="$PROJECT_DIR$/commons-core/src/main/java/com/spring/exception" />
     </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
@@ -201,15 +238,15 @@
       <recent name="com.spring.controller" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.spring.user_service.dto.profile.response" />
       <recent name="com.spring.exception" />
       <recent name="com.spring.user_service.exceptions" />
       <recent name="com.spring.user_service.dto" />
       <recent name="com.spring.controller" />
-      <recent name="com.spring.dto.response" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.UserServiceTest.findAllPaginated_shouldReturnAllPaginatedElements_whenSuccessfully">
-    <configuration name="UserControllerTest.findAllPaginated_shouldReturnAllElements_Paginated" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.user_service in user-service">
+    <configuration name="ProfileControllerTest.findByName_shouldReturnTheProfile_whenSuccessful" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="user-service" />
       <extension name="coverage">
         <pattern>
@@ -218,72 +255,65 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.spring.user_service.controller" />
-      <option name="MAIN_CLASS_NAME" value="com.spring.user_service.controller.UserControllerTest" />
-      <option name="METHOD_NAME" value="findAllPaginated_shouldReturnAllElements_Paginated" />
+      <option name="MAIN_CLASS_NAME" value="com.spring.user_service.controller.ProfileControllerTest" />
+      <option name="METHOD_NAME" value="findByName_shouldReturnTheProfile_whenSuccessful" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="UserServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ProfileControllerTest.findByName_shouldThrowNotFound_whenNameIsNotFound" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="user-service" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.spring.user_service.service.*" />
+          <option name="PATTERN" value="com.spring.user_service.controller.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.spring.user_service.service" />
-      <option name="MAIN_CLASS_NAME" value="com.spring.user_service.service.UserServiceTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="UserServiceTest.findAllPaginated_shouldReturnAllPaginatedElements_whenSuccessfully" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="user-service" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.spring.user_service.service.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.spring.user_service.service" />
-      <option name="MAIN_CLASS_NAME" value="com.spring.user_service.service.UserServiceTest" />
-      <option name="METHOD_NAME" value="findAllPaginated_shouldReturnAllPaginatedElements_whenSuccessfully" />
+      <option name="PACKAGE_NAME" value="com.spring.user_service.controller" />
+      <option name="MAIN_CLASS_NAME" value="com.spring.user_service.controller.ProfileControllerTest" />
+      <option name="METHOD_NAME" value="findByName_shouldThrowNotFound_whenNameIsNotFound" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="UserServiceTest.put_shouldReturnObject_whenSuccessfully" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ProfileControllerTest.save_shouldSave_whenSuccessful (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="user-service" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.spring.user_service.service.*" />
+          <option name="PATTERN" value="com.spring.user_service.controller.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.spring.user_service.service" />
-      <option name="MAIN_CLASS_NAME" value="com.spring.user_service.service.UserServiceTest" />
-      <option name="METHOD_NAME" value="put_shouldReturnObject_whenSuccessfully" />
+      <option name="PACKAGE_NAME" value="com.spring.user_service.controller" />
+      <option name="MAIN_CLASS_NAME" value="com.spring.user_service.controller.ProfileControllerTest" />
+      <option name="METHOD_NAME" value="save_shouldSave_whenSuccessful(java.lang.String,java.util.List)" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="UserServiceTest.save_shouldSaveUser_whenSuccessfully" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ProfileControllerTest.save_shouldSave_whenSuccessful" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="user-service" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.spring.user_service.service.*" />
+          <option name="PATTERN" value="com.spring.user_service.controller.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.spring.user_service.service" />
-      <option name="MAIN_CLASS_NAME" value="com.spring.user_service.service.UserServiceTest" />
-      <option name="METHOD_NAME" value="save_shouldSaveUser_whenSuccessfully" />
+      <option name="PACKAGE_NAME" value="com.spring.user_service.controller" />
+      <option name="MAIN_CLASS_NAME" value="com.spring.user_service.controller.ProfileControllerTest" />
+      <option name="METHOD_NAME" value="save_shouldSave_whenSuccessful" />
       <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="user_service in user-service" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="user-service" />
+      <option name="TEST_OBJECT" value="directory" />
+      <dir value="$PROJECT_DIR$/user-service/src/test/java/com/spring/user_service" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -308,21 +338,21 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="JUnit.UserControllerTest.findAllPaginated_shouldReturnAllElements_Paginated" />
-      <item itemvalue="JUnit.UserServiceTest" />
-      <item itemvalue="JUnit.UserServiceTest.findAllPaginated_shouldReturnAllPaginatedElements_whenSuccessfully" />
-      <item itemvalue="JUnit.UserServiceTest.put_shouldReturnObject_whenSuccessfully" />
-      <item itemvalue="JUnit.UserServiceTest.save_shouldSaveUser_whenSuccessfully" />
+      <item itemvalue="JUnit.ProfileControllerTest.findByName_shouldReturnTheProfile_whenSuccessful" />
+      <item itemvalue="JUnit.ProfileControllerTest.findByName_shouldThrowNotFound_whenNameIsNotFound" />
+      <item itemvalue="JUnit.ProfileControllerTest.save_shouldSave_whenSuccessful" />
+      <item itemvalue="JUnit.ProfileControllerTest.save_shouldSave_whenSuccessful (1)" />
+      <item itemvalue="JUnit.user_service in user-service" />
       <item itemvalue="Spring Boot.UserServiceApplication" />
       <item itemvalue="Spring Boot.ExampleProjectApplication" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.UserServiceTest.findAllPaginated_shouldReturnAllPaginatedElements_whenSuccessfully" />
-        <item itemvalue="JUnit.UserControllerTest.findAllPaginated_shouldReturnAllElements_Paginated" />
-        <item itemvalue="JUnit.UserServiceTest.put_shouldReturnObject_whenSuccessfully" />
-        <item itemvalue="JUnit.UserServiceTest.save_shouldSaveUser_whenSuccessfully" />
-        <item itemvalue="JUnit.UserServiceTest" />
+        <item itemvalue="JUnit.user_service in user-service" />
+        <item itemvalue="JUnit.ProfileControllerTest.save_shouldSave_whenSuccessful (1)" />
+        <item itemvalue="JUnit.ProfileControllerTest.save_shouldSave_whenSuccessful" />
+        <item itemvalue="JUnit.ProfileControllerTest.findByName_shouldThrowNotFound_whenNameIsNotFound" />
+        <item itemvalue="JUnit.ProfileControllerTest.findByName_shouldReturnTheProfile_whenSuccessful" />
       </list>
     </recent_temporary>
   </component>
@@ -347,7 +377,7 @@
       <workItem from="1752021244174" duration="68217000" />
       <workItem from="1752867132123" duration="4152000" />
       <workItem from="1753058271132" duration="13711000" />
-      <workItem from="1753123708991" duration="15222000" />
+      <workItem from="1753123708991" duration="30127000" />
     </task>
     <task id="LOCAL-00001" summary="feat: added external pom.xml and rename the first project">
       <option name="closed" value="true" />
@@ -573,14 +603,21 @@
       <option name="project" value="LOCAL" />
       <updated>1753200517141</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="feat: Pagination with Pageable and tests">
+      <option name="closed" value="true" />
+      <created>1753205446172</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1753205446172</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="feat: change the server of tomcat from jetty, and also rename the principal pom artifact" />
     <MESSAGE value="feat: mapstruct (auto-mapper)" />
     <MESSAGE value="feat: initial of controllers and get methods" />
     <MESSAGE value="feat: mapstruct implementation" />
@@ -605,7 +642,8 @@
     <MESSAGE value="feat: handling SQLIntegrityConstraintViolationException and DataIntegrityViolationException, also add ComponentScam to scam the Commons-Core" />
     <MESSAGE value="feat: validation email in update and save" />
     <MESSAGE value="feat: new exception in commons-core and new tests" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: new exception in commons-core and new tests" />
+    <MESSAGE value="feat: Pagination with Pageable and tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: Pagination with Pageable and tests" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

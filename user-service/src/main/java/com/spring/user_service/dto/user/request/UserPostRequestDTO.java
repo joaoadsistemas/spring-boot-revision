@@ -1,4 +1,4 @@
-package com.spring.user_service.dto.request;
+package com.spring.user_service.dto.user.request;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

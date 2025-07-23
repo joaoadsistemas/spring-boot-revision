@@ -1,9 +1,9 @@
 package com.spring.user_service.controller;
 
-import com.spring.user_service.dto.request.UserPostRequestDTO;
-import com.spring.user_service.dto.request.UserPutRequestDTO;
-import com.spring.user_service.dto.response.UserGetResponseDTO;
-import com.spring.user_service.dto.response.UserPutResponseDTO;
+import com.spring.user_service.dto.user.request.UserPostRequestDTO;
+import com.spring.user_service.dto.user.request.UserPutRequestDTO;
+import com.spring.user_service.dto.user.response.UserGetResponseDTO;
+import com.spring.user_service.dto.user.response.UserPutResponseDTO;
 import com.spring.user_service.mapper.UserMapper;
 import com.spring.user_service.model.User;
 import com.spring.user_service.service.UserService;
