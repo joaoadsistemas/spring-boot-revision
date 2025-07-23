@@ -22,4 +22,5 @@ public class Profile {
     @Column(nullable = false)
     private String description;
 
+
 }

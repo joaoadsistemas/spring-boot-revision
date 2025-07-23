@@ -3,6 +3,7 @@ package com.spring.user_service.controller;
 import com.spring.user_service.mapper.UserMapperImpl;
 import com.spring.user_service.model.User;
 import com.spring.user_service.repository.ProfileRepository;
+import com.spring.user_service.repository.UserProfileRepository;
 import com.spring.user_service.repository.UserRepository;
 import com.spring.user_service.service.UserService;
 import com.spring.user_service.utils.FileUtils;
@@ -46,6 +47,9 @@ class UserControllerTest {
 
     @MockBean
     private ProfileRepository profileRepository;
+
+    @MockBean
+    private UserProfileRepository userProfileRepository;
 
     private static final String URL = "/v1/users";
 
