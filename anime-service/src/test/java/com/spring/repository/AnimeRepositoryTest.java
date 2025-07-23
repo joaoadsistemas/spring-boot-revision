@@ -66,9 +66,9 @@ class AnimeRepositoryTest {
     @DisplayName("findById returns a anime when id is valid")
     void findById_ReturnsAnime_WhenSuccessful() {
         BDDMockito.when(this.animeData.getAnimeList()).thenReturn(this.animeList);
-        Optional<Anime> anime = this.animeRepository.findById(this.animeList.getFirst().getId());
+        Optional<Anime> anime = this.animeRepository.findById(this.animeList.get(0).getId());
         Assertions.assertThat(anime).isNotNull();
-        Assertions.assertThat(anime.get().getId()).isEqualTo(this.animeList.getFirst().getId());
+        Assertions.assertThat(anime.get().getId()).isEqualTo(this.animeList.get(0).getId());
     }
 
     @Test
@@ -83,7 +83,7 @@ class AnimeRepositoryTest {
     @DisplayName("update updates an anime")
     void update_UpdatesAnime_WhenSuccessful() {
         BDDMockito.when(this.animeData.getAnimeList()).thenReturn(this.animeList);
-        var animeToUpdate = this.animeList.getFirst();
+        var animeToUpdate = this.animeList.get(0);
         animeToUpdate.setTitle("Hellsing");
 
         animeRepository.update(animeToUpdate);
@@ -113,7 +113,7 @@ class AnimeRepositoryTest {
     void delete_RemoveAnime_WhenSuccessful() {
         BDDMockito.when(this.animeData.getAnimeList()).thenReturn(this.animeList);
 
-        var animeToDelete = this.animeList.getFirst();
+        var animeToDelete = this.animeList.get(0);
         this.animeRepository.delete(animeToDelete);
 
         var animes = this.animeRepository.findAll();

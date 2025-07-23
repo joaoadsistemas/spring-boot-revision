@@ -60,21 +60,21 @@ class AnimeServiceTest {
     @Test
     @DisplayName("findByTitle returns a anime when name is valid")
     void findByTitle_ReturnsAnime_WhenNameIsValid() {
-        var title = this.animeList.getFirst().getTitle();
-        BDDMockito.when(this.animeRepository.findByTitle(title)).thenReturn(Optional.ofNullable(this.animeList.getFirst()));
+        var title = this.animeList.get(0).getTitle();
+        BDDMockito.when(this.animeRepository.findByTitle(title)).thenReturn(Optional.ofNullable(this.animeList.get(0)));
         Optional<Anime> anime = this.animeRepository.findByTitle(title);
         Assertions.assertThat(anime).isNotNull();
-        Assertions.assertThat(anime.get().getTitle()).isEqualTo(this.animeList.getFirst().getTitle());
+        Assertions.assertThat(anime.get().getTitle()).isEqualTo(this.animeList.get(0).getTitle());
     }
 
     @Test
     @DisplayName("findById returns a anime when id is valid")
     void findById_ReturnsAnime_WhenSuccessful() {
-        var id = this.animeList.getFirst().getId();
-        BDDMockito.when(this.animeRepository.findById(id)).thenReturn(Optional.ofNullable(this.animeList.getFirst()));
+        var id = this.animeList.get(0).getId();
+        BDDMockito.when(this.animeRepository.findById(id)).thenReturn(Optional.ofNullable(this.animeList.get(0)));
         Optional<Anime> anime = this.animeRepository.findById(id);
         Assertions.assertThat(anime).isNotNull();
-        Assertions.assertThat(anime.get().getId()).isEqualTo(this.animeList.getFirst().getId());
+        Assertions.assertThat(anime.get().getId()).isEqualTo(this.animeList.get(0).getId());
     }
 
     @Test
@@ -89,7 +89,7 @@ class AnimeServiceTest {
     @Test
     @DisplayName("update updates an anime")
     void update_UpdatesAnime_WhenSuccessful() {
-        var animeToUpdate = this.animeList.getFirst();
+        var animeToUpdate = this.animeList.get(0);
         animeToUpdate.setTitle("Grand Blue");
 
         BDDMockito.when(this.animeRepository.findById(animeToUpdate.getId())).thenReturn(Optional.of(animeToUpdate));
@@ -101,7 +101,7 @@ class AnimeServiceTest {
     @Test
     @DisplayName("update throws ResponseStatusException when anime is not found")
     void update_ThrowsResponseStatusException_WhenProducerIsNotFound() {
-        var animeToUpdate = this.animeList.getFirst();
+        var animeToUpdate = this.animeList.get(0);
 
         BDDMockito.when(this.animeRepository.findById(ArgumentMatchers.anyInt())).thenReturn(Optional.empty());
 
@@ -126,7 +126,7 @@ class AnimeServiceTest {
     @Test
     @DisplayName("delete removes an anime")
     void delete_RemoveAnime_WhenSuccessful() {
-        var animeToDelete = this.animeList.getFirst();
+        var animeToDelete = this.animeList.get(0);
         BDDMockito.when(this.animeRepository.findById(animeToDelete.getId())).thenReturn(Optional.of(animeToDelete));
         BDDMockito.doNothing().when(this.animeRepository).delete(animeToDelete);
 
@@ -136,7 +136,7 @@ class AnimeServiceTest {
     @Test
     @DisplayName("delete throws ResponseStatusException when anime is not found")
     void delete_ThrowsResponseStatusException_WhenAnimeIsNotFound() {
-        var animeToDelete = this.animeList.getFirst();
+        var animeToDelete = this.animeList.get(0);
         BDDMockito.when(this.animeRepository.findById(animeToDelete.getId())).thenReturn(Optional.empty());
 
         Assertions.assertThatException()
