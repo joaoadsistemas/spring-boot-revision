@@ -11,4 +11,8 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: update
+logging:
+  level:
+    com.spring: debug
+    org.hibernate.orm.bind: trace
 
