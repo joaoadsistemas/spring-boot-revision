@@ -1,5 +1,6 @@
 package com.spring.user_service.service;
 
+import com.spring.user_service.model.User;
 import com.spring.user_service.model.UserProfile;
 import com.spring.user_service.repository.UserProfileRepository;
 import lombok.RequiredArgsConstructor;
@@ -14,9 +15,12 @@ public class UserProfileService {
 
     private final UserProfileRepository userProfileRepository;
 
-
     public Set<UserProfile> findAll() {
         return new HashSet<>(userProfileRepository.findAll());
+    }
+
+    public Set<User> findAllUsersByProfileId(Long profileId) {
+        return new HashSet<>(userProfileRepository.findAllUsersByProfileId(profileId));
     }
 
 }

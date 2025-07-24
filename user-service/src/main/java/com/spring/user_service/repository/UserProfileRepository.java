@@ -1,5 +1,6 @@
 package com.spring.user_service.repository;
 
+import com.spring.user_service.model.User;
 import com.spring.user_service.model.UserProfile;
 import jakarta.persistence.Entity;
 import org.springframework.data.jpa.repository.EntityGraph;
@@ -17,4 +18,7 @@ public interface UserProfileRepository extends JpaRepository<UserProfile, Long> 
     //@EntityGraph(attributePaths = {"user", "profile"}) -> first way to use
     @EntityGraph(value = "UserProfile.fullDetails")
     List<UserProfile> findAll();
+
+    @Query("SELECT up.user FROM UserProfile up WHERE up.profile.id = ?1")
+    List<User> findAllUsersByProfileId(Long id);
 }
