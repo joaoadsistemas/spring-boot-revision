@@ -4,8 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3bd4ca96-6461-4b57-9228-26374c6dc493" name="Changes" comment="feat: logging query params">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="3bd4ca96-6461-4b57-9228-26374c6dc493" name="Changes" comment="feat: solving n+1 with JPQL join fetch">
+      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/model/UserProfile.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/model/UserProfile.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/repository/UserProfileRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/repository/UserProfileRepository.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -26,7 +26,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="revision32" />
+        <entry key="$PROJECT_DIR$" value="revision33" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -170,7 +170,7 @@
     "Spring Boot.UserServiceApplication.executor": "Run",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "git-widget-placeholder": "revision33",
+    "git-widget-placeholder": "revision34",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "/Users/joaoadsistemas/Documents/GitHub/JoaoRepo/spring-boot-revision/user-service/src/test/resources/profile",
     "node.js.detected.package.eslint": "true",
@@ -329,7 +329,7 @@
       <workItem from="1752867132123" duration="4152000" />
       <workItem from="1753058271132" duration="13711000" />
       <workItem from="1753123708991" duration="34798000" />
-      <workItem from="1753290494321" duration="4134000" />
+      <workItem from="1753290494321" duration="4445000" />
     </task>
     <task id="LOCAL-00001" summary="feat: added external pom.xml and rename the first project">
       <option name="closed" value="true" />
@@ -595,14 +595,21 @@
       <option name="project" value="LOCAL" />
       <updated>1753299674565</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="feat: solving n+1 with JPQL join fetch">
+      <option name="closed" value="true" />
+      <created>1753367391444</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1753367391444</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="refactor: refactor tests to be more concise and easy to handle" />
     <MESSAGE value="feat: handling profiles and environment variables" />
     <MESSAGE value="feat: ConfigurationProperties" />
     <MESSAGE value="feat: new project setup the basics config and build the repository and tests for this" />
@@ -627,7 +634,8 @@
     <MESSAGE value="feat: new entity UserProfile" />
     <MESSAGE value="feat: updating the version of spring" />
     <MESSAGE value="feat: logging query params" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: logging query params" />
+    <MESSAGE value="feat: solving n+1 with JPQL join fetch" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: solving n+1 with JPQL join fetch" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
