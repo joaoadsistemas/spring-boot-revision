@@ -16,7 +16,7 @@ public class UserProfileService {
 
 
     public Set<UserProfile> findAll() {
-        return new HashSet<>(userProfileRepository.findAll());
+        return new HashSet<>(userProfileRepository.retrieveAll());
     }
 
 }
