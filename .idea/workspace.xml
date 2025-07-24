@@ -4,14 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3bd4ca96-6461-4b57-9228-26374c6dc493" name="Changes" comment="feat: solving n+1 with EntityGraph">
-      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/dto/userProfile/response/UserProfileGetResponseDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/dto/userProfile/response/UserProfileGetUserByProfileResponseDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/mapper/UserProfileMapper.java" afterDir="false" />
+    <list default="true" id="3bd4ca96-6461-4b57-9228-26374c6dc493" name="Changes" comment="feat: JPQL All Users by ProfileId">
+      <change afterPath="$PROJECT_DIR$/user-service/src/test/java/com/spring/user_service/repository/UserProfileRepositoryTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user-service/src/test/resources/sql/init_user_profile_2_users_1_profile.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/controller/UserProfileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/controller/UserProfileController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/repository/UserProfileRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/repository/UserProfileRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/service/UserProfileService.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/spring/user_service/service/UserProfileService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/test/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/test/resources/application.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,15 +20,15 @@
       <list>
         <option value="Interface" />
         <option value="Record" />
-        <option value="Class" />
         <option value="JUnit5 Test Class" />
+        <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="revision34" />
+        <entry key="$PROJECT_DIR$" value="revision35" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -132,6 +129,7 @@
     "JUnit.UserControllerTest.save_shouldThrowException_whenFieldsIsEmpty.executor": "Run",
     "JUnit.UserControllerTest.save_shouldThrowException_whenFieldsIsNotValid.executor": "Run",
     "JUnit.UserControllerTest.save_shouldThrowException_whenIdAlreadyExists.executor": "Debug",
+    "JUnit.UserProfileRepositoryTest.findAllUsersByProfileId_returnAllUsersByProfileId.executor": "Run",
     "JUnit.UserRepositoryTest.delete_shouldDeleteUser_whenSuccessfully.executor": "Run",
     "JUnit.UserRepositoryTest.executor": "Run",
     "JUnit.UserRepositoryTest.findAll.executor": "Run",
@@ -175,7 +173,7 @@
     "Spring Boot.UserServiceApplication.executor": "Run",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "git-widget-placeholder": "revision35",
+    "git-widget-placeholder": "revision36",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "/Users/joaoadsistemas/Documents/GitHub/JoaoRepo/spring-boot-revision/user-service/src/test/resources/profile",
     "node.js.detected.package.eslint": "true",
@@ -226,7 +224,7 @@
       <recent name="com.spring.user_service.controller" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.UserServiceApplication">
+  <component name="RunManager" selected="JUnit.UserProfileRepositoryTest.findAllUsersByProfileId_returnAllUsersByProfileId">
     <configuration name="All in anime-service" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="anime-service" />
       <option name="PACKAGE_NAME" value="" />
@@ -250,6 +248,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="UserProfileRepositoryTest.findAllUsersByProfileId_returnAllUsersByProfileId" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="user-service" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.spring.user_service.repository.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.spring.user_service.repository" />
+      <option name="MAIN_CLASS_NAME" value="com.spring.user_service.repository.UserProfileRepositoryTest" />
+      <option name="METHOD_NAME" value="findAllUsersByProfileId_returnAllUsersByProfileId" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="java in anime-service" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="anime-service" />
       <option name="TEST_OBJECT" value="directory" />
@@ -262,14 +276,6 @@
       <module name="user-service" />
       <option name="TEST_OBJECT" value="directory" />
       <dir value="$PROJECT_DIR$/user-service/src/test/java" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="user_service in user-service" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="user-service" />
-      <option name="TEST_OBJECT" value="directory" />
-      <dir value="$PROJECT_DIR$/user-service/src/test/java/com/spring/user_service" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -294,21 +300,21 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="JUnit.UserProfileRepositoryTest.findAllUsersByProfileId_returnAllUsersByProfileId" />
       <item itemvalue="JUnit.java in user-service" />
       <item itemvalue="JUnit.All in anime-service" />
       <item itemvalue="JUnit.AnimeRepositoryTest" />
       <item itemvalue="JUnit.java in anime-service" />
-      <item itemvalue="JUnit.user_service in user-service" />
       <item itemvalue="Spring Boot.UserServiceApplication" />
       <item itemvalue="Spring Boot.ExampleProjectApplication" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.UserProfileRepositoryTest.findAllUsersByProfileId_returnAllUsersByProfileId" />
         <item itemvalue="JUnit.java in user-service" />
         <item itemvalue="JUnit.java in anime-service" />
         <item itemvalue="JUnit.All in anime-service" />
         <item itemvalue="JUnit.AnimeRepositoryTest" />
-        <item itemvalue="JUnit.user_service in user-service" />
       </list>
     </recent_temporary>
   </component>
@@ -334,7 +340,7 @@
       <workItem from="1752867132123" duration="4152000" />
       <workItem from="1753058271132" duration="13711000" />
       <workItem from="1753123708991" duration="34798000" />
-      <workItem from="1753290494321" duration="8538000" />
+      <workItem from="1753290494321" duration="12067000" />
     </task>
     <task id="LOCAL-00001" summary="feat: added external pom.xml and rename the first project">
       <option name="closed" value="true" />
@@ -616,14 +622,21 @@
       <option name="project" value="LOCAL" />
       <updated>1753367800776</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="feat: JPQL All Users by ProfileId">
+      <option name="closed" value="true" />
+      <created>1753377628336</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1753377628336</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="feat: ConfigurationProperties" />
     <MESSAGE value="feat: new project setup the basics config and build the repository and tests for this" />
     <MESSAGE value="feat: add unversioned files" />
     <MESSAGE value="feat: refactor package of repository" />
@@ -648,7 +661,8 @@
     <MESSAGE value="feat: logging query params" />
     <MESSAGE value="feat: solving n+1 with JPQL join fetch" />
     <MESSAGE value="feat: solving n+1 with EntityGraph" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: solving n+1 with EntityGraph" />
+    <MESSAGE value="feat: JPQL All Users by ProfileId" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: JPQL All Users by ProfileId" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
