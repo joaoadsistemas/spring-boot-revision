@@ -91,7 +91,7 @@ class ProfileServiceTest {
     void findByName_ShouldReturnProfile_WhenNameExists() {
         var profile = profileList.stream().findFirst();
 
-        BDDMockito.when(profileRepository.findByName(ArgumentMatchers.anyString())).thenReturn(profile);
+        BDDMockito.when(profileRepository.findByNameIgnoreCase(ArgumentMatchers.anyString())).thenReturn(profile);
 
         var result = profileService.findByName(profile.get().getName());
         Assertions.assertThat(result).isNotNull().isEqualTo(profile.get());
@@ -102,7 +102,7 @@ class ProfileServiceTest {
     void findByName_ShouldThrowNotFoundException_WhenNameDoesNotExists() {
         var name = "xaxa";
 
-        BDDMockito.when(profileRepository.findByName(ArgumentMatchers.anyString())).thenReturn(Optional.empty());
+        BDDMockito.when(profileRepository.findByNameIgnoreCase(ArgumentMatchers.anyString())).thenReturn(Optional.empty());
 
         Assertions.assertThatThrownBy(() -> profileService.findByName(name)).isInstanceOf(NotFoundException.class);
     }
@@ -122,7 +122,7 @@ class ProfileServiceTest {
         var profile = profileList.stream().findFirst();
         var newProfile = Profile.builder().name(profile.get().getName()).description("Another profile").build();
 
-        BDDMockito.when(profileRepository.findByName(ArgumentMatchers.anyString())).thenReturn(profile);
+        BDDMockito.when(profileRepository.findByNameIgnoreCase(ArgumentMatchers.anyString())).thenReturn(profile);
         //BDDMockito.when(profileRepository.save(ArgumentMatchers.any(Profile.class))).thenReturn(newProfile);
 
         Assertions.assertThatThrownBy(() -> profileService.save(newProfile)).isInstanceOf(BadRequestException.class);

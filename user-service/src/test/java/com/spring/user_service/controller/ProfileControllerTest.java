@@ -134,7 +134,7 @@ class ProfileControllerTest {
         var profile = profileList.get(0);
         var result = fileUtils.readResourceFile("/profile/find-by-name-200.json");
 
-        BDDMockito.when(profileRepository.findByName(profile.getName())).thenReturn(Optional.of(profile));
+        BDDMockito.when(profileRepository.findByNameIgnoreCase(profile.getName())).thenReturn(Optional.of(profile));
 
         mockMvc.perform(MockMvcRequestBuilders.get(URL + "/by-name").param("name", profile.getName()))
                 .andDo(MockMvcResultHandlers.print())
@@ -149,7 +149,7 @@ class ProfileControllerTest {
         var profileName = "xaxa";
         var result = fileUtils.readResourceFile("/profile/find-by-name-404.json");
 
-        BDDMockito.when(profileRepository.findByName(profileName)).thenReturn(Optional.empty());
+        BDDMockito.when(profileRepository.findByNameIgnoreCase(profileName)).thenReturn(Optional.empty());
 
         mockMvc.perform(MockMvcRequestBuilders.get(URL + "/by-name").param("name", profileName))
                 .andDo(MockMvcResultHandlers.print())
