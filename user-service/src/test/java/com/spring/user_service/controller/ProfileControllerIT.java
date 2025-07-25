@@ -1,6 +1,6 @@
 package com.spring.user_service.controller;
 
-import com.spring.user_service.config.TestcontainersConfiguration;
+import com.spring.user_service.config.IntegrationTestsConfig;
 import com.spring.user_service.dto.profile.response.ProfileGetResponse;
 import com.spring.user_service.utils.FileUtils;
 import com.spring.user_service.utils.SqlProfileDataSetup;
@@ -14,7 +14,6 @@ import org.junit.jupiter.params.provider.MethodSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
-import org.springframework.context.annotation.Import;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 
@@ -23,8 +22,7 @@ import java.util.Set;
 import java.util.stream.Stream;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@Import(TestcontainersConfiguration.class)
-class ProfileControllerIT {
+class ProfileControllerIT extends IntegrationTestsConfig {
     private static final String URL = "/v1/profiles";
 
     @Autowired
