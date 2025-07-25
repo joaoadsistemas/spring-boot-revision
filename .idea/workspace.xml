@@ -4,15 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3bd4ca96-6461-4b57-9228-26374c6dc493" name="Changes" comment="feat: added TestContainers to test with MYSQL">
-      <change afterPath="$PROJECT_DIR$/user-service/src/test/java/com/spring/user_service/config/IntegrationTestsConfig.java" afterDir="false" />
+    <list default="true" id="3bd4ca96-6461-4b57-9228-26374c6dc493" name="Changes" comment="feat: refactor some things on integrations tests">
+      <change afterPath="$PROJECT_DIR$/user-service/src/test/java/com/spring/user_service/controller/ProfileControllerRestAssuredIT.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/test/java/com/spring/user_service/config/TestcontainersConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/test/java/com/spring/user_service/config/TestcontainersConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user-service/src/test/java/com/spring/user_service/controller/ProfileControllerIT.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/test/java/com/spring/user_service/controller/ProfileControllerIT.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/test/java/com/spring/user_service/repository/UserProfileRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/test/java/com/spring/user_service/repository/UserProfileRepositoryTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/test/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/test/resources/application.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/test/resources/sql/init_user_profile_2_users_1_profile.sql" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/test/resources/sql/init_user_profile_2_users_1_profile.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/test/java/com/spring/user_service/controller/ProfileControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/test/java/com/spring/user_service/controller/ProfileControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/test/java/com/spring/user_service/utils/CleanProfileAfterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/test/java/com/spring/user_service/utils/CleanProfileAfterTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/test/resources/profile/find-all-pageable-200.json" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/test/resources/profile/find-all-pageable-200.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/test/resources/profile/find-all-profiles-200.json" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/test/resources/profile/find-all-profiles-200.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/test/resources/profile/find-by-id-200.json" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/test/resources/profile/find-by-id-200.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/test/resources/profile/find-by-name-200.json" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/test/resources/profile/find-by-name-200.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/test/resources/profile/find-by-name-404.json" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/test/resources/profile/find-by-name-404.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/test/resources/profile/save-profile-blank-response-400.json" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/test/resources/profile/save-profile-blank-response-400.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/test/resources/sql/clean.sql" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/test/resources/sql/clean_profile.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,7 +37,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="revision40" />
+        <entry key="$PROJECT_DIR$" value="revision41" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -106,9 +111,19 @@
     "JUnit.ProfileControllerIT.save_shouldSave_whenSuccessful (1).executor": "Run",
     "JUnit.ProfileControllerIT.save_shouldSave_whenSuccessful.executor": "Run",
     "JUnit.ProfileControllerIt.executor": "Run",
+    "JUnit.ProfileControllerRestAssuredIT.executor": "Run",
+    "JUnit.ProfileControllerRestAssuredIT.findAll_shouldReturnAllProfiles_whenSuccessful.executor": "Run",
+    "JUnit.ProfileControllerRestAssuredIT.findAll_shouldReturnEmpty_whenDoesntHaveProfile.executor": "Run",
+    "JUnit.ProfileControllerRestAssuredIT.findById_shouldReturnTheProfile_whenSuccessful.executor": "Run",
+    "JUnit.ProfileControllerRestAssuredIT.findById_shouldThrowNotFound_whenIdIsNotFound.executor": "Run",
+    "JUnit.ProfileControllerRestAssuredIT.findByName_shouldReturnTheProfile_whenSuccessful.executor": "Run",
+    "JUnit.ProfileControllerRestAssuredIT.findByName_shouldThrowNotFound_whenNameIsNotFound.executor": "Run",
+    "JUnit.ProfileControllerRestAssuredIT.save_shouldSave_whenSuccessful.executor": "Run",
+    "JUnit.ProfileControllerRestAssuredIT.save_shouldValidateTheFields.executor": "Run",
     "JUnit.ProfileControllerTest.executor": "Run",
     "JUnit.ProfileControllerTest.findAll.executor": "Run",
     "JUnit.ProfileControllerTest.findAllPageable_shouldReturnPageWithProfiles_whenSuccessful.executor": "Run",
+    "JUnit.ProfileControllerTest.findAll_shouldReturnAllProfiles_whenSuccessful.executor": "Run",
     "JUnit.ProfileControllerTest.findAll_shouldReturnTheProfile_whenSuccessful.executor": "Run",
     "JUnit.ProfileControllerTest.findAll_shouldThrowNotFound_whenIdIsNotFound.executor": "Run",
     "JUnit.ProfileControllerTest.findByName_shouldReturnTheProfile_whenSuccessful.executor": "Run",
@@ -169,6 +184,7 @@
     "JUnit.UserServiceTest.put_shouldThrowAnException_whenIdDoesNotExists.executor": "Run",
     "JUnit.UserServiceTest.save_shouldSaveUser_whenSuccessfully.executor": "Run",
     "JUnit.UserServiceTest.save_shouldThrowAnException_whenEmailAlreadyExists.executor": "Run",
+    "JUnit.controller in user-service.executor": "Run",
     "JUnit.java in anime-service.executor": "Run",
     "JUnit.java in user-service.executor": "Run",
     "JUnit.spring in anime-service.executor": "Run",
@@ -188,7 +204,7 @@
     "Spring Boot.UserServiceApplication.executor": "Run",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "git-widget-placeholder": "revision41",
+    "git-widget-placeholder": "revision42",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "/Users/joaoadsistemas/Documents/GitHub/JoaoRepo/spring-boot-revision/user-service/src/test/resources/profile",
     "node.js.detected.package.eslint": "true",
@@ -232,15 +248,15 @@
       <recent name="com.spring.controller" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.spring.user_service.controller" />
       <recent name="com.spring.user_service.utils" />
       <recent name="com.spring.user_service.service" />
       <recent name="com.spring.user_service.dto.userProfile.response" />
       <recent name="com.spring.user_service.mapper" />
-      <recent name="com.spring.user_service.repository" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ProfileControllerIT">
-    <configuration name="ProfileControllerIT" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.java in user-service">
+    <configuration name="ProfileControllerRestAssuredIT" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="user-service" />
       <extension name="coverage">
         <pattern>
@@ -249,13 +265,13 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.spring.user_service.controller" />
-      <option name="MAIN_CLASS_NAME" value="com.spring.user_service.controller.ProfileControllerIT" />
+      <option name="MAIN_CLASS_NAME" value="com.spring.user_service.controller.ProfileControllerRestAssuredIT" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ProfileControllerIT.findAll_shouldReturnAllProfiles_whenSuccessful" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ProfileControllerRestAssuredIT.findByName_shouldThrowNotFound_whenNameIsNotFound" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="user-service" />
       <extension name="coverage">
         <pattern>
@@ -264,14 +280,14 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.spring.user_service.controller" />
-      <option name="MAIN_CLASS_NAME" value="com.spring.user_service.controller.ProfileControllerIT" />
-      <option name="METHOD_NAME" value="findAll_shouldReturnAllProfiles_whenSuccessful" />
+      <option name="MAIN_CLASS_NAME" value="com.spring.user_service.controller.ProfileControllerRestAssuredIT" />
+      <option name="METHOD_NAME" value="findByName_shouldThrowNotFound_whenNameIsNotFound" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ProfileControllerIT.save_shouldSave_whenSuccessful (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ProfileControllerRestAssuredIT.save_shouldSave_whenSuccessful" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="user-service" />
       <extension name="coverage">
         <pattern>
@@ -280,32 +296,33 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.spring.user_service.controller" />
-      <option name="MAIN_CLASS_NAME" value="com.spring.user_service.controller.ProfileControllerIT" />
-      <option name="METHOD_NAME" value="save_shouldSave_whenSuccessful(java.lang.String,java.lang.String)" />
+      <option name="MAIN_CLASS_NAME" value="com.spring.user_service.controller.ProfileControllerRestAssuredIT" />
+      <option name="METHOD_NAME" value="save_shouldSave_whenSuccessful" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="UserProfileRepositoryTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ProfileControllerRestAssuredIT.save_shouldValidateTheFields" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="user-service" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.spring.user_service.repository.*" />
+          <option name="PATTERN" value="com.spring.user_service.controller.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.spring.user_service.repository" />
-      <option name="MAIN_CLASS_NAME" value="com.spring.user_service.repository.UserProfileRepositoryTest" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="PACKAGE_NAME" value="com.spring.user_service.controller" />
+      <option name="MAIN_CLASS_NAME" value="com.spring.user_service.controller.ProfileControllerRestAssuredIT" />
+      <option name="METHOD_NAME" value="save_shouldValidateTheFields(java.lang.String,java.lang.String)" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="user_service in user-service" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="java in user-service" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="user-service" />
       <option name="TEST_OBJECT" value="directory" />
-      <dir value="$PROJECT_DIR$/user-service/src/test/java/com/spring/user_service" />
+      <dir value="$PROJECT_DIR$/user-service/src/test/java" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -330,21 +347,21 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="JUnit.ProfileControllerIT" />
-      <item itemvalue="JUnit.ProfileControllerIT.findAll_shouldReturnAllProfiles_whenSuccessful" />
-      <item itemvalue="JUnit.ProfileControllerIT.save_shouldSave_whenSuccessful (1)" />
-      <item itemvalue="JUnit.UserProfileRepositoryTest" />
-      <item itemvalue="JUnit.user_service in user-service" />
+      <item itemvalue="JUnit.ProfileControllerRestAssuredIT" />
+      <item itemvalue="JUnit.ProfileControllerRestAssuredIT.findByName_shouldThrowNotFound_whenNameIsNotFound" />
+      <item itemvalue="JUnit.ProfileControllerRestAssuredIT.save_shouldSave_whenSuccessful" />
+      <item itemvalue="JUnit.ProfileControllerRestAssuredIT.save_shouldValidateTheFields" />
+      <item itemvalue="JUnit.java in user-service" />
       <item itemvalue="Spring Boot.UserServiceApplication" />
       <item itemvalue="Spring Boot.ExampleProjectApplication" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.ProfileControllerIT" />
-        <item itemvalue="JUnit.UserProfileRepositoryTest" />
-        <item itemvalue="JUnit.user_service in user-service" />
-        <item itemvalue="JUnit.ProfileControllerIT.findAll_shouldReturnAllProfiles_whenSuccessful" />
-        <item itemvalue="JUnit.ProfileControllerIT.save_shouldSave_whenSuccessful (1)" />
+        <item itemvalue="JUnit.java in user-service" />
+        <item itemvalue="JUnit.ProfileControllerRestAssuredIT" />
+        <item itemvalue="JUnit.ProfileControllerRestAssuredIT.save_shouldValidateTheFields" />
+        <item itemvalue="JUnit.ProfileControllerRestAssuredIT.save_shouldSave_whenSuccessful" />
+        <item itemvalue="JUnit.ProfileControllerRestAssuredIT.findByName_shouldThrowNotFound_whenNameIsNotFound" />
       </list>
     </recent_temporary>
   </component>
@@ -370,7 +387,7 @@
       <workItem from="1752867132123" duration="4152000" />
       <workItem from="1753058271132" duration="13711000" />
       <workItem from="1753123708991" duration="34798000" />
-      <workItem from="1753290494321" duration="25266000" />
+      <workItem from="1753290494321" duration="38982000" />
     </task>
     <task id="LOCAL-00001" summary="feat: added external pom.xml and rename the first project">
       <option name="closed" value="true" />
@@ -692,14 +709,21 @@
       <option name="project" value="LOCAL" />
       <updated>1753459271053</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="feat: refactor some things on integrations tests">
+      <option name="closed" value="true" />
+      <created>1753466579702</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1753466579702</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="feat: rename data of UserRepositoryTest.java and finished UserService and UserServiceTest" />
     <MESSAGE value="feat: UserController and UserControllerTest" />
     <MESSAGE value="feat: BeanValidation in request and also made tests for it" />
     <MESSAGE value="feat: Commons core" />
@@ -724,7 +748,8 @@
     <MESSAGE value="feat: UserProfileServiceTest" />
     <MESSAGE value="feat: ProfileControllerIT integration tests with TestRestTemplate" />
     <MESSAGE value="feat: added TestContainers to test with MYSQL" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: added TestContainers to test with MYSQL" />
+    <MESSAGE value="feat: refactor some things on integrations tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: refactor some things on integrations tests" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

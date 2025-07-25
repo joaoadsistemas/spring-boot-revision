@@ -58,12 +58,10 @@ class ProfileControllerTest {
 
     @BeforeEach
     void setUp() {
-        var profile1 = Profile.builder().id(1L).name("Profile 1").description("Description 1").build();
-        var profile2 = Profile.builder().id(2L).name("Profile 2").description("Description 2").build();
-        var profile3 = Profile.builder().id(3L).name("Profile 3").description("Description 3").build();
-        var profile4 = Profile.builder().id(4L).name("Profile 4").description("Description 4").build();
+        var profile1 = Profile.builder().id(1L).name("Administrator").description("Administrator").build();
+        var profile2 = Profile.builder().id(2L).name("Normal").description("Normal User").build();
 
-        profileList.addAll(List.of(profile1, profile2, profile3, profile4));
+        profileList.addAll(List.of(profile1, profile2));
     }
 
     @Test
@@ -176,7 +174,7 @@ class ProfileControllerTest {
     @ParameterizedTest
     @MethodSource("postProfileBadRequestSource")
     @DisplayName("POST v1/profile should validate the fields")
-    void save_shouldSave_whenSuccessful(String resourceFile, List<String> validations) throws Exception {
+    void save_shouldValidateTheFields(String resourceFile, List<String> validations) throws Exception {
 
         var request = fileUtils.readResourceFile(resourceFile);
 
