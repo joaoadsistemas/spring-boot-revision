@@ -32,7 +32,7 @@ public class ProfileService {
     }
 
     public Profile findByName(String name) {
-        return profileRepository.findByName(name).orElseThrow(() -> new NotFoundException("There's no profile with name: " + name));
+        return profileRepository.findByNameIgnoreCase(name).orElseThrow(() -> new NotFoundException("There's no profile with name: " + name));
     }
 
     public Profile save(Profile profile) {
@@ -41,6 +41,6 @@ public class ProfileService {
     }
 
     private void assertThatTheNameDoesNotExist(String name) {
-        profileRepository.findByName(name).ifPresent(profile -> {throw new BadRequestException("There's already a profile with this name: " + name);});
+        profileRepository.findByNameIgnoreCase(name).ifPresent(profile -> {throw new BadRequestException("There's already a profile with this name: " + name);});
     }
 }

@@ -34,6 +34,7 @@
         <lombok.version>1.18.30</lombok.version>
         <commons-core.version>0.0.1-SNAPSHOT</commons-core.version>
         <mysql-connector-j.version>9.0.0</mysql-connector-j.version>
+        <json-unit-assertj.version>3.4.1</json-unit-assertj.version>
     </properties>
     <dependencies>
 
@@ -119,6 +120,14 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+
+        <dependency>
+            <groupId>net.javacrumbs.json-unit</groupId>
+            <artifactId>json-unit-assertj</artifactId>
+            <version>${json-unit-assertj.version}</version>
+            <scope>test</scope>
+        </dependency>
+
     </dependencies>
 
     <build>
