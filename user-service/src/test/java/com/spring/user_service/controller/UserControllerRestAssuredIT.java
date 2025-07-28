@@ -1,14 +1,11 @@
 package com.spring.user_service.controller;
 
 import com.spring.user_service.config.IntegrationTestsConfig;
-import com.spring.user_service.utils.profile.CleanProfileAfterTest;
 import com.spring.user_service.utils.FileUtils;
-import com.spring.user_service.utils.profile.SqlProfileDataSetup;
 import com.spring.user_service.utils.user.CleanUserAfterTest;
 import com.spring.user_service.utils.user.SqlUserDataSetup;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
-import net.javacrumbs.jsonunit.assertj.JsonAssertions;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -22,7 +19,6 @@ import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.http.HttpStatus;
 
 import java.io.IOException;
-import java.util.List;
 import java.util.stream.Stream;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -51,7 +47,7 @@ class UserControllerRestAssuredIT extends IntegrationTestsConfig {
 //                .andExpect(MockMvcResultMatchers.status().isOk());
 
 
-        var result = fileUtils.readResourceFile("user/find-all-users-response-200.json");
+        var result = fileUtils.readResourceFile("json/user/find-all-users-response-200.json");
 
         RestAssured.given()
                 .contentType(ContentType.JSON)
@@ -82,7 +78,7 @@ class UserControllerRestAssuredIT extends IntegrationTestsConfig {
     @SqlUserDataSetup
     @DisplayName("GET v1/users/{id} should return user when successfully")
     void findById_shouldReturnUser_whenSuccessfully() throws Exception {
-        var result = fileUtils.readResourceFile("/user/find-by-id-response-200.json");
+        var result = fileUtils.readResourceFile("/json/user/find-by-id-response-200.json");
 
         RestAssured.given()
                 .pathParam("userId", 1)
@@ -99,7 +95,7 @@ class UserControllerRestAssuredIT extends IntegrationTestsConfig {
     @Test
     @DisplayName("GET v1/users/{id} should throw an exception when id does not exists")
     void findById_shouldThrowException_whenIdDoesNotExists() throws Exception {
-        var result = fileUtils.readResourceFile("/user/find-by-id-response-404.json");
+        var result = fileUtils.readResourceFile("/json/user/find-by-id-response-404.json");
 
         RestAssured.given()
                 .pathParam("userId", 99)
@@ -116,7 +112,7 @@ class UserControllerRestAssuredIT extends IntegrationTestsConfig {
     @SqlUserDataSetup
     @DisplayName("GET v1/users/email?email={} should return user when successfully")
     void findByEmail_shouldReturnUser_whenSuccessfully() throws Exception {
-        var result = fileUtils.readResourceFile("/user/find-by-email-response-200.json");
+        var result = fileUtils.readResourceFile("/json/user/find-by-email-response-200.json");
 
         RestAssured.given()
                 .param("email", "humbertonobrega@gmail.com")
@@ -134,7 +130,7 @@ class UserControllerRestAssuredIT extends IntegrationTestsConfig {
     @CleanUserAfterTest
     @DisplayName("GET v1/users/email?email={} should throw an exception when email does not exists")
     void findByEmail_shouldThrowException_whenEmailDoesNotExists() throws Exception {
-        var result = fileUtils.readResourceFile("/user/find-by-email-response-404.json");
+        var result = fileUtils.readResourceFile("/json/user/find-by-email-response-404.json");
 
         RestAssured.given()
                 .param("email", "xaxa@gmail.com")
@@ -152,7 +148,7 @@ class UserControllerRestAssuredIT extends IntegrationTestsConfig {
     @SqlUserDataSetup
     @DisplayName("POST v1/users should save a user when successfully")
     void save_shouldSaveUser_whenSuccessfully() throws Exception {
-        var request = fileUtils.readResourceFile("/user/save-user-request-200.json");
+        var request = fileUtils.readResourceFile("/json/user/save-user-request-200.json");
 
         RestAssured.given()
                 .body(request)
@@ -168,7 +164,7 @@ class UserControllerRestAssuredIT extends IntegrationTestsConfig {
     @SqlUserDataSetup
     @DisplayName("POST v1/users should throw an exception when the email already exists")
     void save_shouldThrowAnException_whenEmailAlreadyExists() throws Exception {
-        var request = fileUtils.readResourceFile("user/post-exists-email-400.json");
+        var request = fileUtils.readResourceFile("json/user/post-exists-email-400.json");
 
         RestAssured.given()
                 .body(request)
@@ -199,7 +195,7 @@ class UserControllerRestAssuredIT extends IntegrationTestsConfig {
     @DisplayName("DELETE v1/users should throw an exception when id does not exists")
     void delete_shouldThrowAnException_whenIdDoesNotExists() throws IOException {
 
-        var result = fileUtils.readResourceFile("/user/find-by-id-response-404.json");
+        var result = fileUtils.readResourceFile("/json/user/find-by-id-response-404.json");
 
         RestAssured.given()
                 .contentType(ContentType.JSON)
@@ -217,8 +213,8 @@ class UserControllerRestAssuredIT extends IntegrationTestsConfig {
     @DisplayName("PUT v1/users should return the object when succesffully")
     void put_shouldReturnObject_whenSuccessfully() throws Exception {
 
-        var request = fileUtils.readResourceFile("/user/put-request-200.json");
-        var response = fileUtils.readResourceFile("/user/put-response-200.json");
+        var request = fileUtils.readResourceFile("/json/user/put-request-200.json");
+        var response = fileUtils.readResourceFile("/json/user/put-response-200.json");
 
         RestAssured.given()
                 .contentType(ContentType.JSON)
@@ -235,8 +231,8 @@ class UserControllerRestAssuredIT extends IntegrationTestsConfig {
     @Test
     @DisplayName("PUT v1/users/ should throw an exception when id does not exists")
     void put_shouldThrowAnException_whenIdDoesNotExists() throws Exception {
-        var request = fileUtils.readResourceFile("user/put-not-exists-id-request-404.json");
-        var response = fileUtils.readResourceFile("/user/put-not-exists-id-response-404.json");
+        var request = fileUtils.readResourceFile("json/user/put-not-exists-id-request-404.json");
+        var response = fileUtils.readResourceFile("/json/user/put-not-exists-id-response-404.json");
 
         RestAssured.given()
                 .contentType(ContentType.JSON)
@@ -284,17 +280,17 @@ class UserControllerRestAssuredIT extends IntegrationTestsConfig {
 
     private static Stream<Arguments> postUserBadRequestSource() {
         return Stream.of(
-                Arguments.of("user/post-empty-fields-request-400.json"),
-                Arguments.of("user/post-blank-fields-request-400.json"),
-                Arguments.of("user/post-invalid-email-request-400.json")
+                Arguments.of("json/user/post-empty-fields-request-400.json"),
+                Arguments.of("json/user/post-blank-fields-request-400.json"),
+                Arguments.of("json/user/post-invalid-email-request-400.json")
         );
     }
 
     private static Stream<Arguments> putUserBadRequestSource() {
         return Stream.of(
-                Arguments.of("user/put-empty-fields-request-400.json"),
-                Arguments.of("user/put-blank-fields-request-400.json"),
-                Arguments.of("user/put-invalid-email-request-400.json")
+                Arguments.of("json/user/put-empty-fields-request-400.json"),
+                Arguments.of("json/user/put-blank-fields-request-400.json"),
+                Arguments.of("json/user/put-invalid-email-request-400.json")
         );
     }
 

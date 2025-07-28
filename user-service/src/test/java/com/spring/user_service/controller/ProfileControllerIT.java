@@ -97,7 +97,7 @@ class ProfileControllerIT extends IntegrationTestsConfig {
     @CleanProfileAfterTest
     @DisplayName("POST v1/profile should save when successful")
     void save_shouldSave_whenSuccessful() throws IOException {
-        var request = fileUtils.readResourceFile("profile/save-profile-request-200.json");
+        var request = fileUtils.readResourceFile("json/profile/save-profile-request-200.json");
         var headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         var requestEntity = new HttpEntity<>(request, headers);
@@ -127,8 +127,8 @@ class ProfileControllerIT extends IntegrationTestsConfig {
 
     private static Stream<Arguments> postProfileBadRequestSource() {
         return Stream.of(
-                Arguments.of("/profile/save-profile-blank-400.json", "/profile/save-profile-blank-response-400.json"),
-                Arguments.of("/profile/save-profile-null-400.json", "/profile/save-profile-blank-response-400.json"));
+                Arguments.of("/json/profile/save-profile-blank-400.json", "/json/profile/save-profile-blank-response-400.json"),
+                Arguments.of("/json/profile/save-profile-null-400.json", "/json/profile/save-profile-blank-response-400.json"));
     }
 
 }

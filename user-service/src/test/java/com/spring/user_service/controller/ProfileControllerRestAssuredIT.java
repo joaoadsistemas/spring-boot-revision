@@ -48,7 +48,7 @@ class ProfileControllerRestAssuredIT extends IntegrationTestsConfig {
 //                .andExpect(MockMvcResultMatchers.status().isOk());
 
 
-        var result = fileUtils.readResourceFile("/profile/find-all-profiles-200.json");
+        var result = fileUtils.readResourceFile("/json/profile/find-all-profiles-200.json");
 
         RestAssured.given()
                 .contentType(ContentType.JSON)
@@ -80,7 +80,7 @@ class ProfileControllerRestAssuredIT extends IntegrationTestsConfig {
     @SqlProfileDataSetup
     @DisplayName("GET v1/profile/{id} should return the profile when successful")
     void findById_shouldReturnTheProfile_whenSuccessful() throws IOException {
-        var result = fileUtils.readResourceFile("/profile/find-by-id-200.json");
+        var result = fileUtils.readResourceFile("/json/profile/find-by-id-200.json");
 
         RestAssured.given()
                 .pathParam("profileId", 1)
@@ -98,7 +98,7 @@ class ProfileControllerRestAssuredIT extends IntegrationTestsConfig {
     @CleanProfileAfterTest
     @DisplayName("GET v1/profile/{id} should throw notFound when id is not found")
     void findById_shouldThrowNotFound_whenIdIsNotFound() throws IOException {
-        var result = fileUtils.readResourceFile("/profile/find-by-id-404.json");
+        var result = fileUtils.readResourceFile("/json/profile/find-by-id-404.json");
 
         RestAssured.given()
                 .pathParam("profileId", 99)
@@ -115,7 +115,7 @@ class ProfileControllerRestAssuredIT extends IntegrationTestsConfig {
     @SqlProfileDataSetup
     @DisplayName("GET v1/profile/by-name?name= should return the profile when successful")
     void findByName_shouldReturnTheProfile_whenSuccessful() throws IOException {
-        var result = fileUtils.readResourceFile("/profile/find-by-name-200.json");
+        var result = fileUtils.readResourceFile("/json/profile/find-by-name-200.json");
 
         RestAssured.given()
                 .param("name", "administrator")
@@ -133,7 +133,7 @@ class ProfileControllerRestAssuredIT extends IntegrationTestsConfig {
     @CleanProfileAfterTest
     @DisplayName("GET v1/profile/by-name?name= should throw notFound when name is not found")
     void findByName_shouldThrowNotFound_whenNameIsNotFound() throws IOException {
-        var result = fileUtils.readResourceFile("/profile/find-by-name-404.json");
+        var result = fileUtils.readResourceFile("/json/profile/find-by-name-404.json");
 
         RestAssured.given()
                 .param("name", "xaxa")
@@ -150,7 +150,7 @@ class ProfileControllerRestAssuredIT extends IntegrationTestsConfig {
     @CleanProfileAfterTest
     @DisplayName("POST v1/profile should save when successful")
     void save_shouldSave_whenSuccessful() throws IOException {
-        var request = fileUtils.readResourceFile("/profile/save-profile-request-200.json");
+        var request = fileUtils.readResourceFile("/json/profile/save-profile-request-200.json");
 
         RestAssured.given()
                 .body(request)
@@ -188,8 +188,8 @@ class ProfileControllerRestAssuredIT extends IntegrationTestsConfig {
 
     private static Stream<Arguments> postProfileBadRequestSource() {
         return Stream.of(
-                Arguments.of("/profile/save-profile-blank-400.json", "/profile/save-profile-blank-response-400.json"),
-                Arguments.of("/profile/save-profile-null-400.json", "/profile/save-profile-blank-response-400.json"));
+                Arguments.of("/json/profile/save-profile-blank-400.json", "/json/profile/save-profile-blank-response-400.json"),
+                Arguments.of("/json/profile/save-profile-null-400.json", "/json/profile/save-profile-blank-response-400.json"));
     }
 
 }
