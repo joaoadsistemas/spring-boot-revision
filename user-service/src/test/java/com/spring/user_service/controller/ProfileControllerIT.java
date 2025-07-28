@@ -2,9 +2,9 @@ package com.spring.user_service.controller;
 
 import com.spring.user_service.config.IntegrationTestsConfig;
 import com.spring.user_service.dto.profile.response.ProfileGetResponse;
-import com.spring.user_service.utils.CleanProfileAfterTest;
+import com.spring.user_service.utils.profile.CleanProfileAfterTest;
 import com.spring.user_service.utils.FileUtils;
-import com.spring.user_service.utils.SqlProfileDataSetup;
+import com.spring.user_service.utils.profile.SqlProfileDataSetup;
 import net.javacrumbs.jsonunit.assertj.JsonAssertions;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;

@@ -1,4 +1,4 @@
-package com.spring.user_service.utils;
+package com.spring.user_service.utils.user;
 
 import org.springframework.test.context.jdbc.Sql;
 
@@ -9,5 +9,5 @@ import java.lang.annotation.Target;
 
 @Target({ElementType.METHOD, ElementType.ANNOTATION_TYPE, ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
-@Sql(scripts = "/sql/clean_profile.sql", executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
-public @interface CleanProfileAfterTest {}
+@Sql(scripts = "/sql/user/clean_user.sql", executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
+public @interface CleanUserAfterTest {}

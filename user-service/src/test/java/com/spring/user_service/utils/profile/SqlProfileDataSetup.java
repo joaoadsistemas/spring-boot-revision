@@ -1,4 +1,4 @@
-package com.spring.user_service.utils;
+package com.spring.user_service.utils.profile;
 
 import org.springframework.test.context.jdbc.Sql;
 
@@ -9,6 +9,6 @@ import java.lang.annotation.Target;
 
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
-@Sql(scripts = "/sql/init_two_profiles.sql", executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
+@Sql(scripts = "/sql/profile/init_two_profiles.sql", executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
 @CleanProfileAfterTest
 public @interface SqlProfileDataSetup {}
