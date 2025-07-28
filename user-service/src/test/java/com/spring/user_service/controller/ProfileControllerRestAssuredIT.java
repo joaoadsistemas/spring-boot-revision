@@ -1,15 +1,12 @@
 package com.spring.user_service.controller;
 
 import com.spring.user_service.config.IntegrationTestsConfig;
-import com.spring.user_service.dto.profile.response.ProfileGetResponse;
-import com.spring.user_service.utils.CleanProfileAfterTest;
+import com.spring.user_service.utils.profile.CleanProfileAfterTest;
 import com.spring.user_service.utils.FileUtils;
-import com.spring.user_service.utils.SqlProfileDataSetup;
+import com.spring.user_service.utils.profile.SqlProfileDataSetup;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import net.javacrumbs.jsonunit.assertj.JsonAssertions;
-import org.assertj.core.api.Assertions;
-import org.eclipse.jetty.websocket.api.StatusCode;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -17,13 +14,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import org.skyscreamer.jsonassert.Customization;
-import org.skyscreamer.jsonassert.comparator.CustomComparator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
-import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 
 import java.io.IOException;
