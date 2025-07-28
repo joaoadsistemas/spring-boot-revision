@@ -2,6 +2,7 @@ package com.spring.user_service.controller;
 
 import com.spring.user_service.config.IntegrationTestsConfig;
 import com.spring.user_service.dto.profile.response.ProfileGetResponse;
+import com.spring.user_service.utils.CleanProfileAfterTest;
 import com.spring.user_service.utils.FileUtils;
 import com.spring.user_service.utils.SqlProfileDataSetup;
 import net.javacrumbs.jsonunit.assertj.JsonAssertions;
@@ -93,6 +94,7 @@ class ProfileControllerIT extends IntegrationTestsConfig {
     }
 
     @Test
+    @CleanProfileAfterTest
     @DisplayName("POST v1/profile should save when successful")
     void save_shouldSave_whenSuccessful() throws IOException {
         var request = fileUtils.readResourceFile("profile/save-profile-request-200.json");
