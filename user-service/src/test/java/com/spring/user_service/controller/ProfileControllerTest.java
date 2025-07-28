@@ -68,7 +68,7 @@ class ProfileControllerTest {
     @DisplayName("GET v1/profile should return all profiles when successful")
     void findAll_shouldReturnAllProfiles_whenSuccessful() throws Exception {
 
-        var result = fileUtils.readResourceFile("/profile/find-all-profiles-200.json");
+        var result = fileUtils.readResourceFile("/json/profile/find-all-profiles-200.json");
 
         BDDMockito.when(profileRepository.findAll()).thenReturn(profileList);
 
@@ -82,7 +82,7 @@ class ProfileControllerTest {
     @DisplayName("GET v1/profile/pageable should return page with profiles when successful")
     void findAllPageable_shouldReturnPageWithProfiles_whenSuccessful() throws Exception {
 
-        var result = fileUtils.readResourceFile("/profile/find-all-pageable-200.json");
+        var result = fileUtils.readResourceFile("/json/profile/find-all-pageable-200.json");
 
         var page = PageRequest.of(0, profileList.size());
         var pageProfile = new PageImpl<>(profileList, page, 1);
@@ -100,7 +100,7 @@ class ProfileControllerTest {
     void findById_shouldReturnTheProfile_whenSuccessful() throws Exception {
 
         var profile = profileList.get(0);
-        var result = fileUtils.readResourceFile("/profile/find-by-id-200.json");
+        var result = fileUtils.readResourceFile("/json/profile/find-by-id-200.json");
 
         BDDMockito.when(profileRepository.findById(profile.getId())).thenReturn(Optional.of(profile));
 
@@ -115,7 +115,7 @@ class ProfileControllerTest {
     void findById_shouldThrowNotFound_whenIdIsNotFound() throws Exception {
 
         var profileId = 99L;
-        var result = fileUtils.readResourceFile("/profile/find-by-id-404.json");
+        var result = fileUtils.readResourceFile("/json/profile/find-by-id-404.json");
 
         BDDMockito.when(profileRepository.findById(profileId)).thenReturn(Optional.empty());
 
@@ -130,7 +130,7 @@ class ProfileControllerTest {
     void findByName_shouldReturnTheProfile_whenSuccessful() throws Exception {
 
         var profile = profileList.get(0);
-        var result = fileUtils.readResourceFile("/profile/find-by-name-200.json");
+        var result = fileUtils.readResourceFile("/json/profile/find-by-name-200.json");
 
         BDDMockito.when(profileRepository.findByNameIgnoreCase(profile.getName())).thenReturn(Optional.of(profile));
 
@@ -145,7 +145,7 @@ class ProfileControllerTest {
     void findByName_shouldThrowNotFound_whenNameIsNotFound() throws Exception {
 
         var profileName = "xaxa";
-        var result = fileUtils.readResourceFile("/profile/find-by-name-404.json");
+        var result = fileUtils.readResourceFile("/json/profile/find-by-name-404.json");
 
         BDDMockito.when(profileRepository.findByNameIgnoreCase(profileName)).thenReturn(Optional.empty());
 
@@ -160,7 +160,7 @@ class ProfileControllerTest {
     void save_shouldSave_whenSuccessful() throws Exception {
 
         var profile = Profile.builder().name("Another Profile").description("Another Description").build();
-        var request = fileUtils.readResourceFile("/profile/save-profile-request-200.json");
+        var request = fileUtils.readResourceFile("/json/profile/save-profile-request-200.json");
 
         BDDMockito.when(profileRepository.save(ArgumentMatchers.any(Profile.class))).thenReturn(profile);
 
@@ -193,8 +193,8 @@ class ProfileControllerTest {
 
     private static Stream<Arguments> postProfileBadRequestSource() {
         return Stream.of(
-                Arguments.of("/profile/save-profile-blank-400.json", allPostNotBlankMessages()),
-                Arguments.of("/profile/save-profile-null-400.json", allPostNotNullMessages())
+                Arguments.of("/json/profile/save-profile-blank-400.json", allPostNotBlankMessages()),
+                Arguments.of("/json/profile/save-profile-null-400.json", allPostNotNullMessages())
         );
     }
 

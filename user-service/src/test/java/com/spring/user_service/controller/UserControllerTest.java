@@ -69,7 +69,7 @@ class UserControllerTest {
 
         BDDMockito.when(userRepository.findAll()).thenReturn(userSet.stream().toList());
 
-        var result = fileUtils.readResourceFile("user/find-all-users-response-200.json");
+        var result = fileUtils.readResourceFile("json/user/find-all-users-response-200.json");
 
         mockMvc.perform(MockMvcRequestBuilders.get(URL))
                 .andDo(MockMvcResultHandlers.print())
@@ -80,7 +80,7 @@ class UserControllerTest {
     @Test
     @DisplayName("GET v1/users/paginated should return all elements paginated")
     void findAllPaginated_shouldReturnAllElements_Paginated() throws Exception {
-        var result = fileUtils.readResourceFile("user/find-all-paginated-response-200.json");
+        var result = fileUtils.readResourceFile("json/user/find-all-paginated-response-200.json");
         PageRequest pageRequest = PageRequest.of(0, userSet.size());
         PageImpl<User> pageUser = new PageImpl<>(new ArrayList<>(userSet), pageRequest, 1);
 
@@ -96,7 +96,7 @@ class UserControllerTest {
     @DisplayName("GET v1/users/{id} should return user when successfully")
     void findById_shouldReturnUser_whenSuccessfully() throws Exception {
 
-        var result = fileUtils.readResourceFile("user/find-by-id-response-200.json");
+        var result = fileUtils.readResourceFile("json/user/find-by-id-response-200.json");
         var id = 1L;
         var user = userSet.stream().filter(u -> u.getId().equals(id)).findFirst();
 
@@ -128,7 +128,7 @@ class UserControllerTest {
         var email = "humbertonobrega@gmail.com";
         var expectedResult = userSet.stream().filter(u -> u.getEmail().equals(email)).findFirst();
         BDDMockito.when(userRepository.findByEmail(email)).thenReturn(expectedResult);
-        var result = fileUtils.readResourceFile("user/find-by-email-response-200.json");
+        var result = fileUtils.readResourceFile("json/user/find-by-email-response-200.json");
 
         mockMvc.perform(MockMvcRequestBuilders.get(URL + "/email").param("email", email))
                 .andDo(MockMvcResultHandlers.print())
@@ -159,7 +159,7 @@ class UserControllerTest {
                 .email("joao.abraao@example.com").build();
 
         BDDMockito.when(userRepository.save(ArgumentMatchers.any())).thenReturn(user);
-        var request = fileUtils.readResourceFile("user/post-request-200.json");
+        var request = fileUtils.readResourceFile("json/user/post-request-200.json");
         mockMvc.perform(MockMvcRequestBuilders.post(URL)
                         .contentType("application/json")
                         .content(request))
@@ -171,7 +171,7 @@ class UserControllerTest {
     @DisplayName("POST v1/users should throw an exception when the email already exists")
     void save_shouldThrowAnException_whenEmailAlreadyExists() throws Exception {
         BDDMockito.when(userRepository.save(ArgumentMatchers.any())).thenThrow(DataIntegrityViolationException.class);
-        var request = fileUtils.readResourceFile("user/post-exists-email-400.json");
+        var request = fileUtils.readResourceFile("json/user/post-exists-email-400.json");
         mockMvc.perform(MockMvcRequestBuilders.post(URL)
                         .contentType("application/json")
                         .content(request))
@@ -217,8 +217,8 @@ class UserControllerTest {
         toUpdate.setEmail("joao.abraao@example.com");
         BDDMockito.when(userRepository.save(ArgumentMatchers.any(User.class))).thenReturn(toUpdate);
 
-        var request = fileUtils.readResourceFile("user/put-request-200.json");
-        var response = fileUtils.readResourceFile("user/put-response-200.json");
+        var request = fileUtils.readResourceFile("json/user/put-request-200.json");
+        var response = fileUtils.readResourceFile("json/user/put-response-200.json");
 
         mockMvc.perform(MockMvcRequestBuilders.put(URL)
                         .contentType("application/json")
@@ -234,7 +234,7 @@ class UserControllerTest {
         BDDMockito.when(userRepository.findById(ArgumentMatchers.any())).thenReturn(Optional.empty());
         BDDMockito.when(userRepository.save(ArgumentMatchers.any(User.class))).thenReturn(null);
 
-        var request = fileUtils.readResourceFile("user/put-not-exists-id-request-404.json");
+        var request = fileUtils.readResourceFile("json/user/put-not-exists-id-request-404.json");
 
         mockMvc.perform(MockMvcRequestBuilders.put(URL)
                         .contentType("application/json")
@@ -284,17 +284,17 @@ class UserControllerTest {
 
     private static Stream<Arguments> postUserBadRequestSource() {
         return Stream.of(
-                Arguments.of("user/post-empty-fields-request-400.json", allPostRequiredMessages()),
-                Arguments.of("user/post-blank-fields-request-400.json", allPostRequiredMessages()),
-                Arguments.of("user/post-invalid-email-request-400.json", allInvalidMessages())
+                Arguments.of("json/user/post-empty-fields-request-400.json", allPostRequiredMessages()),
+                Arguments.of("json/user/post-blank-fields-request-400.json", allPostRequiredMessages()),
+                Arguments.of("json/user/post-invalid-email-request-400.json", allInvalidMessages())
         );
     }
 
     private static Stream<Arguments> putUserBadRequestSource() {
         return Stream.of(
-                Arguments.of("user/put-empty-fields-request-400.json", allPutRequiredMessages()),
-                Arguments.of("user/put-blank-fields-request-400.json", allPutRequiredMessages()),
-                Arguments.of("user/put-invalid-email-request-400.json", allInvalidMessages())
+                Arguments.of("json/user/put-empty-fields-request-400.json", allPutRequiredMessages()),
+                Arguments.of("json/user/put-blank-fields-request-400.json", allPutRequiredMessages()),
+                Arguments.of("json/user/put-invalid-email-request-400.json", allInvalidMessages())
         );
     }
 
