@@ -17,6 +17,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -48,13 +49,7 @@ public class UserController {
     }
 
     @GetMapping("/paginated")
-    @Operation(summary = "Get all users paginated", description = "Get all users paginated",
-            responses = {
-                    @ApiResponse(description = "List all users paginated",
-                            responseCode = "200",
-                            content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE, array = @ArraySchema(schema = @Schema(implementation = UserGetResponseDTO.class))))
-            })
-    public ResponseEntity<Page<UserGetResponseDTO>> findAllPaginated(Pageable pageable) {
+    public ResponseEntity<Page<UserGetResponseDTO>> findAllPaginated(@ParameterObject Pageable pageable) {
         return ResponseEntity.ok(userService.findAllPaginated(pageable).map(MAPPER::toUserGetResponse));
     }
 
