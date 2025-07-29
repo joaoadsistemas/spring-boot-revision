@@ -7,6 +7,7 @@ import com.spring.user_service.utils.profile.SqlProfileDataSetup;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import net.javacrumbs.jsonunit.assertj.JsonAssertions;
+import net.javacrumbs.jsonunit.core.Option;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -164,6 +165,7 @@ class ProfileControllerRestAssuredIT extends IntegrationTestsConfig {
 
     @ParameterizedTest
     @MethodSource("postProfileBadRequestSource")
+    @CleanProfileAfterTest
     @DisplayName("POST v1/profile should validate the fields")
     void save_shouldValidateTheFields(String resourceFile, String responseFile) throws Exception {
 
@@ -182,6 +184,7 @@ class ProfileControllerRestAssuredIT extends IntegrationTestsConfig {
                 .asString();
 
         JsonAssertions.assertThatJson(actualResponse).whenIgnoringPaths("timestamp")
+                .when(Option.IGNORING_ARRAY_ORDER)
                 .isEqualTo(expectedResponse);
 
     }
@@ -189,7 +192,7 @@ class ProfileControllerRestAssuredIT extends IntegrationTestsConfig {
     private static Stream<Arguments> postProfileBadRequestSource() {
         return Stream.of(
                 Arguments.of("/json/profile/save-profile-blank-400.json", "/json/profile/save-profile-blank-response-400.json"),
-                Arguments.of("/json/profile/save-profile-null-400.json", "/json/profile/save-profile-blank-response-400.json"));
+                Arguments.of("/json/profile/save-profile-null-400.json", "/json/profile/save-profile-null-response-400.json"));
     }
 
 }

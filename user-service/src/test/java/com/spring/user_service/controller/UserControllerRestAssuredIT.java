@@ -6,6 +6,8 @@ import com.spring.user_service.utils.user.CleanUserAfterTest;
 import com.spring.user_service.utils.user.SqlUserDataSetup;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
+import net.javacrumbs.jsonunit.assertj.JsonAssertions;
+import net.javacrumbs.jsonunit.core.Option;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -248,17 +250,24 @@ class UserControllerRestAssuredIT extends IntegrationTestsConfig {
     @ParameterizedTest
     @MethodSource("postUserBadRequestSource")
     @DisplayName("POST v1/users should throw an exception when fields is empty")
-    void save_shouldThrowException_whenFieldsIsEmpty(String fileName) throws Exception {
-        var request = fileUtils.readResourceFile(fileName);
+    void save_shouldThrowException_whenFieldsIsEmpty(String fileRequest, String fileResponse) throws Exception {
+        var request = fileUtils.readResourceFile(fileRequest);
+        var response = fileUtils.readResourceFile(fileResponse);
 
-        RestAssured.given()
+        String string = RestAssured.given()
                 .contentType(ContentType.JSON)
                 .body(request)
                 .accept(ContentType.JSON)
                 .when()
                 .post(URL)
                 .then()
-                .statusCode(HttpStatus.BAD_REQUEST.value());
+                .statusCode(HttpStatus.BAD_REQUEST.value())
+                .extract().body().asString();
+
+        JsonAssertions.assertThatJson(string)
+                .whenIgnoringPaths("timestamp")
+                .when(Option.IGNORING_ARRAY_ORDER)
+                .isEqualTo(response);
     }
 
     @ParameterizedTest
@@ -280,17 +289,17 @@ class UserControllerRestAssuredIT extends IntegrationTestsConfig {
 
     private static Stream<Arguments> postUserBadRequestSource() {
         return Stream.of(
-                Arguments.of("json/user/post-empty-fields-request-400.json"),
-                Arguments.of("json/user/post-blank-fields-request-400.json"),
-                Arguments.of("json/user/post-invalid-email-request-400.json")
+                Arguments.of("json/user/post-empty-fields-request-400.json", "json/user/post-empty-fields-response-400.json"),
+                Arguments.of("json/user/post-blank-fields-request-400.json", "json/user/post-blank-fields-response-400.json"),
+                Arguments.of("json/user/post-invalid-email-request-400.json", "json/user/post-invalid-email-response-400.json")
         );
     }
 
     private static Stream<Arguments> putUserBadRequestSource() {
         return Stream.of(
-                Arguments.of("json/user/put-empty-fields-request-400.json"),
-                Arguments.of("json/user/put-blank-fields-request-400.json"),
-                Arguments.of("json/user/put-invalid-email-request-400.json")
+                Arguments.of("json/user/put-empty-fields-request-400.json", "json/user/put-empty-fields-response-400.json"),
+                Arguments.of("json/user/put-blank-fields-request-400.json", "json/user/put-blank-fields-response-400.json"),
+                Arguments.of("json/user/put-invalid-email-request-400.json", "json/user/put-invalid-email-response-400.json")
         );
     }
 
