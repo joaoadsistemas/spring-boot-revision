@@ -1,6 +1,5 @@
 package com.spring.user_service.service;
 
-import com.spring.exception.BadRequestException;
 import com.spring.exception.EmailAlreadyExistException;
 import com.spring.exception.NotFoundException;
 import com.spring.user_service.mapper.UserMapper;
@@ -31,12 +30,12 @@ public class UserService {
         return userRepository.findAll(pageable);
     }
 
-    public User findById(Long id) {
+    public User findByIdOrThrowNotFound(Long id) {
         return userRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("There is no user with id: " + id));
     }
 
-    public User findByEmail(String email) {
+    public User findByEmailOrThrowNotFound(String email) {
         return userRepository.findByEmail(email)
                 .orElseThrow(() -> new NotFoundException("There is no user with email: " + email));
     }
@@ -47,12 +46,12 @@ public class UserService {
     }
 
     public void delete(Long id) {
-        User user = this.findById(id);
+        User user = this.findByIdOrThrowNotFound(id);
         userRepository.delete(user);
     }
 
     public User update(User user) {
-        findById(user.getId());
+        findByIdOrThrowNotFound(user.getId());
         assertEmailDoesNotExist(user.getEmail(), user.getId());
         return userRepository.save(user);
     }

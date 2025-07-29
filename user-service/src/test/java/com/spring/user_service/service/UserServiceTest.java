@@ -1,6 +1,5 @@
 package com.spring.user_service.service;
 
-import com.spring.exception.BadRequestException;
 import com.spring.exception.EmailAlreadyExistException;
 import com.spring.exception.NotFoundException;
 import com.spring.user_service.model.User;
@@ -69,36 +68,36 @@ class UserServiceTest {
 
     @Test
     @DisplayName("findById should return user when successfully")
-    void findById_shouldReturnUser_whenSuccessfully() {
+    void findById_OrThrowNotFound_shouldReturnUser_whenSuccessfully() {
         var expectedResult = userSet.stream().filter(u -> u.getId().equals(1L)).findFirst().get();
         BDDMockito.when(userRepository.findById(ArgumentMatchers.anyLong())).thenReturn(Optional.of(expectedResult));
-        var result = userService.findById(expectedResult.getId());
+        var result = userService.findByIdOrThrowNotFound(expectedResult.getId());
         assertThat(result).isNotNull().isEqualTo(expectedResult);
     }
 
     @Test
     @DisplayName("findById should throw an exception when id does not exists")
-    void findById_shouldThrowException_whenIdDoesNotExists() {
+    void findById_shouldThrowException_whenIdOrThrowNotFoundDoesNotExists() {
         BDDMockito.when(userRepository.findById(ArgumentMatchers.anyLong())).thenThrow(ResponseStatusException.class);
         var id = 99L;
-        assertThatThrownBy(() -> userService.findById(id)).isInstanceOf(ResponseStatusException.class);
+        assertThatThrownBy(() -> userService.findByIdOrThrowNotFound(id)).isInstanceOf(ResponseStatusException.class);
     }
 
     @Test
     @DisplayName("findByEmail should return user when successfully")
-    void findByEmail_shouldReturnUser_whenSuccessfully() {
+    void findByEmail_OrThrowNotFound_shouldReturnUser_whenSuccessfully() {
         var expectedResult = userSet.stream().filter(u -> u.getId().equals(1L)).findFirst().get();
         BDDMockito.when(userRepository.findByEmail(ArgumentMatchers.anyString())).thenReturn(Optional.of(expectedResult));
-        var result = userService.findByEmail(expectedResult.getEmail());
+        var result = userService.findByEmailOrThrowNotFound(expectedResult.getEmail());
         assertThat(result).isNotNull().isEqualTo(expectedResult);
     }
 
     @Test
     @DisplayName("findByEmail should throw an exception when email does not exists")
-    void findByEmail_shouldThrowException_whenEmailDoesNotExists() {
+    void findByEmail_shouldThrowException_whenEmailOrThrowNotFoundDoesNotExists() {
         BDDMockito.when(userRepository.findByEmail(ArgumentMatchers.anyString())).thenThrow(ResponseStatusException.class);
         var email = "xaxa@gmail.com";
-        assertThatThrownBy(() -> userService.findByEmail(email)).isInstanceOf(ResponseStatusException.class);
+        assertThatThrownBy(() -> userService.findByEmailOrThrowNotFound(email)).isInstanceOf(ResponseStatusException.class);
     }
 
     @Test
