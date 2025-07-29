@@ -6,6 +6,7 @@ import com.spring.user_service.utils.profile.CleanProfileAfterTest;
 import com.spring.user_service.utils.FileUtils;
 import com.spring.user_service.utils.profile.SqlProfileDataSetup;
 import net.javacrumbs.jsonunit.assertj.JsonAssertions;
+import net.javacrumbs.jsonunit.core.Option;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -107,6 +108,7 @@ class ProfileControllerIT extends IntegrationTestsConfig {
 
     @ParameterizedTest
     @MethodSource("postProfileBadRequestSource")
+    @CleanProfileAfterTest
     @DisplayName("POST v1/profile should validate the fields")
     void save_shouldSave_whenSuccessful(String resourceFile, String responseFile) throws Exception {
 
@@ -121,14 +123,16 @@ class ProfileControllerIT extends IntegrationTestsConfig {
         Assertions.assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST);
         Assertions.assertThat(responseEntity.getBody()).isNotNull();
 
-        JsonAssertions.assertThatJson(responseEntity.getBody()).whenIgnoringPaths("timestamp")
+        JsonAssertions.assertThatJson(responseEntity.getBody())
+                .when(Option.IGNORING_ARRAY_ORDER)
+                .whenIgnoringPaths("timestamp")
                 .isEqualTo(expectedResponse);
     }
 
     private static Stream<Arguments> postProfileBadRequestSource() {
         return Stream.of(
                 Arguments.of("/json/profile/save-profile-blank-400.json", "/json/profile/save-profile-blank-response-400.json"),
-                Arguments.of("/json/profile/save-profile-null-400.json", "/json/profile/save-profile-blank-response-400.json"));
+                Arguments.of("/json/profile/save-profile-null-400.json", "/json/profile/save-profile-null-response-400.json"));
     }
 
 }

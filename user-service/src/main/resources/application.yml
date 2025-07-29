@@ -16,3 +16,8 @@ logging:
     com.spring: debug
     org.hibernate.orm.bind: trace
 
+server:
+  error:
+    include-binding-errors: always
+    include-message: always
+
