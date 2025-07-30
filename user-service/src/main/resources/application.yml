@@ -15,6 +15,7 @@ logging:
   level:
     com.spring: debug
     org.hibernate.orm.bind: trace
+    org.springframework.security: debug
 
 server:
   error:
