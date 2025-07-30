@@ -24,14 +24,14 @@ public class SecurityConfig {
             "/csrf"
     };
 
-    // authentication
-    @Bean
-    public UserDetailsService userDetailsService(PasswordEncoder passwordEncoder) {
-        var user = User.withUsername("user").password(passwordEncoder().encode("root")).roles("USER").build();
-        var admin = User.withUsername("admin").password(passwordEncoder().encode("root")).roles("ADMIN").build();
-
-        return new InMemoryUserDetailsManager(user, admin);
-    }
+    // authentication in memory
+//    @Bean
+//    public UserDetailsService userDetailsService(PasswordEncoder passwordEncoder) {
+//        var user = User.withUsername("user").password(passwordEncoder().encode("root")).roles("USER").build();
+//        var admin = User.withUsername("admin").password(passwordEncoder().encode("root")).roles("ADMIN").build();
+//
+//        return new InMemoryUserDetailsManager(user, admin);
+//    }
 
     // authorization
     // disabled csrf only to help, its not recommended
@@ -45,14 +45,10 @@ public class SecurityConfig {
                         auth -> auth
                                 .requestMatchers(AUTH_WHITELIST).permitAll()
                                 .requestMatchers(HttpMethod.POST, "v1/users").permitAll()
-                                .requestMatchers(HttpMethod.GET, "v1/users").hasRole("ADMIN")
-                                .requestMatchers(HttpMethod.DELETE, "v1/users/**").hasRole("ADMIN")
-                                .anyRequest().authenticated()).build();
-    }
-
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return PasswordEncoderFactories.createDelegatingPasswordEncoder();
+                                .requestMatchers(HttpMethod.GET, "v1/users").hasAuthority("ADMIN")
+                                .requestMatchers(HttpMethod.DELETE, "v1/users/**").hasAuthority("ADMIN")
+                                .anyRequest().authenticated())
+                                .build();
     }
 
 }
