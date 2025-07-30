@@ -4,6 +4,7 @@ import com.spring.user_service.dto.profile.request.ProfilePostRequest;
 import com.spring.user_service.dto.profile.response.ProfileGetResponse;
 import com.spring.user_service.mapper.ProfileMapper;
 import com.spring.user_service.service.ProfileService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -18,6 +19,7 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("v1/profiles")
 @AllArgsConstructor
+@SecurityRequirement(name = "basicAuth")
 public class ProfileController {
 
     private final ProfileService profileService;
