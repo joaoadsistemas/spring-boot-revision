@@ -17,5 +17,8 @@ public record UserPutRequestDTO(@NotNull(message = "id is required")
                                 @NotBlank(message = "email is required")
                                 @Email(message = "email is not valid", regexp = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$")
                                 @Schema(description = "User's email. Must be unique", example = "joaosilva@gmail.com")
-                                String email) {
+                                String email,
+                                @NotBlank(message = "password is required")
+                                @Schema(description = "User's password", example = "mYP4assw0rd*7")
+                                String password) {
 }

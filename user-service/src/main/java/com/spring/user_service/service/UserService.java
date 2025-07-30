@@ -51,24 +51,28 @@ public class UserService {
     }
 
     public User update(User user) {
-        findByIdOrThrowNotFound(user.getId());
+        var savedUser = findByIdOrThrowNotFound(user.getId());
         assertEmailDoesNotExist(user.getEmail(), user.getId());
+        user.setRoles(savedUser.getRoles());
+        if (user.getPassword() == null) {
+            user.setPassword(savedUser.getPassword());
+        }
         return userRepository.save(user);
     }
 
     public void assertEmailDoesNotExist(String email) {
-         userRepository
-            .findByEmail(email)
-            .ifPresent(e -> {
-                throwEmailExistException();
-            } );
+        userRepository
+                .findByEmail(email)
+                .ifPresent(e -> {
+                    throwEmailExistException();
+                });
     }
 
     public void assertEmailDoesNotExist(String email, Long id) {
         userRepository.findByEmailAndIdNot(email, id)
                 .ifPresent(e -> {
                     throwEmailExistException();
-                } );
+                });
     }
 
     private static void throwEmailExistException() {
