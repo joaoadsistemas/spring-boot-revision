@@ -23,7 +23,7 @@ import java.util.stream.Collectors;
 public class ProfileController {
 
     private final ProfileService profileService;
-    private static final ProfileMapper mapper = ProfileMapper.INSTANCE;
+    private final ProfileMapper mapper;
 
     @GetMapping
     public ResponseEntity<Set<ProfileGetResponse>> findAll() {

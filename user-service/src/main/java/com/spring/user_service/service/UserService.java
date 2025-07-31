@@ -18,7 +18,6 @@ import java.util.Set;
 public class UserService {
 
     private final UserRepository userRepository;
-    private static final UserMapper MAPPER = UserMapper.INSTANCE;
 
     public Set<User> findAll() {
         //return new HashSet<>(userHardCodeRepository.findAll());

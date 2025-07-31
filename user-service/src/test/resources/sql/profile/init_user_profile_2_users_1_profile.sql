@@ -1,8 +1,8 @@
-insert into user (id, email, first_name, last_name)
-values (1,'humbertonobrega@gmail.com','Humberto','Nobrega');
+insert into user (id, email, first_name, last_name, password, roles)
+values (1,'regularuser@gmail.com','Humberto','Nobrega', '{bcrypt}$2a$10$6lUMl3EclqLaftu.GO.vNOj6yikvCUBY/.vS0ztc4ST72vORz7nKm', 'USER');
 
-insert into user (id, email, first_name, last_name)
-values (2,'samuelvieira@gmail.com','Samuel','Vieira');
+insert into user (id, email, first_name, last_name, password, roles)
+values (2,'adminuser@gmail.com','Samuel','Vieira', '{bcrypt}$2a$10$6lUMl3EclqLaftu.GO.vNOj6yikvCUBY/.vS0ztc4ST72vORz7nKm', 'ADMIN');
 
 insert into profile (id, description, name)
 values (1,'Administrator','Administrator');

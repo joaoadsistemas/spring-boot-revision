@@ -14,8 +14,6 @@ import org.mapstruct.factory.Mappers;
 @Mapper(componentModel = "spring", uses = {PasswordEncoderMapper.class})
 public interface UserMapper {
 
-    UserMapper INSTANCE = Mappers.getMapper(UserMapper.class);
-
     @Mapping(target = "roles", constant = "USER")
     @Mapping(target = "password", qualifiedBy = EncodedMapping.class)
     User toUser(UserPostRequestDTO userPostRequestDTO);

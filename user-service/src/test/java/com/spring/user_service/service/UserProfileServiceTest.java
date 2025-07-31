@@ -34,8 +34,21 @@ class UserProfileServiceTest {
     void setUp() {
         var profile1 = Profile.builder().id(1L).name("Admin").description("Administrator").build();
 
-        var user1 = User.builder().id(1L).firstName("Lucas").lastName("Silva").email("lucas.silva@example.com").build();
-        var user2 = User.builder().id(2L).firstName("Camila").lastName("Rocha").email("camila.rocha@example.com").build();
+        var user1 = User.builder()
+                .id(1L)
+                .firstName("Lucas")
+                .lastName("Silva")
+                .email("lucas.silva@example.com")
+                .password("{bcrypt}$2a$10$x4ykW1ZRrJTxtkS2Zv58DerRTbNeIz9fLms3Bo1y7L3axkGwYa5zW")
+                .roles("USER")
+                .build();
+        var user2 = User.builder().id(2L)
+                .firstName("Camila")
+                .lastName("Rocha")
+                .email("camila.rocha@example.com")
+                .password("{bcrypt}$2a$10$x4ykW1ZRrJTxtkS2Zv58DerRTbNeIz9fLms3Bo1y7L3axkGwYa5zW")
+                .roles("USER")
+                .build();
 
         var userProfile1 = UserProfile.builder().id(1L).profile(profile1).user(user1).build();
         var userProfile2 = UserProfile.builder().id(2L).profile(profile1).user(user2).build();

@@ -25,16 +25,16 @@ import java.util.stream.Collectors;
 public class UserProfileController {
 
     private final UserProfileService userProfileService;
-    private static final UserProfileMapper MAPPER = UserProfileMapper.INSTANCE;
+    private final UserProfileMapper mapper;
 
     @GetMapping
     public ResponseEntity<Set<UserProfileGetResponseDTO>> findAll() {
-        return ResponseEntity.ok(MAPPER.toUserProfileGetResponseDTOSet(new HashSet<>(userProfileService.findAll())));
+        return ResponseEntity.ok(mapper.toUserProfileGetResponseDTOSet(new HashSet<>(userProfileService.findAll())));
     }
 
     @GetMapping("/profile/{id}/users")
     public ResponseEntity<Set<UserProfileGetUserByProfileResponseDTO>> findAllUsersByProfileId(@PathVariable Long id) {
-        return ResponseEntity.ok(new HashSet<>(MAPPER.toUserProfileGetUserByProfileResponseDTOSet(userProfileService.findAllUsersByProfileId(id))));
+        return ResponseEntity.ok(new HashSet<>(mapper.toUserProfileGetUserByProfileResponseDTOSet(userProfileService.findAllUsersByProfileId(id))));
     }
 
 }

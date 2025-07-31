@@ -1,11 +1,12 @@
 package com.spring.user_service.controller;
 
 import com.spring.user_service.config.IntegrationTestsConfig;
+import com.spring.user_service.config.RestAssuredConfig;
 import com.spring.user_service.utils.FileUtils;
-import com.spring.user_service.utils.user.CleanUserAfterTest;
 import com.spring.user_service.utils.user.SqlUserDataSetup;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
+import io.restassured.specification.RequestSpecification;
 import net.javacrumbs.jsonunit.assertj.JsonAssertions;
 import net.javacrumbs.jsonunit.core.Option;
 import org.hamcrest.Matchers;
@@ -16,6 +17,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.http.HttpStatus;
@@ -23,20 +25,27 @@ import org.springframework.http.HttpStatus;
 import java.io.IOException;
 import java.util.stream.Stream;
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+import static com.spring.user_service.utils.Constants.*;
+
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = RestAssuredConfig.class)
+@SqlUserDataSetup
 class UserControllerRestAssuredIT extends IntegrationTestsConfig {
     private static final String URL = "/v1/users";
 
     @Autowired
     private FileUtils fileUtils;
 
-    @LocalServerPort
-    private int port;
+    @Autowired
+    @Qualifier(value = "requestSpecificationAdminUser")
+    private RequestSpecification requestSpecificationAdminUser;
+
+    @Autowired
+    @Qualifier(value = "requestSpecificationRegularUser")
+    private RequestSpecification requestSpecificationRegularUser;
 
     @BeforeEach
     void setUp() {
-        RestAssured.baseURI = "http://localhost:" + port;
-        RestAssured.port = port;
+        RestAssured.requestSpecification = requestSpecificationRegularUser;
     }
 
     @Test
@@ -48,6 +57,7 @@ class UserControllerRestAssuredIT extends IntegrationTestsConfig {
 //                .andExpect(MockMvcResultMatchers.content().json(result))
 //                .andExpect(MockMvcResultMatchers.status().isOk());
 
+        RestAssured.requestSpecification = requestSpecificationAdminUser;
 
         var result = fileUtils.readResourceFile("json/user/find-all-users-response-200.json");
 
@@ -97,6 +107,9 @@ class UserControllerRestAssuredIT extends IntegrationTestsConfig {
     @Test
     @DisplayName("GET v1/users/{id} should throw an exception when id does not exists")
     void findById_shouldThrowException_whenIdDoesNotExists() throws Exception {
+
+        RestAssured.requestSpecification = requestSpecificationAdminUser;
+
         var result = fileUtils.readResourceFile("/json/user/find-by-id-response-404.json");
 
         RestAssured.given()
@@ -117,7 +130,7 @@ class UserControllerRestAssuredIT extends IntegrationTestsConfig {
         var result = fileUtils.readResourceFile("/json/user/find-by-email-response-200.json");
 
         RestAssured.given()
-                .param("email", "humbertonobrega@gmail.com")
+                .param("email", "regularuser@gmail.com")
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
                 .when()
@@ -129,7 +142,6 @@ class UserControllerRestAssuredIT extends IntegrationTestsConfig {
     }
 
     @Test
-    @CleanUserAfterTest
     @DisplayName("GET v1/users/email?email={} should throw an exception when email does not exists")
     void findByEmail_shouldThrowException_whenEmailDoesNotExists() throws Exception {
         var result = fileUtils.readResourceFile("/json/user/find-by-email-response-404.json");
@@ -182,6 +194,9 @@ class UserControllerRestAssuredIT extends IntegrationTestsConfig {
     @SqlUserDataSetup
     @DisplayName("DELETE v1/users should delete user when successfully")
     void delete_shouldDeleteUser_whenSuccessfully() {
+
+        RestAssured.requestSpecification = requestSpecificationAdminUser;
+
         RestAssured.given()
                 .contentType(ContentType.JSON)
                 .pathParam("userId", 1)
@@ -196,6 +211,8 @@ class UserControllerRestAssuredIT extends IntegrationTestsConfig {
     @SqlUserDataSetup
     @DisplayName("DELETE v1/users should throw an exception when id does not exists")
     void delete_shouldThrowAnException_whenIdDoesNotExists() throws IOException {
+
+        RestAssured.requestSpecification = requestSpecificationAdminUser;
 
         var result = fileUtils.readResourceFile("/json/user/find-by-id-response-404.json");
 
