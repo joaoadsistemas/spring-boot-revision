@@ -23,6 +23,7 @@ import org.springframework.context.annotation.Import;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
@@ -35,6 +36,7 @@ import java.util.stream.Stream;
 
 @WebMvcTest(ProfileController.class)
 @Import({ProfileService.class, ProfileMapperImpl.class, FileUtils.class})
+@WithMockUser
 class ProfileControllerTest {
 
     @Autowired

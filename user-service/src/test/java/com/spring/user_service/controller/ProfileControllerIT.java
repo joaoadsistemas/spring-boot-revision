@@ -1,10 +1,12 @@
 package com.spring.user_service.controller;
 
 import com.spring.user_service.config.IntegrationTestsConfig;
+import com.spring.user_service.config.TestRestTemplateConfig;
 import com.spring.user_service.dto.profile.response.ProfileGetResponse;
-import com.spring.user_service.utils.profile.CleanProfileAfterTest;
 import com.spring.user_service.utils.FileUtils;
+import com.spring.user_service.utils.profile.CleanProfileAfterTest;
 import com.spring.user_service.utils.profile.SqlProfileDataSetup;
+import com.spring.user_service.utils.user.CleanUserAfterTest;
 import net.javacrumbs.jsonunit.assertj.JsonAssertions;
 import net.javacrumbs.jsonunit.core.Option;
 import org.assertj.core.api.Assertions;
@@ -18,12 +20,18 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.test.context.jdbc.Sql;
+import org.springframework.test.context.jdbc.SqlMergeMode;
 
 import java.io.IOException;
 import java.util.Set;
 import java.util.stream.Stream;
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = TestRestTemplateConfig.class)
+@Sql(value = "/sql/user/init_one_login_regular_user.sql")
+@SqlMergeMode(SqlMergeMode.MergeMode.MERGE)
+@CleanUserAfterTest
 class ProfileControllerIT extends IntegrationTestsConfig {
     private static final String URL = "/v1/profiles";
 
@@ -37,6 +45,7 @@ class ProfileControllerIT extends IntegrationTestsConfig {
     @SqlProfileDataSetup
     @DisplayName("GET v1/profile should return all profiles when successful")
     void findAll_shouldReturnAllProfiles_whenSuccessful() {
+        System.out.println(new BCryptPasswordEncoder().matches("test", "{bcrypt}$2a$10$6lUMl3EclqLaftu.GO.vNOj6yikvCUBY/.vS0ztc4ST72vORz7nKm"));
         var typeReference = new ParameterizedTypeReference<Set<ProfileGetResponse>>() {
         };
         var responseEntity = restTemplate.exchange(URL, HttpMethod.GET, null, typeReference);

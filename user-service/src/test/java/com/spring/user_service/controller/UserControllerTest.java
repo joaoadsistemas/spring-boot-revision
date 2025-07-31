@@ -24,6 +24,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
@@ -34,6 +35,7 @@ import java.util.stream.Stream;
 
 @WebMvcTest(UserController.class)
 @Import({UserService.class, UserMapperImpl.class, FileUtils.class})
+@WithMockUser
 class UserControllerTest {
 
     @Autowired
@@ -57,8 +59,8 @@ class UserControllerTest {
 
     @BeforeEach
     void setUp() {
-        var u1 = User.builder().id(1L).firstName("Humberto").lastName("Nobrega").email("humbertonobrega@gmail.com").build();
-        var u2 = User.builder().id(2L).firstName("Samuel").lastName("Vieira").email("samuelvieira@gmail.com").build();
+        var u1 = User.builder().id(1L).firstName("Humberto").lastName("Nobrega").email("regularuser@gmail.com").build();
+        var u2 = User.builder().id(2L).firstName("Samuel").lastName("Vieira").email("adminuser@gmail.com").build();
 
         userSet = new HashSet<>(List.of(u1, u2));
     }
@@ -125,7 +127,7 @@ class UserControllerTest {
     @Test
     @DisplayName("GET v1/users/email?email={} should return user when successfully")
     void findByEmail_shouldReturnUser_whenSuccessfully() throws Exception {
-        var email = "humbertonobrega@gmail.com";
+        var email = "regularuser@gmail.com";
         var expectedResult = userSet.stream().filter(u -> u.getEmail().equals(email)).findFirst();
         BDDMockito.when(userRepository.findByEmail(email)).thenReturn(expectedResult);
         var result = fileUtils.readResourceFile("json/user/find-by-email-response-200.json");
@@ -159,7 +161,7 @@ class UserControllerTest {
                 .email("joao.abraao@example.com").build();
 
         BDDMockito.when(userRepository.save(ArgumentMatchers.any())).thenReturn(user);
-        var request = fileUtils.readResourceFile("json/user/post-request-200.json");
+        var request = fileUtils.readResourceFile("json/user/save-user-request-200.json");
         mockMvc.perform(MockMvcRequestBuilders.post(URL)
                         .contentType("application/json")
                         .content(request))
@@ -181,6 +183,7 @@ class UserControllerTest {
 
     @Test
     @DisplayName("DELETE v1/users should delete user when successfully")
+    @WithMockUser(authorities = {"ADMIN"})
     void delete_shouldDeleteUser_whenSuccessfully() throws Exception {
         var id = 1L;
 
@@ -196,6 +199,7 @@ class UserControllerTest {
 
     @Test
     @DisplayName("DELETE v1/users should throw an exception when id does not exists")
+    @WithMockUser(authorities = {"ADMIN"})
     void delete_shouldThrowAnException_whenIdDoesNotExists() throws Exception {
         BDDMockito.when(userRepository.findById(ArgumentMatchers.any())).thenReturn(Optional.empty());
         BDDMockito.doNothing().when(userRepository).delete(ArgumentMatchers.any());

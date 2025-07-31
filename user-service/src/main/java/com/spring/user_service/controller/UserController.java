@@ -37,22 +37,22 @@ import java.util.stream.Collectors;
 public class UserController {
 
     private final UserService userService;
-    private static final UserMapper MAPPER = UserMapper.INSTANCE ;
+    private final UserMapper mapper;
 
     @GetMapping
     @Operation(summary = "Get all users", description = "Get all users available in the system",
-    responses = {
-            @ApiResponse(description = "List all users",
-            responseCode = "200",
-            content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE, array = @ArraySchema(schema = @Schema(implementation = UserGetResponseDTO.class))))
-    })
+            responses = {
+                    @ApiResponse(description = "List all users",
+                            responseCode = "200",
+                            content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE, array = @ArraySchema(schema = @Schema(implementation = UserGetResponseDTO.class))))
+            })
     public ResponseEntity<Set<UserGetResponseDTO>> findAll() {
-        return ResponseEntity.ok(userService.findAll().stream().map(MAPPER::toUserGetResponse).collect(Collectors.toSet()));
+        return ResponseEntity.ok(userService.findAll().stream().map(mapper::toUserGetResponse).collect(Collectors.toSet()));
     }
 
     @GetMapping("/paginated")
     public ResponseEntity<Page<UserGetResponseDTO>> findAllPaginated(@ParameterObject Pageable pageable) {
-        return ResponseEntity.ok(userService.findAllPaginated(pageable).map(MAPPER::toUserGetResponse));
+        return ResponseEntity.ok(userService.findAllPaginated(pageable).map(mapper::toUserGetResponse));
     }
 
     @GetMapping("/{id}")
@@ -66,7 +66,7 @@ public class UserController {
                             content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE, schema = @Schema(implementation = DefaultErrorMessage.class)))
             })
     public ResponseEntity<UserGetResponseDTO> findById(@PathVariable Long id) {
-        return ResponseEntity.ok(MAPPER.toUserGetResponse(userService.findByIdOrThrowNotFound(id)));
+        return ResponseEntity.ok(mapper.toUserGetResponse(userService.findByIdOrThrowNotFound(id)));
     }
 
     @GetMapping("/email")
@@ -80,7 +80,7 @@ public class UserController {
                             content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE, schema = @Schema(implementation = DefaultErrorMessage.class)))
             })
     public ResponseEntity<UserGetResponseDTO> findByEmail(@RequestParam String email) {
-        return ResponseEntity.ok( MAPPER.toUserGetResponse(userService.findByEmailOrThrowNotFound(email)));
+        return ResponseEntity.ok(mapper.toUserGetResponse(userService.findByEmailOrThrowNotFound(email)));
     }
 
     @PostMapping
@@ -98,7 +98,7 @@ public class UserController {
             })
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<Void> save(@RequestBody @Valid UserPostRequestDTO userPostRequestDTO) {
-        userService.save(MAPPER.toUser(userPostRequestDTO));
+        userService.save(mapper.toUser(userPostRequestDTO));
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
@@ -132,8 +132,8 @@ public class UserController {
                             content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE, schema = @Schema(implementation = DefaultErrorMessage.class)))
             })
     public ResponseEntity<UserPutResponseDTO> update(@RequestBody @Valid UserPutRequestDTO userPutRequestDTO) {
-        User user = MAPPER.toUser(userPutRequestDTO);
-        var updatedUser = MAPPER.toUserPutResponse(userService.update(user));
+        User user = mapper.toUser(userPutRequestDTO);
+        var updatedUser = mapper.toUserPutResponse(userService.update(user));
         return ResponseEntity.ok(updatedUser);
     }
 

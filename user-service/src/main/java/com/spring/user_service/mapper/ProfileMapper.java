@@ -9,8 +9,6 @@ import org.mapstruct.factory.Mappers;
 @Mapper(componentModel = "spring")
 public interface ProfileMapper {
 
-    ProfileMapper INSTANCE = Mappers.getMapper(ProfileMapper.class);
-
     Profile toProfile(ProfileGetResponse profileGetResponse);
 
     Profile toProfile(ProfilePostRequest profilePostRequest);

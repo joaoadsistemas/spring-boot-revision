@@ -35,11 +35,46 @@ class UserServiceTest {
 
     @BeforeEach
     void setUp() {
-        var u1 = User.builder().id(1L).firstName("Lucas").lastName("Silva").email("lucas.silva@example.com").build();
-        var u2 = User.builder().id(2L).firstName("Camila").lastName("Rocha").email("camila.rocha@example.com").build();
-        var u3 = User.builder().id(3L).firstName("Daniel").lastName("Souza").email("daniel.souza@example.com").build();
-        var u4 = User.builder().id(4L).firstName("Fernanda").lastName("Mendes").email("fernanda.mendes@example.com").build();
-        var u5 = User.builder().id(5L).firstName("Rafael").lastName("Almeida").email("rafael.almeida@example.com").build();
+        var u1 = User.builder()
+                .id(1L)
+                .firstName("Lucas")
+                .lastName("Silva")
+                .email("lucas.silva@example.com")
+                .password("{bcrypt}$2a$10$x4ykW1ZRrJTxtkS2Zv58DerRTbNeIz9fLms3Bo1y7L3axkGwYa5zW")
+                .roles("USER")
+                .build();
+        var u2 = User.builder()
+                .id(2L)
+                .firstName("Camila")
+                .lastName("Rocha")
+                .email("camila.rocha@example.com")
+                .password("{bcrypt}$2a$10$x4ykW1ZRrJTxtkS2Zv58DerRTbNeIz9fLms3Bo1y7L3axkGwYa5zW")
+                .roles("USER")
+                .build();
+        var u3 = User.builder()
+                .id(3L)
+                .firstName("Daniel")
+                .lastName("Souza")
+                .email("daniel.souza@example.com")
+                .password("{bcrypt}$2a$10$x4ykW1ZRrJTxtkS2Zv58DerRTbNeIz9fLms3Bo1y7L3axkGwYa5zW")
+                .roles("USER")
+                .build();
+        var u4 = User.builder()
+                .id(4L)
+                .firstName("Fernanda")
+                .lastName("Mendes")
+                .email("fernanda.mendes@example.com")
+                .password("{bcrypt}$2a$10$x4ykW1ZRrJTxtkS2Zv58DerRTbNeIz9fLms3Bo1y7L3axkGwYa5zW")
+                .roles("USER")
+                .build();
+        var u5 = User.builder()
+                .id(5L)
+                .firstName("Rafael")
+                .lastName("Almeida")
+                .email("rafael.almeida@example.com")
+                .password("{bcrypt}$2a$10$x4ykW1ZRrJTxtkS2Zv58DerRTbNeIz9fLms3Bo1y7L3axkGwYa5zW")
+                .roles("USER")
+                .build();
 
         userSet = new HashSet<>(List.of(u1, u2, u3, u4, u5));
     }
@@ -103,7 +138,13 @@ class UserServiceTest {
     @Test
     @DisplayName("save should save a user when successfully")
     void save_shouldSaveUser_whenSuccessfully() {
-        var expectedResult = User.builder().firstName("Joao").lastName("Silva").email("joao.silva@example.com").build();
+        var expectedResult = User.builder()
+                .firstName("Joao")
+                .lastName("Silva")
+                .email("joao.silva@example.com")
+                .password("{bcrypt}$2a$10$x4ykW1ZRrJTxtkS2Zv58DerRTbNeIz9fLms3Bo1y7L3axkGwYa5zW")
+                .roles("USER")
+                .build();
         BDDMockito.when(userRepository.findByEmail(expectedResult.getEmail())).thenReturn(Optional.empty());
         BDDMockito.when(userRepository.save(ArgumentMatchers.any(User.class))).thenReturn(expectedResult);
         assertThatNoException().isThrownBy(() -> userService.save(expectedResult));
@@ -162,7 +203,14 @@ class UserServiceTest {
     @Test
     @DisplayName("put should throw an exception when id does not exists")
     void put_shouldThrowAnException_whenIdDoesNotExists() {
-        var user = User.builder().id(99L).email("xaxa").firstName("xaxa").lastName("xaxa").build();
+        var user = User.builder()
+                .id(99L)
+                .email("xaxa")
+                .firstName("xaxa")
+                .lastName("xaxa")
+                .password("{bcrypt}$2a$10$x4ykW1ZRrJTxtkS2Zv58DerRTbNeIz9fLms3Bo1y7L3axkGwYa5zW")
+                .roles("USER")
+                .build();
         BDDMockito.when(userRepository.findById(ArgumentMatchers.anyLong())).thenReturn(Optional.empty());
         assertThatThrownBy(() -> userService.update(user)).isInstanceOf(NotFoundException.class);
     }
@@ -171,7 +219,14 @@ class UserServiceTest {
     @DisplayName("put should throw an exception when email belongs to another person")
     void put_shouldThrowAnException_whenEmailBelongsToAnotherPerson() {
         var userFirst = userSet.stream().findFirst().get();
-        var user = User.builder().id(2L).email(userFirst.getEmail()).firstName("xaxa").lastName("xaxa").build();
+        var user = User.builder()
+                .id(2L)
+                .email(userFirst.getEmail())
+                .firstName("xaxa")
+                .lastName("xaxa")
+                .password("{bcrypt}$2a$10$x4ykW1ZRrJTxtkS2Zv58DerRTbNeIz9fLms3Bo1y7L3axkGwYa5zW")
+                .roles("USER")
+                .build();
         BDDMockito.when(userRepository.findById(ArgumentMatchers.anyLong())).thenReturn(Optional.ofNullable(user));
         BDDMockito.when(userRepository.findByEmailAndIdNot(user.getEmail(), user.getId())).thenReturn(Optional.of(userFirst));
 

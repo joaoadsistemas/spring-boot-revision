@@ -12,8 +12,6 @@ import java.util.Set;
 @Mapper(componentModel = "spring")
 public interface UserProfileMapper {
 
-    UserProfileMapper INSTANCE = Mappers.getMapper(UserProfileMapper.class);
-
     Set<UserProfileGetResponseDTO> toUserProfileGetResponseDTOSet(Set<UserProfile> userProfiles);
     Set<UserProfileGetUserByProfileResponseDTO> toUserProfileGetUserByProfileResponseDTOSet(Set<User> users);
 
