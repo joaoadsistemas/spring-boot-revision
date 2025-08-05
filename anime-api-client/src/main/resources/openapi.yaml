@@ -1,0 +1,669 @@
+openapi: 3.0.1
+info:
+  title: User service API
+  version: v1
+servers:
+  - url: http://localhost:8080
+    description: Generated server url
+tags:
+  - name: User API
+    description: User related endpoints
+paths:
+  /v1/users:
+    get:
+      tags:
+        - user-controller
+      summary: Get all users
+      description: Get all users available in the system
+      operationId: findAllUsers
+      responses:
+        '200':
+          description: List all users
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UserGetResponseDTO'
+      security:
+        - basicAuth: []
+    put:
+      tags:
+        - user-controller
+      summary: Update user
+      operationId: updateUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserPutRequestDTO'
+        required: true
+      responses:
+        '200':
+          description: Update a user
+          content:
+            application/json: {}
+        '400':
+          description: Email already exist
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorMessage'
+        '404':
+          description: User not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorMessage'
+      security:
+        - basicAuth: []
+    post:
+      tags:
+        - user-controller
+      summary: Save user
+      operationId: saveUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserPostRequestDTO'
+        required: true
+      responses:
+        '201':
+          description: Save a user
+          content:
+            application/json: {}
+        '400':
+          description: Validation fields Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+      security:
+        - basicAuth: []
+  /v1/profiles:
+    get:
+      tags:
+        - profile-controller
+      operationId: findAllProfiles
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                uniqueItems: true
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProfileGetResponse'
+      security:
+        - basicAuth: []
+    post:
+      tags:
+        - profile-controller
+      operationId: saveProfile
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProfilePostRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+      security:
+        - basicAuth: []
+  /v1/users/{id}:
+    get:
+      tags:
+        - user-controller
+      summary: Find by id
+      operationId: findUserById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Find user by id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserGetResponseDTO'
+        '404':
+          description: User not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorMessage'
+      security:
+        - basicAuth: []
+    delete:
+      tags:
+        - user-controller
+      summary: Delete user
+      operationId: deleteUser
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '201':
+          description: Delete a user
+          content:
+            application/json: {}
+        '204':
+          description: No Content
+        '404':
+          description: User not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorMessage'
+      security:
+        - basicAuth: []
+  /v1/users/paginated:
+    get:
+      tags:
+        - user-controller
+      operationId: findAllUsersPaginated
+      x-spring-paginated: true
+      parameters:
+        - name: page
+          in: query
+          description: Zero-based page index (0..N)
+          required: false
+          schema:
+            minimum: 0
+            type: integer
+            default: 0
+        - name: size
+          in: query
+          description: The size of the page to be returned
+          required: false
+          schema:
+            minimum: 1
+            type: integer
+            default: 20
+        - name: sort
+          in: query
+          description: 'Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported.'
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PageUserGetResponseDTO'
+      security:
+        - basicAuth: []
+  /v1/users/email:
+    get:
+      tags:
+        - user-controller
+      summary: Find by email
+      operationId: findUserByEmail
+      parameters:
+        - name: email
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Find user by email
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserGetResponseDTO'
+        '404':
+          description: User not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorMessage'
+      security:
+        - basicAuth: []
+  /v1/user-profiles:
+    get:
+      tags:
+        - user-profile-controller
+      operationId: findAll
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                uniqueItems: true
+                type: array
+                items:
+                  $ref: '#/components/schemas/UserProfileGetResponseDTO'
+      security:
+        - basicAuth: []
+  /v1/user-profiles/profile/{id}/users:
+    get:
+      tags:
+        - user-profile-controller
+      operationId: findAllUsersByProfileId
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                uniqueItems: true
+                type: array
+                items:
+                  $ref: '#/components/schemas/UserProfileGetUserByProfileResponseDTO'
+      security:
+        - basicAuth: []
+  /v1/profiles/{id}:
+    get:
+      tags:
+        - profile-controller
+      operationId: findProfileById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ProfileGetResponse'
+      security:
+        - basicAuth: []
+  /v1/profiles/paginated:
+    get:
+      tags:
+        - profile-controller
+      operationId: findAllProfilesPaginated
+      x-spring-paginated: true
+      parameters:
+        - name: page
+          in: query
+          description: Zero-based page index (0..N)
+          required: false
+          schema:
+            minimum: 0
+            type: integer
+            default: 0
+        - name: size
+          in: query
+          description: The size of the page to be returned
+          required: false
+          schema:
+            minimum: 1
+            type: integer
+            default: 20
+        - name: sort
+          in: query
+          description: 'Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported.'
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PageProfileGetResponse'
+      security:
+        - basicAuth: []
+  /v1/profiles/by-name:
+    get:
+      tags:
+        - profile-controller
+      operationId: findProfileByName
+      parameters:
+        - name: name
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ProfileGetResponse'
+      security:
+        - basicAuth: []
+  /csrf:
+    get:
+      tags:
+        - csrf-token-controller
+      operationId: csrfToken
+      parameters:
+        - name: csrfToken
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/CsrfToken'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CsrfToken'
+components:
+  schemas:
+    DefaultErrorMessage:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+    UserPutRequestDTO:
+      required:
+        - email
+        - firstName
+        - id
+        - lastName
+      type: object
+      properties:
+        id:
+          type: integer
+          x-field-extra-annotation: "@jakarta.validation.constraints.NotNull(message=\"id is required\")"
+          description: User's id
+          format: int64
+          example: 1
+        firstName:
+          type: string
+          x-field-extra-annotation: "@jakarta.validation.constraints.NotBlank(message=\"firstName is required\")"
+          description: User's first name
+          example: Joao
+        lastName:
+          type: string
+          x-field-extra-annotation: "@jakarta.validation.constraints.NotBlank(message=\"lastName is required\")"
+          description: User's last name
+          example: Silva
+        email:
+          type: string
+          x-field-extra-annotation: "@jakarta.validation.constraints.NotBlank(message=\"email is required\")"
+          description: User's email. Must be unique
+          example: joaosilva@gmail.com
+        password:
+          type: string
+          description: User's password
+          example: mYP4assw0rd*7
+    ApiError:
+      type: object
+      properties:
+        timestamp:
+          type: string
+        status:
+          type: integer
+          format: int32
+        error:
+          type: string
+        message:
+          type: string
+        path:
+          type: string
+    UserPostRequestDTO:
+      required:
+        - email
+        - firstName
+        - lastName
+        - password
+      type: object
+      properties:
+        firstName:
+          type: string
+          x-field-extra-annotation: "@jakarta.validation.constraints.NotBlank(message=\"firstName is required\")"
+          description: User's first name
+          example: Joao
+        lastName:
+          type: string
+          x-field-extra-annotation: "@jakarta.validation.constraints.NotBlank(message=\"lastName is required\")"
+          description: User's last name
+          example: Silva
+        email:
+          type: string
+          x-field-extra-annotation: "@jakarta.validation.constraints.NotBlank(message=\"email is required\")"
+          description: User's email. Must be unique
+          example: joaosilva@gmail.com
+        password:
+          type: string
+          x-field-extra-annotation: "@jakarta.validation.constraints.NotBlank(message=\"password is required\")"
+          description: User's password
+          example: mYP4assw0rd*7
+    ProfilePostRequest:
+      required:
+        - description
+        - name
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+    UserGetResponseDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: User's id
+          format: int64
+          example: 1
+        firstName:
+          type: string
+          description: User's first name
+          example: Joao
+        lastName:
+          type: string
+          description: User's last name
+          example: Silva
+        email:
+          type: string
+          description: User's email
+          example: joaosilva@gmail.com
+    PageUserGetResponseDTO:
+      type: object
+      properties:
+        totalPages:
+          type: integer
+          format: int32
+        totalElements:
+          type: integer
+          format: int64
+        first:
+          type: boolean
+        last:
+          type: boolean
+        size:
+          type: integer
+          format: int32
+        content:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserGetResponseDTO'
+        number:
+          type: integer
+          format: int32
+        sort:
+          type: array
+          items:
+            $ref: '#/components/schemas/SortObject'
+        pageable:
+          $ref: '#/components/schemas/PageableObject'
+        numberOfElements:
+          type: integer
+          format: int32
+        empty:
+          type: boolean
+    PageableObject:
+      type: object
+      properties:
+        offset:
+          type: integer
+          format: int64
+        sort:
+          type: array
+          items:
+            $ref: '#/components/schemas/SortObject'
+        paged:
+          type: boolean
+        pageNumber:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        unpaged:
+          type: boolean
+    SortObject:
+      type: object
+      properties:
+        direction:
+          type: string
+        nullHandling:
+          type: string
+        ascending:
+          type: boolean
+        property:
+          type: string
+        ignoreCase:
+          type: boolean
+    ProfileDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+    UserDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        firstName:
+          type: string
+    UserProfileGetResponseDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        user:
+          $ref: '#/components/schemas/UserDTO'
+        profile:
+          $ref: '#/components/schemas/ProfileDTO'
+    UserProfileGetUserByProfileResponseDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+    ProfileGetResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        description:
+          type: string
+    Pageable:
+      type: object
+      properties:
+        page:
+          minimum: 0
+          type: integer
+          format: int32
+        size:
+          minimum: 1
+          type: integer
+          format: int32
+        sort:
+          type: array
+          items:
+            type: string
+    PageProfileGetResponse:
+      type: object
+      properties:
+        totalPages:
+          type: integer
+          format: int32
+        totalElements:
+          type: integer
+          format: int64
+        first:
+          type: boolean
+        last:
+          type: boolean
+        size:
+          type: integer
+          format: int32
+        content:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProfileGetResponse'
+        number:
+          type: integer
+          format: int32
+        sort:
+          type: array
+          items:
+            $ref: '#/components/schemas/SortObject'
+        pageable:
+          $ref: '#/components/schemas/PageableObject'
+        numberOfElements:
+          type: integer
+          format: int32
+        empty:
+          type: boolean
+    CsrfToken:
+      type: object
+      properties:
+        parameterName:
+          type: string
+        token:
+          type: string
+        headerName:
+          type: string
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic

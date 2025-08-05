@@ -26,28 +26,28 @@ public class ProfileController {
     private final ProfileMapper mapper;
 
     @GetMapping
-    public ResponseEntity<Set<ProfileGetResponse>> findAll() {
+    public ResponseEntity<Set<ProfileGetResponse>> findAllProfiles() {
         return ResponseEntity.ok(profileService.findAll().stream()
                 .map(mapper::toProfileGetResponse).collect(Collectors.toSet()));
     }
 
-    @GetMapping("/pageable")
-    public ResponseEntity<Page<ProfileGetResponse>> findAllByPageable(Pageable pageable) {
+    @GetMapping("/paginated")
+    public ResponseEntity<Page<ProfileGetResponse>> findAllProfilesPaginated(Pageable pageable) {
         return ResponseEntity.ok(profileService.findAllPageable(pageable).map(mapper::toProfileGetResponse));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ProfileGetResponse> findById(@PathVariable Long id) {
+    public ResponseEntity<ProfileGetResponse> findProfileById(@PathVariable Long id) {
         return ResponseEntity.ok(mapper.toProfileGetResponse(profileService.findById(id)));
     }
 
     @GetMapping("/by-name")
-    public ResponseEntity<ProfileGetResponse> findByName(@RequestParam String name) {
+    public ResponseEntity<ProfileGetResponse> findProfileByName(@RequestParam String name) {
         return ResponseEntity.ok(mapper.toProfileGetResponse(profileService.findByName(name)));
     }
 
     @PostMapping
-    public ResponseEntity<Void> save(@Valid @RequestBody ProfilePostRequest profilePostRequest) {
+    public ResponseEntity<Void> saveProfile(@Valid @RequestBody ProfilePostRequest profilePostRequest) {
         var profile = mapper.toProfile(profilePostRequest);
         profileService.save(profile);
         return ResponseEntity.status(HttpStatus.CREATED).build();

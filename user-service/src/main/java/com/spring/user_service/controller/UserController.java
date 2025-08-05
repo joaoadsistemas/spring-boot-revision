@@ -46,12 +46,12 @@ public class UserController {
                             responseCode = "200",
                             content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE, array = @ArraySchema(schema = @Schema(implementation = UserGetResponseDTO.class))))
             })
-    public ResponseEntity<Set<UserGetResponseDTO>> findAll() {
+    public ResponseEntity<Set<UserGetResponseDTO>> findAllUsers() {
         return ResponseEntity.ok(userService.findAll().stream().map(mapper::toUserGetResponse).collect(Collectors.toSet()));
     }
 
     @GetMapping("/paginated")
-    public ResponseEntity<Page<UserGetResponseDTO>> findAllPaginated(@ParameterObject Pageable pageable) {
+    public ResponseEntity<Page<UserGetResponseDTO>> findAllUsersPaginated(@ParameterObject Pageable pageable) {
         return ResponseEntity.ok(userService.findAllPaginated(pageable).map(mapper::toUserGetResponse));
     }
 
@@ -65,7 +65,7 @@ public class UserController {
                             responseCode = "404",
                             content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE, schema = @Schema(implementation = DefaultErrorMessage.class)))
             })
-    public ResponseEntity<UserGetResponseDTO> findById(@PathVariable Long id) {
+    public ResponseEntity<UserGetResponseDTO> findUserById(@PathVariable Long id) {
         return ResponseEntity.ok(mapper.toUserGetResponse(userService.findByIdOrThrowNotFound(id)));
     }
 
@@ -79,7 +79,7 @@ public class UserController {
                             responseCode = "404",
                             content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE, schema = @Schema(implementation = DefaultErrorMessage.class)))
             })
-    public ResponseEntity<UserGetResponseDTO> findByEmail(@RequestParam String email) {
+    public ResponseEntity<UserGetResponseDTO> findUserByEmail(@RequestParam String email) {
         return ResponseEntity.ok(mapper.toUserGetResponse(userService.findByEmailOrThrowNotFound(email)));
     }
 
@@ -97,7 +97,7 @@ public class UserController {
                             content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE, schema = @Schema(implementation = ApiError.class)))
             })
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<Void> save(@RequestBody @Valid UserPostRequestDTO userPostRequestDTO) {
+    public ResponseEntity<Void> saveUser(@RequestBody @Valid UserPostRequestDTO userPostRequestDTO) {
         userService.save(mapper.toUser(userPostRequestDTO));
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
@@ -113,7 +113,7 @@ public class UserController {
                             content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE, schema = @Schema(implementation = DefaultErrorMessage.class)))
             })
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public ResponseEntity<Void> delete(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
         userService.delete(id);
         return ResponseEntity.noContent().build();
     }
@@ -131,7 +131,7 @@ public class UserController {
                             responseCode = "404",
                             content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE, schema = @Schema(implementation = DefaultErrorMessage.class)))
             })
-    public ResponseEntity<UserPutResponseDTO> update(@RequestBody @Valid UserPutRequestDTO userPutRequestDTO) {
+    public ResponseEntity<UserPutResponseDTO> updateUser(@RequestBody @Valid UserPutRequestDTO userPutRequestDTO) {
         User user = mapper.toUser(userPutRequestDTO);
         var updatedUser = mapper.toUserPutResponse(userService.update(user));
         return ResponseEntity.ok(updatedUser);
