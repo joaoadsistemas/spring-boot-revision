@@ -14,5 +14,6 @@
 		<module>commons-core</module>
 		<module>anime-service</module>
 		<module>user-service</module>
-	</modules>
+        <module>anime-api-client</module>
+    </modules>
 </project>
