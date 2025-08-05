@@ -1,10 +1,9 @@
 package com.spring.user_service.controller;
 
-import com.spring.user_service.dto.userProfile.response.UserProfileGetResponseDTO;
-import com.spring.user_service.dto.userProfile.response.UserProfileGetUserByProfileResponseDTO;
+import com.spring.api.UserProfileControllerApi;
+import com.spring.dto.UserProfileGetResponseDTO;
+import com.spring.dto.UserProfileGetUserByProfileResponseDTO;
 import com.spring.user_service.mapper.UserProfileMapper;
-import com.spring.user_service.model.User;
-import com.spring.user_service.model.UserProfile;
 import com.spring.user_service.service.UserProfileService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import lombok.RequiredArgsConstructor;
@@ -16,13 +15,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashSet;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/v1/user-profiles")
 @RequiredArgsConstructor
 @SecurityRequirement(name = "basicAuth")
-public class UserProfileController {
+public class UserProfileController implements UserProfileControllerApi {
 
     private final UserProfileService userProfileService;
     private final UserProfileMapper mapper;

@@ -1,15 +1,16 @@
 package com.spring.user_service.controller;
 
-import org.springframework.security.web.csrf.CsrfToken;
+import com.spring.api.CsrfTokenControllerApi;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class CsrfTokenController {
+public class CsrfTokenController implements CsrfTokenControllerApi {
 
     @GetMapping("/csrf")
-    public CsrfToken csrfToken(CsrfToken csrfToken) {
-        return csrfToken;
+    @Override
+    public ResponseEntity<com.spring.dto.CsrfToken> csrfToken(com.spring.dto.CsrfToken csrfToken) {
+        return ResponseEntity.ok(csrfToken);
     }
-
 }
