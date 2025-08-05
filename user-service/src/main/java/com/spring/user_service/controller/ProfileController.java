@@ -1,7 +1,9 @@
 package com.spring.user_service.controller;
 
-import com.spring.user_service.dto.profile.request.ProfilePostRequest;
-import com.spring.user_service.dto.profile.response.ProfileGetResponse;
+import com.spring.api.ProfileControllerApi;
+import com.spring.dto.PageProfileGetResponse;
+import com.spring.dto.ProfileGetResponse;
+import com.spring.dto.ProfilePostRequest;
 import com.spring.user_service.mapper.ProfileMapper;
 import com.spring.user_service.service.ProfileService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
@@ -20,7 +22,7 @@ import java.util.stream.Collectors;
 @RequestMapping("v1/profiles")
 @AllArgsConstructor
 @SecurityRequirement(name = "basicAuth")
-public class ProfileController {
+public class ProfileController implements ProfileControllerApi {
 
     private final ProfileService profileService;
     private final ProfileMapper mapper;
@@ -32,8 +34,9 @@ public class ProfileController {
     }
 
     @GetMapping("/paginated")
-    public ResponseEntity<Page<ProfileGetResponse>> findAllProfilesPaginated(Pageable pageable) {
-        return ResponseEntity.ok(profileService.findAllPageable(pageable).map(mapper::toProfileGetResponse));
+    public ResponseEntity<PageProfileGetResponse> findAllProfilesPaginated(Pageable pageable) {
+        Page<ProfileGetResponse> response = profileService.findAllPageable(pageable).map(mapper::toProfileGetResponse);
+        return ResponseEntity.ok(mapper.toPageProfileGetResponse(response));
     }
 
     @GetMapping("/{id}")

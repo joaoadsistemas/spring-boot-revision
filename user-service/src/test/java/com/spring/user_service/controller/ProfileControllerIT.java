@@ -1,8 +1,8 @@
 package com.spring.user_service.controller;
 
+import com.spring.dto.ProfileGetResponse;
 import com.spring.user_service.config.IntegrationTestsConfig;
 import com.spring.user_service.config.TestRestTemplateConfig;
-import com.spring.user_service.dto.profile.response.ProfileGetResponse;
 import com.spring.user_service.utils.FileUtils;
 import com.spring.user_service.utils.profile.CleanProfileAfterTest;
 import com.spring.user_service.utils.profile.SqlProfileDataSetup;
@@ -140,8 +140,8 @@ class ProfileControllerIT extends IntegrationTestsConfig {
 
     private static Stream<Arguments> postProfileBadRequestSource() {
         return Stream.of(
-                Arguments.of("/json/profile/save-profile-blank-400.json", "/json/profile/save-profile-blank-response-400.json"),
-                Arguments.of("/json/profile/save-profile-null-400.json", "/json/profile/save-profile-null-response-400.json"));
+                Arguments.of("/json/profile/save-profile-blank-fields-request-400.json", "/json/profile/save-profile-blank-response-400.json"),
+                Arguments.of("/json/profile/save-profile-empty-fields-request-400.json", "/json/profile/save-profile-empty-fields-response-400.json"));
     }
 
 }

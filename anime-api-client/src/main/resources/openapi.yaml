@@ -42,7 +42,9 @@ paths:
         '200':
           description: Update a user
           content:
-            application/json: {}
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserPutResponseDTO'
         '400':
           description: Email already exist
           content:
@@ -72,7 +74,7 @@ paths:
         '201':
           description: Save a user
           content:
-            application/json: {}
+            application/json: { }
         '400':
           description: Validation fields Bad Request
           content:
@@ -411,7 +413,9 @@ components:
           example: Silva
         email:
           type: string
-          x-field-extra-annotation: "@jakarta.validation.constraints.NotBlank(message=\"email is required\")"
+          x-field-extra-annotation: >
+            @jakarta.validation.constraints.NotBlank(message="email is required")
+            @jakarta.validation.constraints.Email(message="email is not valid", regexp="^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$")
           description: User's email. Must be unique
           example: joaosilva@gmail.com
         password:
@@ -432,6 +436,26 @@ components:
           type: string
         path:
           type: string
+    UserPutResponseDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: User's id
+          example: 1
+        firstName:
+          type: string
+          description: User's first name
+          example: Joao
+        lastName:
+          type: string
+          description: User's last name
+          example: Silva
+        email:
+          type: string
+          description: User's email
+          example: joaosilva@gmail.com
     UserPostRequestDTO:
       required:
         - email
@@ -452,7 +476,9 @@ components:
           example: Silva
         email:
           type: string
-          x-field-extra-annotation: "@jakarta.validation.constraints.NotBlank(message=\"email is required\")"
+          x-field-extra-annotation: >
+            @jakarta.validation.constraints.NotBlank(message="email is required")
+            @jakarta.validation.constraints.Email(message="email is not valid", regexp="^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$")
           description: User's email. Must be unique
           example: joaosilva@gmail.com
         password:
@@ -468,8 +494,14 @@ components:
       properties:
         name:
           type: string
+          x-field-extra-annotation: '@jakarta.validation.constraints.NotBlank(message="name can not be blank")'
+          description: Profile's name
+          example: Normal User
         description:
           type: string
+          x-field-extra-annotation: '@jakarta.validation.constraints.NotBlank(message="description can not be blank")'
+          description: Profile's description
+          example: Normal User Role
     UserGetResponseDTO:
       type: object
       properties:

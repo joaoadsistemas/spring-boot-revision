@@ -27,6 +27,9 @@
         <tag/>
         <url/>
     </scm>
+    <properties>
+        <anime-api-client.version>0.0.1-SNAPSHOT</anime-api-client.version>
+    </properties>
 
     <dependencies>
 
@@ -80,6 +83,12 @@
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-test</artifactId>
             <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.spring</groupId>
+            <artifactId>anime-api-client</artifactId>
+            <version>${anime-api-client.version}</version>
         </dependency>
 
     </dependencies>

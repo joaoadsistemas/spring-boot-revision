@@ -1,15 +1,11 @@
 package com.spring.user_service.mapper;
 
+import com.spring.dto.*;
 import com.spring.user_service.annotation.EncodedMapping;
-import com.spring.user_service.dto.user.request.UserPostRequestDTO;
-import com.spring.user_service.dto.user.request.UserPutRequestDTO;
-import com.spring.user_service.dto.user.response.UserGetResponseDTO;
-import com.spring.user_service.dto.user.response.UserPostResponseDTO;
-import com.spring.user_service.dto.user.response.UserPutResponseDTO;
 import com.spring.user_service.model.User;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-import org.mapstruct.factory.Mappers;
+import org.springframework.data.domain.Page;
 
 @Mapper(componentModel = "spring", uses = {PasswordEncoderMapper.class})
 public interface UserMapper {
@@ -23,8 +19,8 @@ public interface UserMapper {
 
     UserGetResponseDTO toUserGetResponse(User user);
 
-    UserPostResponseDTO toUserPostResponse(User user);
-
     UserPutResponseDTO toUserPutResponse(User user);
+
+    PageUserGetResponseDTO toPageUserGetResponseDTO(Page<UserGetResponseDTO>users);
 
 }

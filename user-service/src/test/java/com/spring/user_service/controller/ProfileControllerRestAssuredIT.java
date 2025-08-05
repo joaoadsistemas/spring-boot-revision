@@ -200,8 +200,8 @@ class ProfileControllerRestAssuredIT extends IntegrationTestsConfig {
 
     private static Stream<Arguments> postProfileBadRequestSource() {
         return Stream.of(
-                Arguments.of("/json/profile/save-profile-blank-400.json", "/json/profile/save-profile-blank-response-400.json"),
-                Arguments.of("/json/profile/save-profile-null-400.json", "/json/profile/save-profile-null-response-400.json"));
+                Arguments.of("/json/profile/save-profile-blank-fields-request-400.json", "/json/profile/save-profile-blank-response-400.json"),
+                Arguments.of("/json/profile/save-profile-empty-fields-request-400.json", "/json/profile/save-profile-empty-fields-response-400.json"));
     }
 
 }

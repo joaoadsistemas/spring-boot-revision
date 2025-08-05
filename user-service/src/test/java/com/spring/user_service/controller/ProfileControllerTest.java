@@ -91,7 +91,7 @@ class ProfileControllerTest {
 
         BDDMockito.when(profileRepository.findAll(ArgumentMatchers.any(Pageable.class))).thenReturn(pageProfile);
 
-        mockMvc.perform(MockMvcRequestBuilders.get(URL + "/pageable"))
+        mockMvc.perform(MockMvcRequestBuilders.get(URL + "/paginated"))
                 .andDo(MockMvcResultHandlers.print())
                 .andExpect(MockMvcResultMatchers.content().json(result))
                 .andExpect(MockMvcResultMatchers.status().isOk());
@@ -195,8 +195,8 @@ class ProfileControllerTest {
 
     private static Stream<Arguments> postProfileBadRequestSource() {
         return Stream.of(
-                Arguments.of("/json/profile/save-profile-blank-400.json", allPostNotBlankMessages()),
-                Arguments.of("/json/profile/save-profile-null-400.json", allPostNotNullMessages())
+                Arguments.of("/json/profile/save-profile-blank-fields-request-400.json", allPostNotBlankMessages()),
+                Arguments.of("/json/profile/save-profile-empty-fields-request-400.json", allPostNotEmptyMessages())
         );
     }
 
@@ -206,10 +206,10 @@ class ProfileControllerTest {
                 "description can not be blank");
     }
 
-    private static List<String> allPostNotNullMessages() {
+    private static List<String> allPostNotEmptyMessages() {
         return List.of(
-                "name can not be null",
-                "description can not be null");
+                "name can not be blank",
+                "description can not be blank");
     }
 
 }
